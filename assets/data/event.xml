@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>    
+	<event id="1">
+		<name>Pertandingan Sepak Bola</name>
+		<district>Sport Center</district>
+		<traffic>
+			<normal>avg</normal>
+			<weekend>high</weekend>
+			<holiday>high</holiday>
+		</traffic>			
+		<profile>
+			<education>4</education>
+			<art>6</art>
+			<athletic>8</athletic>
+		</profile>	
+		<time>
+			<start>14</start>
+			<finish>17</finish>
+		</time>
+	</event>
+	<event id="2">
+		<name>Pertandingan Bulu Tangkis</name>
+		<district>Sport Center</district>
+		<traffic>
+			<normal>avg</normal>
+			<weekend>avg</weekend>
+			<holiday>avg</holiday>
+		</traffic>			
+		<profile>
+			<education>5</education>
+			<art>7</art>
+			<athletic>7</athletic>
+		</profile>	
+		<time>
+			<start>10</start>
+			<finish>13</finish>
+		</time>
+	</event>
+	<event id="3">
+		<name>Pertandingan Basket</name>
+		<district>Sport Center</district>
+		<traffic>
+			<normal>low</normal>
+			<weekend>avg</weekend>
+			<holiday>high</holiday>
+		</traffic>			
+		<profile>
+			<education>5</education>
+			<art>6</art>
+			<athletic>8</athletic>
+		</profile>
+		<time>
+			<start>18</start>
+			<finish>20</finish>
+		</time>		
+	</event>
+    <event id="4">		
+		<name>Konser Musik</name>
+		<district>Town Hall</district>
+		<traffic>
+			<normal>avg</normal>
+			<weekend>high</weekend>
+			<holiday>high</holiday>
+		</traffic>				
+		<profile>
+			<education>6</education>
+			<art>8</art>
+			<athletic>2</athletic>
+		</profile>	
+		<time>
+			<start>19</start>
+			<finish>21</finish>
+		</time>
+	</event>
+	<event id="5">
+		<name>Dirgahayu Green City</name>
+		<district>Town Hall</district>
+		<traffic>
+			<normal>avg</normal>
+			<weekend>high</weekend>
+			<holiday>high</holiday>	
+		</traffic>				
+		<profile>
+			<education>7</education>
+			<art>5</art>
+			<athletic>3</athletic>
+		</profile>
+		<time>
+			<start>8</start>
+			<finish>12</finish>
+		</time>
+	</event>
+	<event id="6">			
+		<name>Sport Competition</name>
+		<district>Play Ground</district>
+		<traffic>
+			<normal>low</normal>
+			<weekend>high</weekend>
+			<holiday>avg</holiday>
+		</traffic>			
+		<profile>
+			<education>6</education>
+			<art>6</art>
+			<athletic>7</athletic>
+		</profile>	
+		<time>
+			<start>9</start>
+			<finish>13</finish>
+		</time>
+	</event>
+	<event id="7">
+		<name>Drawing Contest</name>
+		<district>Play Ground</district>
+		<traffic>
+			<normal>avg</normal>
+			<weekend>high</weekend>
+			<holiday>avg</holiday>
+		</traffic>			
+		<profile>
+			<education>5</education>
+			<art>8</art>
+			<athletic>2</athletic>
+		</profile>	
+		<time>
+			<start>8</start>
+			<finish>10</finish>
+		</time>
+	</event>
+	<event id="8">		
+		<name>Education Expo</name>
+		<district>School Center</district>
+		<traffic>
+			<normal>high</normal>
+			<weekend>avg</weekend>
+			<holiday>low</holiday>
+		</traffic>			
+		<profile>
+			<education>9</education>
+			<art>7</art>
+			<athletic>2</athletic>
+		</profile>
+		<time>
+			<start>9</start>
+			<finish>14</finish>
+		</time>
+	</event>
+	<event id="9">		
+		<name>National Seminar</name>
+		<district>School Center</district>
+		<traffic>
+			<normal>high</normal>
+			<weekend>avg</weekend>
+			<holiday>avg</holiday>
+		</traffic>			
+		<profile>
+			<education>8</education>
+			<art>4</art>
+			<athletic>1</athletic>
+		</profile>	
+		<time>
+			<start>9</start>
+			<finish>12</finish>
+		</time>
+	</event>
+	<event id="10">		
+		<name>Market Expo</name>
+		<district>Times Square</district>
+		<traffic>
+			<normal>low</normal>
+			<weekend>high</weekend>
+			<holiday>avg</holiday>
+		</traffic>			
+		<profile>
+			<education>6</education>
+			<art>6</art>
+			<athletic>4</athletic>
+		</profile>
+		<time>
+			<start>9</start>
+			<finish>12</finish>
+		</time>
+	</event>
+	<event id="11">		
+		<name>Product Launching</name>
+		<district>Times Square</district>
+		<traffic>
+			<normal>avg</normal>
+			<weekend>avg</weekend>
+			<holiday>avg</holiday>
+		</traffic>			
+		<profile>
+			<education>7</education>
+			<art>7</art>
+			<athletic>3</athletic>
+		</profile>
+		<time>
+			<start>17</start>
+			<finish>20</finish>
+		</time>
+	</event>
+	<event id="12">
+		<name>Industry Charity Fair</name>
+		<district>Factory</district>
+		<traffic>
+			<normal>avg</normal>
+			<weekend>avg</weekend>
+			<holiday>avg</holiday>
+		</traffic>	
+		<profile>
+			<education>6</education>
+			<art>6</art>
+			<athletic>6</athletic>
+		</profile>
+		<time>
+			<start>12</start>
+			<finish>15</finish>
+		</time>
+	</event>
+	<event id="13">
+		<name>Job Fair</name>
+		<district>Factory</district>
+		<traffic>
+			<normal>avg</normal>
+			<weekend>avg</weekend>
+			<holiday>avg</holiday>
+		</traffic>	
+		<profile>
+			<education>7</education>
+			<art>4</art>
+			<athletic>3</athletic>
+		</profile>	
+		<time>
+			<start>9</start>
+			<finish>14</finish>
+		</time>
+	</event>
+	<event id="14">
+		<name>Vehicle Grand Opening</name>
+		<district>Wonderland</district>
+		<traffic>
+			<normal>avg</normal>
+			<weekend>avg</weekend>
+			<holiday>avg</holiday>
+		</traffic>	
+		<profile>
+			<education>7</education>
+			<art>7</art>
+			<athletic>7</athletic>
+		</profile>
+		<time>
+			<start>17</start>
+			<finish>20</finish>
+		</time>
+	</event>
+	<event id="15">
+		<name>Special Holiday</name>
+		<district>Wonderland</district>
+		<traffic>
+			<normal>avg</normal>
+			<weekend>avg</weekend>
+			<holiday>avg</holiday>
+		</traffic>	
+		<profile>
+			<education>8</education>
+			<art>8</art>
+			<athletic>8</athletic>
+		</profile>
+		<time>
+			<start>9</start>
+			<finish>17</finish>
+		</time>
+	</event>
+	<event id="16">
+		<name>Product Demo</name>
+		<district>Green Ville</district>
+		<traffic>
+			<normal>avg</normal>
+			<weekend>avg</weekend>
+			<holiday>avg</holiday>
+		</traffic>	
+		<profile>
+			<education>5</education>
+			<art>5</art>
+			<athletic>5</athletic>
+		</profile>	
+		<time>
+			<start>8</start>
+			<finish>12</finish>
+		</time>
+	</event>
+</data>

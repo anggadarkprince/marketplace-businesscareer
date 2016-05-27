@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<forecast>    
+    <weather id="1">
+		<name>Hurricane Storm</name>
+		<min>10</min>
+		<max>15</max>
+		<probability>0.2</probability>
+		<status>disaster</status>
+    </weather>
+    <weather id="2">
+		<name>Heavy Rain</name>
+		<min>15</min>
+		<max>18</max>
+		<probability>0.4</probability>
+		<status>bad</status>
+    </weather>
+	<weather id="3">
+		<name>Rain</name>
+		<min>18</min>
+		<max>25</max>
+		<probability>0.6</probability>
+		<status>avg</status>
+    </weather>
+	<weather id="4">
+		<name>Cloudy</name>
+		<min>25</min>
+		<max>30</max>
+		<probability>0.8</probability>
+		<status>normal</status>
+    </weather>
+	<weather id="5">
+		<name>Clammy</name>
+		<min>30</min>
+		<max>35</max>
+		<probability>1</probability>
+		<status>good</status>
+    </weather>
+	<weather id="6">
+		<name>Sunny</name>
+		<min>35</min>
+		<max>37</max>
+		<probability>1</probability>
+		<status>good</status>
+    </weather>
+	<weather id="7">
+		<name>Overcast</name>
+		<min>37</min>
+		<max>40</max>
+		<probability>0.8</probability>
+		<status>normal</status>
+    </weather>
+	<weather id="8">
+		<name>Hot</name>
+		<min>40</min>
+		<max>50</max>
+		<probability>0.6</probability>
+		<status>avg</status>
+    </weather>
+	<weather id="9">
+		<name>Heat up</name>
+		<min>50</min>
+		<max>60</max>
+		<probability>0.4</probability>
+		<status>bad</status>
+    </weather>
+	<weather id="10">
+		<name>Scorching</name>
+		<min>60</min>
+		<max>65</max>
+		<probability>0.2</probability>
+		<status>disaster</status>
+    </weather>
+</forecast>

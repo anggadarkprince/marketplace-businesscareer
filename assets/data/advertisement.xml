@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <advertisement id="1">
+		<name>Television</name>
+		<atlas>adver_tv</atlas>
+		<visibility>
+			<none>0</none>
+			<low>30000</low>
+			<average>40000</average>
+			<high>60000</high>
+		</visibility>
+    </advertisement>
+	<advertisement id="2">
+		<name>Social Network</name>
+		<atlas>adver_internet</atlas>
+		<visibility>
+			<none>0</none>
+			<low>15000</low>
+			<average>20000</average>
+			<high>30000</high>
+		</visibility>
+    </advertisement>
+	<advertisement id="3">
+		<name>Radio</name>
+		<atlas>adver_radio</atlas>
+		<visibility>
+			<none>0</none>
+			<low>20000</low>
+			<average>25000</average>
+			<high>35000</high>
+		</visibility>
+    </advertisement>
+	<advertisement id="4">
+		<name>Event Sponsorship</name>
+		<atlas>adver_event</atlas>
+		<visibility>
+			<none>0</none>
+			<low>30000</low>
+			<average>35000</average>
+			<high>55000</high>
+		</visibility>
+    </advertisement>
+	<advertisement id="5">
+		<name>Newspaper</name>
+		<atlas>adver_newspaper</atlas>
+		<visibility>
+			<none>0</none>
+			<low>30000</low>
+			<average>40000</average>
+			<high>70000</high>
+		</visibility>
+    </advertisement>
+	<advertisement id="6">
+		<name>Billboard</name>
+		<atlas>adver_billboard</atlas>
+		<visibility>
+			<none>0</none>
+			<low>30000</low>
+			<average>40000</average>
+			<high>60000</high>
+		</visibility>
+    </advertisement>
+</data>

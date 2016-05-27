@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <tips id="1">
+		<title>SEED FINANCING</title>
+		<content>Seed financing adalah uang yang dibutuhkan untuk memulai bisnis. Kamu harus menentukan inisial cost dengan baik.</content>
+	</tips>
+	<tips id="2">
+		<title>SEED FINANCING</title>
+		<content>Seed financing yang telah kamu pilih ada diantara 3 sumber yaitu simpanan, pinjaman dan modal investasi.</content>
+	</tips>
+	<tips id="3">
+		<title>DEBT</title>
+		<content>Bank atau pemberi pinjaman menyediakan uang untuk usahamu dan kamu harus ingan untuk melunasi dengan bunga.</content>
+	</tips>
+	<tips id="4">
+		<title>DEBT</title>
+		<content>Ingat! kamu harus mengembalikan pinjaman dalam waktu tertentu yang disebut "the term" pada menu profit.</content>
+	</tips>	
+	<tips id="5">
+		<title>EQUITY</title>
+		<content>Sebuah modal investasi adalah dari orang yang memberimu uang sebagai modal untuk nantinya kamu harus membagi kepemilikan bisnis.</content>
+	</tips>
+	<tips id="6">
+		<title>EQUITY</title>
+		<content>Ingat! Paid-in Capital adalah jumlah modal kamu dan modal investor yang memiiki kontribusi didalamnya.</content>
+	</tips>
+	<tips id="7">
+		<title>MARKET</title>
+		<content>Cek news dan issues untuk melihat ramalan cuaca dan berita event yang mempengaruhi kepadatan customer disuatu lokasi.</content>
+	</tips>
+	<tips id="8">
+		<title>MARKET</title>
+		<content>Review trafik dan informasi kompetitor untuk membantu memilih lokasi dan jadwal toko yang terbaik.</content>
+	</tips>
+	<tips id="9">
+		<title>SCHEDULE</title>
+		<content>Pilih jam yang diinginkan untuk membuka toko hari ini. Perhatikan kepadatan customer pada lokasi saat ini.</content>
+	</tips>
+	<tips id="10">
+		<title>SCHEDULE</title>
+		<content>Untuk mengurangi tingkat stress, kurangi jam kerja toko.</content>
+	</tips>
+	<tips id="11">
+		<title>PRODUCT</title>
+		<content>Siapkan jumlah material secukupnya untuk hari ini, perhatikan waktu expired agar tidak terbuang.</content>
+	</tips>
+	<tips id="12">
+		<title>PRODUCT</title>
+		<content>Upgrade storage asset untuk kapasitas penyimpanan material yang lebih banyak.</content>
+	</tips>
+	<tips id="13">
+		<title>PRODUCT</title>
+		<content>Tentukan jika kamu ingin meningkatkan kualitas dan tampilan produk hari ini.</content>
+	</tips>
+	<tips id="14">
+		<title>PRODUCT</title>
+		<content>Atur harga dari produk yang dibutuhkan.</content>
+	</tips>
+	<tips id="15">
+		<title>EMPLOYEE</title>
+		<content>Sewa pegawai hari ini untuk mendapatkan feedback baik dari customer dengan service, moral dan produktivitas yang baik.</content>
+	</tips>
+	<tips id="16">
+		<title>ADVERTISING</title>
+		<content>Pasang iklan hari ini untuk meningkatkan kepadatan bisnis terhadap stimulus customer.</content>
+	</tips>
+	<tips id="17">
+		<title>BUSINESS</title>
+		<content>Jalankan simulasi bisnis untuk melihat hasil dari keputusan bisnis yang kamu buat.</content>
+	</tips>
+	<tips id="18">
+		<title>BUSINESS</title>
+		<content>Perhatikan customer trafik, penjualan dan komentar dari customer.</content>
+	</tips>
+	<tips id="19">
+		<title>ACCOUNTING</title>
+		<content>Perusahaanmu menggunakan kalender tahunan untuk membuat periode laporan keuangan.</content>
+	</tips>
+	<tips id="20">
+		<title>ACCOUNTING</title>
+		<content>Perhatikan penentuan harga dengan melihat rata-rata nilai yang dibutuhkan sebagai beban Cost of Good Sold.</content>
+	</tips>
+	<tips id="21">
+		<title>ACCOUNTING</title>
+		<content>Ketika terjadi penjualan, ingat cost dari inventory disimpan sebagai beban Cost of Goods.</content>
+	</tips>
+	<tips id="22">
+		<title>INVENTORY</title>
+		<content>Invetory pada perusahaanmu menerapkan sistem FIFO dimana material yang kamu beli pertama akan dijual lebih dulu.</content>
+	</tips>
+	<tips id="23">
+		<title>INVENTORY</title>
+		<content>Inventory yang rusak atau expired tidak dapat dijual dan akan dibuang sebagai beban kerugian inventory.</content>
+	</tips>
+	<tips id="24">
+		<title>GAME</title>
+		<content>Kamu dapat melakukan pengatugan dasar game seperti BGM dan SFX pada menu option.</content>
+	</tips>
+	<tips id="25">
+		<title>GAME</title>
+		<content>Kamu dapat melihat konsep dasar game dengan membukan menu help.</content>
+	</tips>
+	<tips id="26">
+		<title>GAME</title>
+		<content>Dapatkan game point dengan menyelesaikan task, membuka achievement, menyewa employee dan membeli booster.</content>
+	</tips>
+	<tips id="27">
+		<title>GAME</title>
+		<content>Jangan sampai cash mendekati 0 atau game akan berakhir dan game over.</content>
+	</tips>
+	<tips id="28">
+		<title>GAME</title>
+		<content>Pahami siklus akuntansi dengan memperhatikan akun yang diposting berdasarkan aktivitas yang kamu lakukan.</content>
+	</tips>	
+	<tips id="29">
+		<title>ASSET</title>
+		<content>Upgrade asset untuk mendapatkan keuntungan atribut toko seperti kapasitas storage atau memperpanjang masa expired.</content>
+	</tips>
+	<tips id="30">
+		<title>ASSET</title>
+		<content>Setiap asset memiliki depresiasi, kamu dapat mengembalikan nilai ekonomi produk dengan melakukan perbaikan.</content>
+	</tips>	
+	<tips id="31">
+		<title>ASSET</title>
+		<content>Setiap asset tidak dapat dijual dalam game ini, aset dimiliki sebagai harta yang tetap.</content>
+	</tips>	
+	<tips id="32">
+		<title>ASSET</title>
+		<content>Setiap asset tidak dapat dijual dalam game ini, aset dimiliki sebagai harta yang tetap.</content>
+	</tips>	
+</data>

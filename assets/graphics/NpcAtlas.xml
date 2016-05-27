@@ -1,0 +1,644 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="NpcAtlas.png">
+	<!-- Created with Adobe Flash Professional version 13.1.0.226 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="char10_stand0000" x="980" y="923" width="20" height="54" pivotX="17.6" pivotY="23.85"/>
+	<SubTexture name="char10_tada0000" x="901" y="351" width="28" height="55" pivotX="8.55" pivotY="25.35"/>
+	<SubTexture name="char10_tada0001" x="931" y="352" width="28" height="55"/>
+	<SubTexture name="char10_tada0002" x="961" y="352" width="28" height="55"/>
+	<SubTexture name="char10_tada0003" x="991" y="352" width="28" height="55"/>
+	<SubTexture name="char10_tada0004" x="236" y="353" width="28" height="55"/>
+	<SubTexture name="char10_tada0005" x="266" y="353" width="28" height="55"/>
+	<SubTexture name="char10_tada0006" x="0" y="355" width="28" height="55"/>
+	<SubTexture name="char10_tada0007" x="438" y="355" width="28" height="55"/>
+	<SubTexture name="char10_tada0008" x="468" y="355" width="28" height="55"/>
+	<SubTexture name="char10_tada0009" x="498" y="355" width="28" height="55"/>
+	<SubTexture name="char10_tada0010" x="528" y="355" width="28" height="55"/>
+	<SubTexture name="char10_tada0011" x="558" y="355" width="28" height="55"/>
+	<SubTexture name="char10_tada0012" x="588" y="355" width="28" height="55"/>
+	<SubTexture name="char10_tada0013" x="618" y="355" width="28" height="55"/>
+	<SubTexture name="char10_tada0014" x="648" y="355" width="28" height="55"/>
+	<SubTexture name="char10_walk0000" x="779" y="639" width="24" height="55" pivotX="9.5" pivotY="27.1"/>
+	<SubTexture name="char10_walk0001" x="805" y="639" width="24" height="55"/>
+	<SubTexture name="char10_walk0002" x="87" y="640" width="24" height="55"/>
+	<SubTexture name="char10_walk0003" x="113" y="640" width="24" height="55"/>
+	<SubTexture name="char10_walk0004" x="139" y="640" width="24" height="55"/>
+	<SubTexture name="char10_walk0005" x="165" y="640" width="24" height="55"/>
+	<SubTexture name="char10_walk0006" x="261" y="640" width="24" height="55"/>
+	<SubTexture name="char10_walk0007" x="287" y="640" width="24" height="55"/>
+	<SubTexture name="char10_walk0008" x="313" y="640" width="24" height="55"/>
+	<SubTexture name="char10_walk0009" x="339" y="640" width="24" height="55"/>
+	<SubTexture name="char10_walk0010" x="365" y="640" width="24" height="55"/>
+	<SubTexture name="char10_walk0011" x="615" y="640" width="24" height="55"/>
+	<SubTexture name="char10_walk0012" x="641" y="640" width="24" height="55"/>
+	<SubTexture name="char10_walk0013" x="667" y="640" width="24" height="55"/>
+	<SubTexture name="char10_walk0014" x="693" y="640" width="24" height="55"/>
+	<SubTexture name="char10_yup0000" x="744" y="121" width="22" height="55" pivotX="21.2" pivotY="24.05"/>
+	<SubTexture name="char10_yup0001" x="602" y="813" width="22" height="55"/>
+	<SubTexture name="char10_yup0002" x="626" y="813" width="22" height="55"/>
+	<SubTexture name="char10_yup0003" x="650" y="813" width="22" height="55"/>
+	<SubTexture name="char10_yup0004" x="674" y="813" width="22" height="55"/>
+	<SubTexture name="char10_yup0005" x="674" y="813" width="22" height="55"/>
+	<SubTexture name="char10_yup0006" x="866" y="813" width="22" height="55"/>
+	<SubTexture name="char10_yup0007" x="48" y="815" width="22" height="55"/>
+	<SubTexture name="char10_yup0008" x="48" y="815" width="22" height="55"/>
+	<SubTexture name="char10_yup0009" x="24" y="818" width="22" height="55"/>
+	<SubTexture name="char10_yup0010" x="24" y="818" width="22" height="55"/>
+	<SubTexture name="char11_stand0000" x="794" y="754" width="22" height="56" pivotX="11.2" pivotY="29.6"/>
+	<SubTexture name="char11_tada0000" x="288" y="62" width="30" height="57" pivotX="3.75" pivotY="30.15"/>
+	<SubTexture name="char11_tada0001" x="320" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0002" x="352" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0003" x="384" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0004" x="416" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0005" x="448" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0006" x="480" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0007" x="512" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0008" x="544" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0009" x="576" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0010" x="608" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0011" x="640" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0012" x="672" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0013" x="704" y="62" width="30" height="57"/>
+	<SubTexture name="char11_tada0014" x="736" y="62" width="30" height="57"/>
+	<SubTexture name="char11_walk0000" x="541" y="694" width="23" height="56" pivotX="7.9" pivotY="31.95"/>
+	<SubTexture name="char11_walk0001" x="566" y="694" width="23" height="56"/>
+	<SubTexture name="char11_walk0002" x="719" y="695" width="23" height="56"/>
+	<SubTexture name="char11_walk0003" x="744" y="695" width="23" height="56"/>
+	<SubTexture name="char11_walk0004" x="769" y="696" width="23" height="56"/>
+	<SubTexture name="char11_walk0005" x="794" y="696" width="23" height="56"/>
+	<SubTexture name="char11_walk0006" x="75" y="697" width="23" height="56"/>
+	<SubTexture name="char11_walk0007" x="100" y="697" width="23" height="56"/>
+	<SubTexture name="char11_walk0008" x="125" y="697" width="23" height="56"/>
+	<SubTexture name="char11_walk0009" x="150" y="697" width="23" height="56"/>
+	<SubTexture name="char11_walk0010" x="254" y="697" width="23" height="56"/>
+	<SubTexture name="char11_walk0011" x="279" y="697" width="23" height="56"/>
+	<SubTexture name="char11_walk0012" x="304" y="697" width="23" height="56"/>
+	<SubTexture name="char11_walk0013" x="329" y="697" width="23" height="56"/>
+	<SubTexture name="char11_walk0014" x="354" y="697" width="23" height="56"/>
+	<SubTexture name="char11_yup0000" x="175" y="359" width="27" height="56" pivotX="9.85" pivotY="29.85"/>
+	<SubTexture name="char11_yup0001" x="204" y="359" width="27" height="56"/>
+	<SubTexture name="char11_yup0002" x="881" y="408" width="27" height="56"/>
+	<SubTexture name="char11_yup0003" x="910" y="409" width="27" height="56"/>
+	<SubTexture name="char11_yup0004" x="939" y="409" width="27" height="56"/>
+	<SubTexture name="char11_yup0005" x="939" y="409" width="27" height="56"/>
+	<SubTexture name="char11_yup0006" x="968" y="409" width="27" height="56"/>
+	<SubTexture name="char11_yup0007" x="997" y="409" width="27" height="56"/>
+	<SubTexture name="char11_yup0008" x="997" y="409" width="27" height="56"/>
+	<SubTexture name="char11_yup0009" x="233" y="410" width="27" height="56"/>
+	<SubTexture name="char11_yup0010" x="233" y="410" width="27" height="56"/>
+	<SubTexture name="char12_stand0000" x="904" y="636" width="23" height="59" pivotX="22.35" pivotY="38.4"/>
+	<SubTexture name="char12_tada0000" x="465" y="0" width="29" height="60" pivotX="8.8" pivotY="41.25"/>
+	<SubTexture name="char12_tada0001" x="496" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0002" x="527" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0003" x="558" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0004" x="589" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0005" x="620" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0006" x="651" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0007" x="682" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0008" x="713" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0009" x="744" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0010" x="775" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0011" x="806" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0012" x="837" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0013" x="868" y="0" width="29" height="60"/>
+	<SubTexture name="char12_tada0014" x="899" y="0" width="29" height="60"/>
+	<SubTexture name="char12_walk0000" x="481" y="293" width="26" height="60" pivotX="15.55" pivotY="41.05"/>
+	<SubTexture name="char12_walk0001" x="509" y="293" width="26" height="60"/>
+	<SubTexture name="char12_walk0002" x="537" y="293" width="26" height="60"/>
+	<SubTexture name="char12_walk0003" x="565" y="293" width="26" height="60"/>
+	<SubTexture name="char12_walk0004" x="593" y="293" width="26" height="60"/>
+	<SubTexture name="char12_walk0005" x="621" y="293" width="26" height="60"/>
+	<SubTexture name="char12_walk0006" x="649" y="293" width="26" height="60"/>
+	<SubTexture name="char12_walk0007" x="677" y="293" width="26" height="60"/>
+	<SubTexture name="char12_walk0008" x="705" y="294" width="26" height="60"/>
+	<SubTexture name="char12_walk0009" x="733" y="294" width="26" height="60"/>
+	<SubTexture name="char12_walk0010" x="761" y="294" width="26" height="60"/>
+	<SubTexture name="char12_walk0011" x="789" y="294" width="26" height="60"/>
+	<SubTexture name="char12_walk0012" x="817" y="294" width="26" height="60"/>
+	<SubTexture name="char12_walk0013" x="845" y="294" width="26" height="60"/>
+	<SubTexture name="char12_walk0014" x="873" y="294" width="26" height="60"/>
+	<SubTexture name="char12_yup0000" x="960" y="176" width="27" height="60" pivotX="10.15" pivotY="39.2"/>
+	<SubTexture name="char12_yup0001" x="989" y="176" width="27" height="60"/>
+	<SubTexture name="char12_yup0002" x="296" y="177" width="27" height="60"/>
+	<SubTexture name="char12_yup0003" x="325" y="177" width="27" height="60"/>
+	<SubTexture name="char12_yup0004" x="354" y="177" width="27" height="60"/>
+	<SubTexture name="char12_yup0005" x="354" y="177" width="27" height="60"/>
+	<SubTexture name="char12_yup0006" x="383" y="177" width="27" height="60"/>
+	<SubTexture name="char12_yup0007" x="412" y="177" width="27" height="60"/>
+	<SubTexture name="char12_yup0008" x="412" y="177" width="27" height="60"/>
+	<SubTexture name="char12_yup0009" x="441" y="177" width="27" height="60"/>
+	<SubTexture name="char12_yup0010" x="441" y="177" width="27" height="60"/>
+	<SubTexture name="char13_stand0000" x="1005" y="467" width="19" height="55" pivotX="10.5" pivotY="25.35"/>
+	<SubTexture name="char13_tada0000" x="0" y="179" width="29" height="55" pivotX="5.5" pivotY="25.95"/>
+	<SubTexture name="char13_tada0001" x="31" y="179" width="29" height="55"/>
+	<SubTexture name="char13_tada0002" x="62" y="183" width="29" height="55"/>
+	<SubTexture name="char13_tada0003" x="93" y="183" width="29" height="55"/>
+	<SubTexture name="char13_tada0004" x="124" y="183" width="29" height="55"/>
+	<SubTexture name="char13_tada0005" x="155" y="183" width="29" height="55"/>
+	<SubTexture name="char13_tada0006" x="186" y="183" width="29" height="55"/>
+	<SubTexture name="char13_tada0007" x="217" y="183" width="29" height="55"/>
+	<SubTexture name="char13_tada0008" x="248" y="183" width="29" height="55"/>
+	<SubTexture name="char13_tada0009" x="920" y="232" width="29" height="55"/>
+	<SubTexture name="char13_tada0010" x="0" y="236" width="29" height="55"/>
+	<SubTexture name="char13_tada0011" x="31" y="236" width="29" height="55"/>
+	<SubTexture name="char13_tada0012" x="470" y="236" width="29" height="55"/>
+	<SubTexture name="char13_tada0013" x="501" y="236" width="29" height="55"/>
+	<SubTexture name="char13_tada0014" x="532" y="236" width="29" height="55"/>
+	<SubTexture name="char13_walk0000" x="241" y="755" width="22" height="56" pivotX="4.75" pivotY="28.15"/>
+	<SubTexture name="char13_walk0001" x="265" y="755" width="22" height="56"/>
+	<SubTexture name="char13_walk0002" x="289" y="755" width="22" height="56"/>
+	<SubTexture name="char13_walk0003" x="313" y="755" width="22" height="56"/>
+	<SubTexture name="char13_walk0004" x="337" y="755" width="22" height="56"/>
+	<SubTexture name="char13_walk0005" x="587" y="755" width="22" height="56"/>
+	<SubTexture name="char13_walk0006" x="611" y="755" width="22" height="56"/>
+	<SubTexture name="char13_walk0007" x="635" y="755" width="22" height="56"/>
+	<SubTexture name="char13_walk0008" x="659" y="755" width="22" height="56"/>
+	<SubTexture name="char13_walk0009" x="683" y="755" width="22" height="56"/>
+	<SubTexture name="char13_walk0010" x="869" y="755" width="22" height="56"/>
+	<SubTexture name="char13_walk0011" x="50" y="757" width="22" height="56"/>
+	<SubTexture name="char13_walk0012" x="24" y="760" width="22" height="56"/>
+	<SubTexture name="char13_walk0013" x="818" y="805" width="22" height="56"/>
+	<SubTexture name="char13_walk0014" x="201" y="806" width="22" height="56"/>
+	<SubTexture name="char13_yup0000" x="802" y="415" width="27" height="55" pivotX="9.85" pivotY="25.3"/>
+	<SubTexture name="char13_yup0001" x="831" y="415" width="27" height="55"/>
+	<SubTexture name="char13_yup0002" x="325" y="416" width="27" height="55"/>
+	<SubTexture name="char13_yup0003" x="354" y="416" width="27" height="55"/>
+	<SubTexture name="char13_yup0004" x="383" y="416" width="27" height="55"/>
+	<SubTexture name="char13_yup0005" x="383" y="416" width="27" height="55"/>
+	<SubTexture name="char13_yup0006" x="30" y="417" width="27" height="55"/>
+	<SubTexture name="char13_yup0007" x="59" y="417" width="27" height="55"/>
+	<SubTexture name="char13_yup0008" x="59" y="417" width="27" height="55"/>
+	<SubTexture name="char13_yup0009" x="88" y="417" width="27" height="55"/>
+	<SubTexture name="char13_yup0010" x="88" y="417" width="27" height="55"/>
+	<SubTexture name="char14_stand0000" x="0" y="924" width="16" height="54" pivotX="9.75" pivotY="21.55"/>
+	<SubTexture name="char14_tada0000" x="262" y="523" width="27" height="54" pivotX="8.8" pivotY="22.1"/>
+	<SubTexture name="char14_tada0001" x="881" y="524" width="27" height="54"/>
+	<SubTexture name="char14_tada0002" x="910" y="524" width="27" height="54"/>
+	<SubTexture name="char14_tada0003" x="939" y="524" width="27" height="54"/>
+	<SubTexture name="char14_tada0004" x="968" y="524" width="27" height="54"/>
+	<SubTexture name="char14_tada0005" x="997" y="524" width="27" height="54"/>
+	<SubTexture name="char14_tada0006" x="0" y="525" width="27" height="54"/>
+	<SubTexture name="char14_tada0007" x="209" y="525" width="27" height="54"/>
+	<SubTexture name="char14_tada0008" x="411" y="525" width="27" height="54"/>
+	<SubTexture name="char14_tada0009" x="440" y="525" width="27" height="54"/>
+	<SubTexture name="char14_tada0010" x="469" y="525" width="27" height="54"/>
+	<SubTexture name="char14_tada0011" x="498" y="525" width="27" height="54"/>
+	<SubTexture name="char14_tada0012" x="527" y="525" width="27" height="54"/>
+	<SubTexture name="char14_tada0013" x="556" y="525" width="27" height="54"/>
+	<SubTexture name="char14_tada0014" x="585" y="525" width="27" height="54"/>
+	<SubTexture name="char14_walk0000" x="803" y="863" width="22" height="54" pivotX="3.25" pivotY="23.8"/>
+	<SubTexture name="char14_walk0001" x="201" y="864" width="22" height="54"/>
+	<SubTexture name="char14_walk0002" x="146" y="865" width="22" height="54"/>
+	<SubTexture name="char14_walk0003" x="170" y="865" width="22" height="54"/>
+	<SubTexture name="char14_walk0004" x="345" y="865" width="22" height="54"/>
+	<SubTexture name="char14_walk0005" x="369" y="865" width="22" height="54"/>
+	<SubTexture name="char14_walk0006" x="393" y="865" width="22" height="54"/>
+	<SubTexture name="char14_walk0007" x="417" y="865" width="22" height="54"/>
+	<SubTexture name="char14_walk0008" x="441" y="865" width="22" height="54"/>
+	<SubTexture name="char14_walk0009" x="465" y="865" width="22" height="54"/>
+	<SubTexture name="char14_walk0010" x="489" y="865" width="22" height="54"/>
+	<SubTexture name="char14_walk0011" x="513" y="865" width="22" height="54"/>
+	<SubTexture name="char14_walk0012" x="537" y="865" width="22" height="54"/>
+	<SubTexture name="char14_walk0013" x="827" y="865" width="22" height="54"/>
+	<SubTexture name="char14_walk0014" x="698" y="866" width="22" height="54"/>
+	<SubTexture name="char14_yup0000" x="614" y="525" width="27" height="54" pivotX="9.85" pivotY="21.5"/>
+	<SubTexture name="char14_yup0001" x="731" y="526" width="27" height="54"/>
+	<SubTexture name="char14_yup0002" x="760" y="526" width="27" height="54"/>
+	<SubTexture name="char14_yup0003" x="789" y="527" width="27" height="54"/>
+	<SubTexture name="char14_yup0004" x="818" y="527" width="27" height="54"/>
+	<SubTexture name="char14_yup0005" x="818" y="527" width="27" height="54"/>
+	<SubTexture name="char14_yup0006" x="321" y="528" width="27" height="54"/>
+	<SubTexture name="char14_yup0007" x="350" y="528" width="27" height="54"/>
+	<SubTexture name="char14_yup0008" x="350" y="528" width="27" height="54"/>
+	<SubTexture name="char14_yup0009" x="379" y="528" width="27" height="54"/>
+	<SubTexture name="char14_yup0010" x="379" y="528" width="27" height="54"/>
+	<SubTexture name="char15_stand0000" x="958" y="923" width="20" height="54" pivotX="17.6" pivotY="23.85"/>
+	<SubTexture name="char15_tada0000" x="932" y="295" width="28" height="55" pivotX="8.6" pivotY="25.35"/>
+	<SubTexture name="char15_tada0001" x="962" y="295" width="28" height="55"/>
+	<SubTexture name="char15_tada0002" x="992" y="295" width="28" height="55"/>
+	<SubTexture name="char15_tada0003" x="258" y="296" width="28" height="55"/>
+	<SubTexture name="char15_tada0004" x="288" y="296" width="28" height="55"/>
+	<SubTexture name="char15_tada0005" x="318" y="301" width="28" height="55"/>
+	<SubTexture name="char15_tada0006" x="348" y="301" width="28" height="55"/>
+	<SubTexture name="char15_tada0007" x="378" y="301" width="28" height="55"/>
+	<SubTexture name="char15_tada0008" x="408" y="301" width="28" height="55"/>
+	<SubTexture name="char15_tada0009" x="56" y="302" width="28" height="55"/>
+	<SubTexture name="char15_tada0010" x="86" y="302" width="28" height="55"/>
+	<SubTexture name="char15_tada0011" x="116" y="302" width="28" height="55"/>
+	<SubTexture name="char15_tada0012" x="146" y="302" width="28" height="55"/>
+	<SubTexture name="char15_tada0013" x="176" y="302" width="28" height="55"/>
+	<SubTexture name="char15_tada0014" x="206" y="302" width="28" height="55"/>
+	<SubTexture name="char15_walk0000" x="929" y="636" width="24" height="55" pivotX="9.5" pivotY="27.1"/>
+	<SubTexture name="char15_walk0001" x="955" y="636" width="24" height="55"/>
+	<SubTexture name="char15_walk0002" x="981" y="636" width="24" height="55"/>
+	<SubTexture name="char15_walk0003" x="0" y="637" width="24" height="55"/>
+	<SubTexture name="char15_walk0004" x="203" y="637" width="24" height="55"/>
+	<SubTexture name="char15_walk0005" x="407" y="637" width="24" height="55"/>
+	<SubTexture name="char15_walk0006" x="433" y="637" width="24" height="55"/>
+	<SubTexture name="char15_walk0007" x="459" y="637" width="24" height="55"/>
+	<SubTexture name="char15_walk0008" x="485" y="637" width="24" height="55"/>
+	<SubTexture name="char15_walk0009" x="511" y="637" width="24" height="55"/>
+	<SubTexture name="char15_walk0010" x="537" y="637" width="24" height="55"/>
+	<SubTexture name="char15_walk0011" x="563" y="637" width="24" height="55"/>
+	<SubTexture name="char15_walk0012" x="589" y="637" width="24" height="55"/>
+	<SubTexture name="char15_walk0013" x="727" y="638" width="24" height="55"/>
+	<SubTexture name="char15_walk0014" x="753" y="638" width="24" height="55"/>
+	<SubTexture name="char15_yup0000" x="117" y="417" width="27" height="55" pivotX="9.85" pivotY="24.1"/>
+	<SubTexture name="char15_yup0001" x="146" y="417" width="27" height="55"/>
+	<SubTexture name="char15_yup0002" x="175" y="417" width="27" height="55"/>
+	<SubTexture name="char15_yup0003" x="204" y="417" width="27" height="55"/>
+	<SubTexture name="char15_yup0004" x="292" y="417" width="27" height="55"/>
+	<SubTexture name="char15_yup0005" x="292" y="417" width="27" height="55"/>
+	<SubTexture name="char15_yup0006" x="262" y="466" width="27" height="55"/>
+	<SubTexture name="char15_yup0007" x="860" y="466" width="27" height="55"/>
+	<SubTexture name="char15_yup0008" x="860" y="466" width="27" height="55"/>
+	<SubTexture name="char15_yup0009" x="889" y="467" width="27" height="55"/>
+	<SubTexture name="char15_yup0010" x="889" y="467" width="27" height="55"/>
+	<SubTexture name="char1_stand0000" x="0" y="752" width="22" height="56" pivotX="11.2" pivotY="29.6"/>
+	<SubTexture name="char1_tada0000" x="930" y="0" width="30" height="57" pivotX="3.75" pivotY="30.15"/>
+	<SubTexture name="char1_tada0001" x="962" y="0" width="30" height="57"/>
+	<SubTexture name="char1_tada0002" x="994" y="0" width="30" height="57"/>
+	<SubTexture name="char1_tada0003" x="930" y="59" width="30" height="57"/>
+	<SubTexture name="char1_tada0004" x="962" y="59" width="30" height="57"/>
+	<SubTexture name="char1_tada0005" x="994" y="59" width="30" height="57"/>
+	<SubTexture name="char1_tada0006" x="0" y="62" width="30" height="57"/>
+	<SubTexture name="char1_tada0007" x="32" y="62" width="30" height="57"/>
+	<SubTexture name="char1_tada0008" x="64" y="62" width="30" height="57"/>
+	<SubTexture name="char1_tada0009" x="96" y="62" width="30" height="57"/>
+	<SubTexture name="char1_tada0010" x="128" y="62" width="30" height="57"/>
+	<SubTexture name="char1_tada0011" x="160" y="62" width="30" height="57"/>
+	<SubTexture name="char1_tada0012" x="192" y="62" width="30" height="57"/>
+	<SubTexture name="char1_tada0013" x="224" y="62" width="30" height="57"/>
+	<SubTexture name="char1_tada0014" x="256" y="62" width="30" height="57"/>
+	<SubTexture name="char1_walk0000" x="50" y="641" width="23" height="56" pivotX="7.9" pivotY="31.95"/>
+	<SubTexture name="char1_walk0001" x="831" y="689" width="23" height="56"/>
+	<SubTexture name="char1_walk0002" x="229" y="690" width="23" height="56"/>
+	<SubTexture name="char1_walk0003" x="856" y="691" width="23" height="56"/>
+	<SubTexture name="char1_walk0004" x="929" y="693" width="23" height="56"/>
+	<SubTexture name="char1_walk0005" x="954" y="693" width="23" height="56"/>
+	<SubTexture name="char1_walk0006" x="979" y="693" width="23" height="56"/>
+	<SubTexture name="char1_walk0007" x="0" y="694" width="23" height="56"/>
+	<SubTexture name="char1_walk0008" x="191" y="694" width="23" height="56"/>
+	<SubTexture name="char1_walk0009" x="391" y="694" width="23" height="56"/>
+	<SubTexture name="char1_walk0010" x="416" y="694" width="23" height="56"/>
+	<SubTexture name="char1_walk0011" x="441" y="694" width="23" height="56"/>
+	<SubTexture name="char1_walk0012" x="466" y="694" width="23" height="56"/>
+	<SubTexture name="char1_walk0013" x="491" y="694" width="23" height="56"/>
+	<SubTexture name="char1_walk0014" x="516" y="694" width="23" height="56"/>
+	<SubTexture name="char1_yup0000" x="325" y="358" width="27" height="56" pivotX="9.85" pivotY="29.85"/>
+	<SubTexture name="char1_yup0001" x="354" y="358" width="27" height="56"/>
+	<SubTexture name="char1_yup0002" x="383" y="358" width="27" height="56"/>
+	<SubTexture name="char1_yup0003" x="30" y="359" width="27" height="56"/>
+	<SubTexture name="char1_yup0004" x="59" y="359" width="27" height="56"/>
+	<SubTexture name="char1_yup0005" x="59" y="359" width="27" height="56"/>
+	<SubTexture name="char1_yup0006" x="88" y="359" width="27" height="56"/>
+	<SubTexture name="char1_yup0007" x="117" y="359" width="27" height="56"/>
+	<SubTexture name="char1_yup0008" x="117" y="359" width="27" height="56"/>
+	<SubTexture name="char1_yup0009" x="146" y="359" width="27" height="56"/>
+	<SubTexture name="char1_yup0010" x="146" y="359" width="27" height="56"/>
+	<SubTexture name="char2_stand0000" x="26" y="641" width="22" height="59" pivotX="22.4" pivotY="38.4"/>
+	<SubTexture name="char2_tada0000" x="0" y="0" width="29" height="60" pivotX="8.8" pivotY="41.25"/>
+	<SubTexture name="char2_tada0001" x="31" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0002" x="62" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0003" x="93" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0004" x="124" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0005" x="155" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0006" x="186" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0007" x="217" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0008" x="248" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0009" x="279" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0010" x="310" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0011" x="341" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0012" x="372" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0013" x="403" y="0" width="29" height="60"/>
+	<SubTexture name="char2_tada0014" x="434" y="0" width="29" height="60"/>
+	<SubTexture name="char2_walk0000" x="341" y="239" width="26" height="60" pivotX="15.55" pivotY="41.05"/>
+	<SubTexture name="char2_walk0001" x="369" y="239" width="26" height="60"/>
+	<SubTexture name="char2_walk0002" x="397" y="239" width="26" height="60"/>
+	<SubTexture name="char2_walk0003" x="425" y="239" width="26" height="60"/>
+	<SubTexture name="char2_walk0004" x="62" y="240" width="26" height="60"/>
+	<SubTexture name="char2_walk0005" x="90" y="240" width="26" height="60"/>
+	<SubTexture name="char2_walk0006" x="118" y="240" width="26" height="60"/>
+	<SubTexture name="char2_walk0007" x="146" y="240" width="26" height="60"/>
+	<SubTexture name="char2_walk0008" x="174" y="240" width="26" height="60"/>
+	<SubTexture name="char2_walk0009" x="202" y="240" width="26" height="60"/>
+	<SubTexture name="char2_walk0010" x="230" y="240" width="26" height="60"/>
+	<SubTexture name="char2_walk0011" x="904" y="289" width="26" height="60"/>
+	<SubTexture name="char2_walk0012" x="0" y="293" width="26" height="60"/>
+	<SubTexture name="char2_walk0013" x="28" y="293" width="26" height="60"/>
+	<SubTexture name="char2_walk0014" x="453" y="293" width="26" height="60"/>
+	<SubTexture name="char2_yup0000" x="64" y="121" width="27" height="60" pivotX="10.15" pivotY="39.2"/>
+	<SubTexture name="char2_yup0001" x="93" y="121" width="27" height="60"/>
+	<SubTexture name="char2_yup0002" x="122" y="121" width="27" height="60"/>
+	<SubTexture name="char2_yup0003" x="151" y="121" width="27" height="60"/>
+	<SubTexture name="char2_yup0004" x="180" y="121" width="27" height="60"/>
+	<SubTexture name="char2_yup0005" x="180" y="121" width="27" height="60"/>
+	<SubTexture name="char2_yup0006" x="209" y="121" width="27" height="60"/>
+	<SubTexture name="char2_yup0007" x="238" y="121" width="27" height="60"/>
+	<SubTexture name="char2_yup0008" x="238" y="121" width="27" height="60"/>
+	<SubTexture name="char2_yup0009" x="267" y="121" width="27" height="60"/>
+	<SubTexture name="char2_yup0010" x="267" y="121" width="27" height="60"/>
+	<SubTexture name="char3_stand0000" x="1004" y="693" width="20" height="55" pivotX="14.6" pivotY="27.9"/>
+	<SubTexture name="char3_tada0000" x="768" y="62" width="30" height="56" pivotX="4.15" pivotY="29.75"/>
+	<SubTexture name="char3_tada0001" x="800" y="62" width="30" height="56"/>
+	<SubTexture name="char3_tada0002" x="832" y="62" width="30" height="56"/>
+	<SubTexture name="char3_tada0003" x="864" y="62" width="30" height="56"/>
+	<SubTexture name="char3_tada0004" x="896" y="62" width="30" height="56"/>
+	<SubTexture name="char3_tada0005" x="928" y="118" width="30" height="56"/>
+	<SubTexture name="char3_tada0006" x="960" y="118" width="30" height="56"/>
+	<SubTexture name="char3_tada0007" x="992" y="118" width="30" height="56"/>
+	<SubTexture name="char3_tada0008" x="768" y="120" width="30" height="56"/>
+	<SubTexture name="char3_tada0009" x="800" y="120" width="30" height="56"/>
+	<SubTexture name="char3_tada0010" x="832" y="120" width="30" height="56"/>
+	<SubTexture name="char3_tada0011" x="864" y="120" width="30" height="56"/>
+	<SubTexture name="char3_tada0012" x="896" y="120" width="30" height="56"/>
+	<SubTexture name="char3_tada0013" x="0" y="121" width="30" height="56"/>
+	<SubTexture name="char3_tada0014" x="32" y="121" width="30" height="56"/>
+	<SubTexture name="char3_walk0000" x="591" y="697" width="23" height="56" pivotX="8.65" pivotY="30.25"/>
+	<SubTexture name="char3_walk0001" x="616" y="697" width="23" height="56"/>
+	<SubTexture name="char3_walk0002" x="641" y="697" width="23" height="56"/>
+	<SubTexture name="char3_walk0003" x="666" y="697" width="23" height="56"/>
+	<SubTexture name="char3_walk0004" x="691" y="697" width="23" height="56"/>
+	<SubTexture name="char3_walk0005" x="881" y="697" width="23" height="56"/>
+	<SubTexture name="char3_walk0006" x="50" y="699" width="23" height="56"/>
+	<SubTexture name="char3_walk0007" x="25" y="702" width="23" height="56"/>
+	<SubTexture name="char3_walk0008" x="819" y="747" width="23" height="56"/>
+	<SubTexture name="char3_walk0009" x="216" y="748" width="23" height="56"/>
+	<SubTexture name="char3_walk0010" x="844" y="749" width="23" height="56"/>
+	<SubTexture name="char3_walk0011" x="906" y="751" width="23" height="56"/>
+	<SubTexture name="char3_walk0012" x="931" y="751" width="23" height="56"/>
+	<SubTexture name="char3_walk0013" x="956" y="751" width="23" height="56"/>
+	<SubTexture name="char3_walk0014" x="981" y="751" width="23" height="56"/>
+	<SubTexture name="char3_yup0000" x="918" y="467" width="27" height="55" pivotX="9.85" pivotY="27.85"/>
+	<SubTexture name="char3_yup0001" x="947" y="467" width="27" height="55"/>
+	<SubTexture name="char3_yup0002" x="976" y="467" width="27" height="55"/>
+	<SubTexture name="char3_yup0003" x="0" y="468" width="27" height="55"/>
+	<SubTexture name="char3_yup0004" x="233" y="468" width="27" height="55"/>
+	<SubTexture name="char3_yup0005" x="233" y="468" width="27" height="55"/>
+	<SubTexture name="char3_yup0006" x="412" y="468" width="27" height="55"/>
+	<SubTexture name="char3_yup0007" x="441" y="468" width="27" height="55"/>
+	<SubTexture name="char3_yup0008" x="441" y="468" width="27" height="55"/>
+	<SubTexture name="char3_yup0009" x="470" y="468" width="27" height="55"/>
+	<SubTexture name="char3_yup0010" x="470" y="468" width="27" height="55"/>
+	<SubTexture name="char4_stand0000" x="1002" y="923" width="19" height="55" pivotX="10.5" pivotY="25.35"/>
+	<SubTexture name="char4_tada0000" x="563" y="236" width="29" height="55" pivotX="5.5" pivotY="25.95"/>
+	<SubTexture name="char4_tada0001" x="594" y="236" width="29" height="55"/>
+	<SubTexture name="char4_tada0002" x="625" y="236" width="29" height="55"/>
+	<SubTexture name="char4_tada0003" x="656" y="236" width="29" height="55"/>
+	<SubTexture name="char4_tada0004" x="687" y="236" width="29" height="55"/>
+	<SubTexture name="char4_tada0005" x="718" y="237" width="29" height="55"/>
+	<SubTexture name="char4_tada0006" x="749" y="237" width="29" height="55"/>
+	<SubTexture name="char4_tada0007" x="780" y="237" width="29" height="55"/>
+	<SubTexture name="char4_tada0008" x="811" y="237" width="29" height="55"/>
+	<SubTexture name="char4_tada0009" x="842" y="237" width="29" height="55"/>
+	<SubTexture name="char4_tada0010" x="873" y="237" width="29" height="55"/>
+	<SubTexture name="char4_tada0011" x="951" y="238" width="29" height="55"/>
+	<SubTexture name="char4_tada0012" x="982" y="238" width="29" height="55"/>
+	<SubTexture name="char4_tada0013" x="279" y="239" width="29" height="55"/>
+	<SubTexture name="char4_tada0014" x="310" y="239" width="29" height="55"/>
+	<SubTexture name="char4_walk0000" x="153" y="807" width="22" height="56" pivotX="4.75" pivotY="28.15"/>
+	<SubTexture name="char4_walk0001" x="177" y="807" width="22" height="56"/>
+	<SubTexture name="char4_walk0002" x="361" y="807" width="22" height="56"/>
+	<SubTexture name="char4_walk0003" x="385" y="807" width="22" height="56"/>
+	<SubTexture name="char4_walk0004" x="409" y="807" width="22" height="56"/>
+	<SubTexture name="char4_walk0005" x="433" y="807" width="22" height="56"/>
+	<SubTexture name="char4_walk0006" x="457" y="807" width="22" height="56"/>
+	<SubTexture name="char4_walk0007" x="481" y="807" width="22" height="56"/>
+	<SubTexture name="char4_walk0008" x="505" y="807" width="22" height="56"/>
+	<SubTexture name="char4_walk0009" x="529" y="807" width="22" height="56"/>
+	<SubTexture name="char4_walk0010" x="553" y="807" width="22" height="56"/>
+	<SubTexture name="char4_walk0011" x="842" y="807" width="22" height="56"/>
+	<SubTexture name="char4_walk0012" x="707" y="808" width="22" height="56"/>
+	<SubTexture name="char4_walk0013" x="731" y="808" width="22" height="56"/>
+	<SubTexture name="char4_walk0014" x="755" y="809" width="22" height="56"/>
+	<SubTexture name="char4_yup0000" x="499" y="468" width="27" height="55" pivotX="9.85" pivotY="25.3"/>
+	<SubTexture name="char4_yup0001" x="528" y="468" width="27" height="55"/>
+	<SubTexture name="char4_yup0002" x="557" y="468" width="27" height="55"/>
+	<SubTexture name="char4_yup0003" x="586" y="468" width="27" height="55"/>
+	<SubTexture name="char4_yup0004" x="615" y="468" width="27" height="55"/>
+	<SubTexture name="char4_yup0005" x="615" y="468" width="27" height="55"/>
+	<SubTexture name="char4_yup0006" x="644" y="471" width="27" height="55"/>
+	<SubTexture name="char4_yup0007" x="673" y="471" width="27" height="55"/>
+	<SubTexture name="char4_yup0008" x="673" y="471" width="27" height="55"/>
+	<SubTexture name="char4_yup0009" x="702" y="471" width="27" height="55"/>
+	<SubTexture name="char4_yup0010" x="702" y="471" width="27" height="55"/>
+	<SubTexture name="char5_stand0000" x="1006" y="750" width="16" height="57" pivotX="8.15" pivotY="30.45"/>
+	<SubTexture name="char5_tada0000" x="470" y="177" width="28" height="57" pivotX="6.95" pivotY="30.45"/>
+	<SubTexture name="char5_tada0001" x="500" y="177" width="28" height="57"/>
+	<SubTexture name="char5_tada0002" x="530" y="177" width="28" height="57"/>
+	<SubTexture name="char5_tada0003" x="560" y="177" width="28" height="57"/>
+	<SubTexture name="char5_tada0004" x="590" y="177" width="28" height="57"/>
+	<SubTexture name="char5_tada0005" x="620" y="177" width="28" height="57"/>
+	<SubTexture name="char5_tada0006" x="650" y="177" width="28" height="57"/>
+	<SubTexture name="char5_tada0007" x="680" y="177" width="28" height="57"/>
+	<SubTexture name="char5_tada0008" x="710" y="177" width="28" height="57"/>
+	<SubTexture name="char5_tada0009" x="740" y="178" width="28" height="57"/>
+	<SubTexture name="char5_tada0010" x="770" y="178" width="28" height="57"/>
+	<SubTexture name="char5_tada0011" x="800" y="178" width="28" height="57"/>
+	<SubTexture name="char5_tada0012" x="830" y="178" width="28" height="57"/>
+	<SubTexture name="char5_tada0013" x="860" y="178" width="28" height="57"/>
+	<SubTexture name="char5_tada0014" x="890" y="178" width="28" height="57"/>
+	<SubTexture name="char5_walk0000" x="893" y="809" width="22" height="56" pivotX="3.25" pivotY="32.9"/>
+	<SubTexture name="char5_walk0001" x="917" y="809" width="22" height="56"/>
+	<SubTexture name="char5_walk0002" x="941" y="809" width="22" height="56"/>
+	<SubTexture name="char5_walk0003" x="965" y="809" width="22" height="56"/>
+	<SubTexture name="char5_walk0004" x="989" y="809" width="22" height="56"/>
+	<SubTexture name="char5_walk0005" x="0" y="810" width="22" height="56"/>
+	<SubTexture name="char5_walk0006" x="74" y="810" width="22" height="56"/>
+	<SubTexture name="char5_walk0007" x="98" y="810" width="22" height="56"/>
+	<SubTexture name="char5_walk0008" x="122" y="810" width="22" height="56"/>
+	<SubTexture name="char5_walk0009" x="779" y="812" width="22" height="56"/>
+	<SubTexture name="char5_walk0010" x="225" y="813" width="22" height="56"/>
+	<SubTexture name="char5_walk0011" x="249" y="813" width="22" height="56"/>
+	<SubTexture name="char5_walk0012" x="273" y="813" width="22" height="56"/>
+	<SubTexture name="char5_walk0013" x="297" y="813" width="22" height="56"/>
+	<SubTexture name="char5_walk0014" x="321" y="813" width="22" height="56"/>
+	<SubTexture name="char5_yup0000" x="678" y="356" width="27" height="57" pivotX="9.85" pivotY="30.4"/>
+	<SubTexture name="char5_yup0001" x="707" y="356" width="27" height="57"/>
+	<SubTexture name="char5_yup0002" x="736" y="356" width="27" height="57"/>
+	<SubTexture name="char5_yup0003" x="765" y="356" width="27" height="57"/>
+	<SubTexture name="char5_yup0004" x="794" y="356" width="27" height="57"/>
+	<SubTexture name="char5_yup0005" x="794" y="356" width="27" height="57"/>
+	<SubTexture name="char5_yup0006" x="823" y="356" width="27" height="57"/>
+	<SubTexture name="char5_yup0007" x="852" y="356" width="27" height="57"/>
+	<SubTexture name="char5_yup0008" x="852" y="356" width="27" height="57"/>
+	<SubTexture name="char5_yup0009" x="296" y="358" width="27" height="57"/>
+	<SubTexture name="char5_yup0010" x="296" y="358" width="27" height="57"/>
+	<SubTexture name="char6_stand0000" x="258" y="240" width="17" height="54" pivotX="8.5" pivotY="21.15"/>
+	<SubTexture name="char6_tada0000" x="262" y="410" width="28" height="54" pivotX="8.6" pivotY="21.15"/>
+	<SubTexture name="char6_tada0001" x="0" y="412" width="28" height="54"/>
+	<SubTexture name="char6_tada0002" x="412" y="412" width="28" height="54"/>
+	<SubTexture name="char6_tada0003" x="442" y="412" width="28" height="54"/>
+	<SubTexture name="char6_tada0004" x="472" y="412" width="28" height="54"/>
+	<SubTexture name="char6_tada0005" x="502" y="412" width="28" height="54"/>
+	<SubTexture name="char6_tada0006" x="532" y="412" width="28" height="54"/>
+	<SubTexture name="char6_tada0007" x="562" y="412" width="28" height="54"/>
+	<SubTexture name="char6_tada0008" x="592" y="412" width="28" height="54"/>
+	<SubTexture name="char6_tada0009" x="622" y="412" width="28" height="54"/>
+	<SubTexture name="char6_tada0010" x="652" y="415" width="28" height="54"/>
+	<SubTexture name="char6_tada0011" x="682" y="415" width="28" height="54"/>
+	<SubTexture name="char6_tada0012" x="712" y="415" width="28" height="54"/>
+	<SubTexture name="char6_tada0013" x="742" y="415" width="28" height="54"/>
+	<SubTexture name="char6_tada0014" x="772" y="415" width="28" height="54"/>
+	<SubTexture name="char6_walk0000" x="657" y="870" width="22" height="54" pivotX="3.25" pivotY="23.65"/>
+	<SubTexture name="char6_walk0001" x="770" y="870" width="22" height="54"/>
+	<SubTexture name="char6_walk0002" x="851" y="870" width="22" height="54"/>
+	<SubTexture name="char6_walk0003" x="225" y="871" width="22" height="54"/>
+	<SubTexture name="char6_walk0004" x="249" y="871" width="22" height="54"/>
+	<SubTexture name="char6_walk0005" x="273" y="871" width="22" height="54"/>
+	<SubTexture name="char6_walk0006" x="297" y="871" width="22" height="54"/>
+	<SubTexture name="char6_walk0007" x="321" y="871" width="22" height="54"/>
+	<SubTexture name="char6_walk0008" x="48" y="872" width="22" height="54"/>
+	<SubTexture name="char6_walk0009" x="24" y="875" width="22" height="54"/>
+	<SubTexture name="char6_walk0010" x="794" y="919" width="22" height="54"/>
+	<SubTexture name="char6_walk0011" x="194" y="920" width="22" height="54"/>
+	<SubTexture name="char6_walk0012" x="144" y="921" width="22" height="54"/>
+	<SubTexture name="char6_walk0013" x="168" y="921" width="22" height="54"/>
+	<SubTexture name="char6_walk0014" x="345" y="921" width="22" height="54"/>
+	<SubTexture name="char6_yup0000" x="643" y="528" width="27" height="54" pivotX="9.85" pivotY="21.1"/>
+	<SubTexture name="char6_yup0001" x="672" y="528" width="27" height="54"/>
+	<SubTexture name="char6_yup0002" x="701" y="528" width="27" height="54"/>
+	<SubTexture name="char6_yup0003" x="29" y="529" width="27" height="54"/>
+	<SubTexture name="char6_yup0004" x="58" y="529" width="27" height="54"/>
+	<SubTexture name="char6_yup0005" x="58" y="529" width="27" height="54"/>
+	<SubTexture name="char6_yup0006" x="87" y="529" width="27" height="54"/>
+	<SubTexture name="char6_yup0007" x="116" y="529" width="27" height="54"/>
+	<SubTexture name="char6_yup0008" x="116" y="529" width="27" height="54"/>
+	<SubTexture name="char6_yup0009" x="145" y="529" width="27" height="54"/>
+	<SubTexture name="char6_yup0010" x="145" y="529" width="27" height="54"/>
+	<SubTexture name="char7_stand0000" x="1007" y="636" width="17" height="53" pivotX="7.15" pivotY="20.25"/>
+	<SubTexture name="char7_tada0000" x="731" y="471" width="28" height="53" pivotX="10" pivotY="20.85"/>
+	<SubTexture name="char7_tada0001" x="761" y="471" width="28" height="53"/>
+	<SubTexture name="char7_tada0002" x="791" y="472" width="28" height="53"/>
+	<SubTexture name="char7_tada0003" x="821" y="472" width="28" height="53"/>
+	<SubTexture name="char7_tada0004" x="321" y="473" width="28" height="53"/>
+	<SubTexture name="char7_tada0005" x="351" y="473" width="28" height="53"/>
+	<SubTexture name="char7_tada0006" x="381" y="473" width="28" height="53"/>
+	<SubTexture name="char7_tada0007" x="29" y="474" width="28" height="53"/>
+	<SubTexture name="char7_tada0008" x="59" y="474" width="28" height="53"/>
+	<SubTexture name="char7_tada0009" x="89" y="474" width="28" height="53"/>
+	<SubTexture name="char7_tada0010" x="119" y="474" width="28" height="53"/>
+	<SubTexture name="char7_tada0011" x="149" y="474" width="28" height="53"/>
+	<SubTexture name="char7_tada0012" x="179" y="474" width="28" height="53"/>
+	<SubTexture name="char7_tada0013" x="291" y="474" width="28" height="53"/>
+	<SubTexture name="char7_tada0014" x="851" y="523" width="28" height="53"/>
+	<SubTexture name="char7_walk0000" x="296" y="585" width="22" height="53" pivotX="3.25" pivotY="22.7"/>
+	<SubTexture name="char7_walk0001" x="369" y="921" width="22" height="53"/>
+	<SubTexture name="char7_walk0002" x="393" y="921" width="22" height="53"/>
+	<SubTexture name="char7_walk0003" x="417" y="921" width="22" height="53"/>
+	<SubTexture name="char7_walk0004" x="441" y="921" width="22" height="53"/>
+	<SubTexture name="char7_walk0005" x="465" y="921" width="22" height="53"/>
+	<SubTexture name="char7_walk0006" x="489" y="921" width="22" height="53"/>
+	<SubTexture name="char7_walk0007" x="513" y="921" width="22" height="53"/>
+	<SubTexture name="char7_walk0008" x="537" y="921" width="22" height="53"/>
+	<SubTexture name="char7_walk0009" x="818" y="921" width="22" height="53"/>
+	<SubTexture name="char7_walk0010" x="681" y="922" width="22" height="53"/>
+	<SubTexture name="char7_walk0011" x="705" y="922" width="22" height="53"/>
+	<SubTexture name="char7_walk0012" x="729" y="923" width="22" height="53"/>
+	<SubTexture name="char7_walk0013" x="875" y="923" width="22" height="53"/>
+	<SubTexture name="char7_walk0014" x="899" y="923" width="22" height="53"/>
+	<SubTexture name="char7_yup0000" x="174" y="529" width="27" height="54" pivotX="9.85" pivotY="20.2"/>
+	<SubTexture name="char7_yup0001" x="291" y="529" width="27" height="54"/>
+	<SubTexture name="char7_yup0002" x="847" y="578" width="27" height="54"/>
+	<SubTexture name="char7_yup0003" x="238" y="579" width="27" height="54"/>
+	<SubTexture name="char7_yup0004" x="876" y="580" width="27" height="54"/>
+	<SubTexture name="char7_yup0005" x="876" y="580" width="27" height="54"/>
+	<SubTexture name="char7_yup0006" x="905" y="580" width="27" height="54"/>
+	<SubTexture name="char7_yup0007" x="934" y="580" width="27" height="54"/>
+	<SubTexture name="char7_yup0008" x="934" y="580" width="27" height="54"/>
+	<SubTexture name="char7_yup0009" x="963" y="580" width="27" height="54"/>
+	<SubTexture name="char7_yup0010" x="963" y="580" width="27" height="54"/>
+	<SubTexture name="char8_stand0000" x="753" y="926" width="16" height="54" pivotX="9.75" pivotY="21.55"/>
+	<SubTexture name="char8_tada0000" x="992" y="580" width="27" height="54" pivotX="8.75" pivotY="22.1"/>
+	<SubTexture name="char8_tada0001" x="0" y="581" width="27" height="54"/>
+	<SubTexture name="char8_tada0002" x="203" y="581" width="27" height="54"/>
+	<SubTexture name="char8_tada0003" x="408" y="581" width="27" height="54"/>
+	<SubTexture name="char8_tada0004" x="437" y="581" width="27" height="54"/>
+	<SubTexture name="char8_tada0005" x="466" y="581" width="27" height="54"/>
+	<SubTexture name="char8_tada0006" x="495" y="581" width="27" height="54"/>
+	<SubTexture name="char8_tada0007" x="524" y="581" width="27" height="54"/>
+	<SubTexture name="char8_tada0008" x="553" y="581" width="27" height="54"/>
+	<SubTexture name="char8_tada0009" x="582" y="581" width="27" height="54"/>
+	<SubTexture name="char8_tada0010" x="611" y="581" width="27" height="54"/>
+	<SubTexture name="char8_tada0011" x="730" y="582" width="27" height="54"/>
+	<SubTexture name="char8_tada0012" x="759" y="582" width="27" height="54"/>
+	<SubTexture name="char8_tada0013" x="788" y="583" width="27" height="54"/>
+	<SubTexture name="char8_tada0014" x="817" y="583" width="27" height="54"/>
+	<SubTexture name="char8_walk0000" x="722" y="866" width="22" height="54" pivotX="3.25" pivotY="23.8"/>
+	<SubTexture name="char8_walk0001" x="746" y="867" width="22" height="54"/>
+	<SubTexture name="char8_walk0002" x="890" y="867" width="22" height="54"/>
+	<SubTexture name="char8_walk0003" x="914" y="867" width="22" height="54"/>
+	<SubTexture name="char8_walk0004" x="938" y="867" width="22" height="54"/>
+	<SubTexture name="char8_walk0005" x="962" y="867" width="22" height="54"/>
+	<SubTexture name="char8_walk0006" x="986" y="867" width="22" height="54"/>
+	<SubTexture name="char8_walk0007" x="0" y="868" width="22" height="54"/>
+	<SubTexture name="char8_walk0008" x="72" y="868" width="22" height="54"/>
+	<SubTexture name="char8_walk0009" x="96" y="868" width="22" height="54"/>
+	<SubTexture name="char8_walk0010" x="120" y="868" width="22" height="54"/>
+	<SubTexture name="char8_walk0011" x="561" y="868" width="22" height="54"/>
+	<SubTexture name="char8_walk0012" x="585" y="870" width="22" height="54"/>
+	<SubTexture name="char8_walk0013" x="609" y="870" width="22" height="54"/>
+	<SubTexture name="char8_walk0014" x="633" y="870" width="22" height="54"/>
+	<SubTexture name="char8_yup0000" x="320" y="584" width="27" height="54" pivotX="9.85" pivotY="21.5"/>
+	<SubTexture name="char8_yup0001" x="349" y="584" width="27" height="54"/>
+	<SubTexture name="char8_yup0002" x="378" y="584" width="27" height="54"/>
+	<SubTexture name="char8_yup0003" x="640" y="584" width="27" height="54"/>
+	<SubTexture name="char8_yup0004" x="669" y="584" width="27" height="54"/>
+	<SubTexture name="char8_yup0005" x="669" y="584" width="27" height="54"/>
+	<SubTexture name="char8_yup0006" x="698" y="584" width="27" height="54"/>
+	<SubTexture name="char8_yup0007" x="29" y="585" width="27" height="54"/>
+	<SubTexture name="char8_yup0008" x="29" y="585" width="27" height="54"/>
+	<SubTexture name="char8_yup0009" x="58" y="585" width="27" height="54"/>
+	<SubTexture name="char8_yup0010" x="58" y="585" width="27" height="54"/>
+	<SubTexture name="char9_stand0000" x="577" y="813" width="23" height="53" pivotX="14.45" pivotY="19.2"/>
+	<SubTexture name="char9_tada0000" x="296" y="121" width="30" height="54" pivotX="4.6" pivotY="20.1"/>
+	<SubTexture name="char9_tada0001" x="328" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0002" x="360" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0003" x="392" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0004" x="424" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0005" x="456" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0006" x="488" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0007" x="520" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0008" x="552" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0009" x="584" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0010" x="616" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0011" x="648" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0012" x="680" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0013" x="712" y="121" width="30" height="54"/>
+	<SubTexture name="char9_tada0014" x="928" y="176" width="30" height="54"/>
+	<SubTexture name="char9_walk0000" x="175" y="752" width="24" height="53" pivotX="11.8" pivotY="21.6"/>
+	<SubTexture name="char9_walk0001" x="379" y="752" width="24" height="53"/>
+	<SubTexture name="char9_walk0002" x="405" y="752" width="24" height="53"/>
+	<SubTexture name="char9_walk0003" x="431" y="752" width="24" height="53"/>
+	<SubTexture name="char9_walk0004" x="457" y="752" width="24" height="53"/>
+	<SubTexture name="char9_walk0005" x="483" y="752" width="24" height="53"/>
+	<SubTexture name="char9_walk0006" x="509" y="752" width="24" height="53"/>
+	<SubTexture name="char9_walk0007" x="535" y="752" width="24" height="53"/>
+	<SubTexture name="char9_walk0008" x="561" y="752" width="24" height="53"/>
+	<SubTexture name="char9_walk0009" x="716" y="753" width="24" height="53"/>
+	<SubTexture name="char9_walk0010" x="742" y="753" width="24" height="53"/>
+	<SubTexture name="char9_walk0011" x="768" y="754" width="24" height="53"/>
+	<SubTexture name="char9_walk0012" x="75" y="755" width="24" height="53"/>
+	<SubTexture name="char9_walk0013" x="101" y="755" width="24" height="53"/>
+	<SubTexture name="char9_walk0014" x="127" y="755" width="24" height="53"/>
+	<SubTexture name="char9_yup0000" x="87" y="585" width="27" height="53" pivotX="9.85" pivotY="19.15"/>
+	<SubTexture name="char9_yup0001" x="116" y="585" width="27" height="53"/>
+	<SubTexture name="char9_yup0002" x="145" y="585" width="27" height="53"/>
+	<SubTexture name="char9_yup0003" x="174" y="585" width="27" height="53"/>
+	<SubTexture name="char9_yup0004" x="267" y="585" width="27" height="53"/>
+	<SubTexture name="char9_yup0005" x="267" y="585" width="27" height="53"/>
+	<SubTexture name="char9_yup0006" x="846" y="634" width="27" height="53"/>
+	<SubTexture name="char9_yup0007" x="232" y="635" width="27" height="53"/>
+	<SubTexture name="char9_yup0008" x="232" y="635" width="27" height="53"/>
+	<SubTexture name="char9_yup0009" x="875" y="636" width="27" height="53"/>
+	<SubTexture name="char9_yup0010" x="875" y="636" width="27" height="53"/>
+	<SubTexture name="percept_influence" x="72" y="924" width="33" height="29" pivotX="16.65" pivotY="14.65"/>
+	<SubTexture name="percept_need" x="107" y="924" width="33" height="29" pivotX="16.65" pivotY="14.65"/>
+	<SubTexture name="percept_price" x="561" y="926" width="33" height="29" pivotX="16.7" pivotY="14.65"/>
+	<SubTexture name="percept_quality" x="923" y="923" width="33" height="33" pivotX="16.65" pivotY="16.1"/>
+	<SubTexture name="percept_satisfaction" x="596" y="926" width="33" height="29" pivotX="16.65" pivotY="14.65"/>
+	<SubTexture name="percept_services" x="631" y="926" width="33" height="29" pivotX="16.7" pivotY="14.65"/>
+	<SubTexture name="side1" x="236" y="302" width="19" height="44" pivotX="9.05" pivotY="22"/>
+	<SubTexture name="side2" x="860" y="415" width="19" height="43" pivotX="9.05" pivotY="21.95"/>
+	<SubTexture name="side3" x="412" y="358" width="19" height="44" pivotX="9.05" pivotY="22"/>
+</TextureAtlas>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <research id="1">
+		<name>Marketing Research</name>
+		<cost>5000</cost>
+    </research>
+	<research id="2">
+		<name>Customer Services</name>
+		<cost>6000</cost>
+    </research>
+	<research id="3">
+		<name>Point-sale program</name>
+		<cost>7000</cost>
+    </research>
+	<research id="4">
+		<name>RD Product</name>
+		<cost>8000</cost>
+    </research>
+	<research id="5">
+		<name>Facilities Renovation</name>
+		<cost>9000</cost>
+    </research>
+</data>

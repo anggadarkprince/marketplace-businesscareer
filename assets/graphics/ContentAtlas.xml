@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:efe6c6c3e35cb2304af717d235650bdd:5b1ac279fcc133360f3d3f77e75a6e20:f197891c0b13b01ff9759a42d3d1465b$ -->
+<TextureAtlas imagePath="ContentAtlas.png">
+    <SubTexture name="avatar_wrapper_shop" x="1269" y="54" width="67" height="92"/>
+    <SubTexture name="bar" x="2" y="54" width="1000" height="70"/>
+    <SubTexture name="buttonClose" x="424" y="2" width="107" height="31"/>
+    <SubTexture name="buttonHelp" x="29" y="2" width="73" height="19"/>
+    <SubTexture name="buttonMarket" x="1420" y="54" width="81" height="112"/>
+    <SubTexture name="buttonMinus" x="259" y="2" width="20" height="20"/>
+    <SubTexture name="buttonPlus" x="237" y="2" width="20" height="20"/>
+    <SubTexture name="buttonRandom" x="315" y="2" width="107" height="31"/>
+    <SubTexture name="buttonRelease" x="104" y="2" width="131" height="19"/>
+    <SubTexture name="buttonReport" x="1338" y="54" width="80" height="112"/>
+    <SubTexture name="buttonShop1" x="1795" y="54" width="84" height="137"/>
+    <SubTexture name="buttonShop2" x="1690" y="54" width="103" height="137"/>
+    <SubTexture name="buttonShop3" x="1585" y="54" width="103" height="137"/>
+    <SubTexture name="buttonSmallAgent" x="906" y="2" width="50" height="50"/>
+    <SubTexture name="buttonSmallReport" x="854" y="2" width="50" height="50"/>
+    <SubTexture name="buttonStart" x="1004" y="54" width="263" height="75"/>
+    <SubTexture name="buttonStop" x="701" y="2" width="151" height="43"/>
+    <SubTexture name="buttonWorld" x="1503" y="54" width="80" height="112"/>
+    <SubTexture name="coin0001" x="659" y="2" width="40" height="40"/>
+    <SubTexture name="coin0002" x="533" y="2" width="40" height="40"/>
+    <SubTexture name="coin0003" x="575" y="2" width="40" height="40"/>
+    <SubTexture name="coin0004" x="617" y="2" width="40" height="40"/>
+    <SubTexture name="dialogAgentView" x="2" y="654" width="901" height="469"/>
+    <SubTexture name="dialogMarketSetting" x="2" y="193" width="501" height="359"/>
+    <SubTexture name="dialogSetupShop" x="905" y="654" width="921" height="525"/>
+    <SubTexture name="dialogShoppingStreet" x="505" y="193" width="401" height="360"/>
+    <SubTexture name="dialogSimulationReport" x="2" y="1181" width="921" height="525"/>
+    <SubTexture name="dialogWorldSetting" x="908" y="193" width="501" height="459"/>
+    <SubTexture name="front" x="925" y="1181" width="1000" height="560"/>
+    <SubTexture name="hud_icon_diamond" x="281" y="2" width="32" height="30"/>
+    <SubTexture name="particle_heavy_rain" x="9" y="2" width="6" height="9"/>
+    <SubTexture name="particle_rain" x="2" y="2" width="5" height="8"/>
+    <SubTexture name="particle_storm" x="17" y="2" width="10" height="11"/>
+</TextureAtlas>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <transaction id="1">
+		<type>Loan</type>
+		<name>Kamu menerima pinjaman [value]. Post transaksi</name>
+		<hint>Jika kamu memiliki uang dari PINJAMAN [LOAN] maka uang ditangan akan meningkat dan kamu memiliki kewajiban [Liabilities]. Jika kamu memiliki uang dari simpanan atau investasi sebagai modal [EQUITY], maka uang ditangan akan meningkat sebagai modal kamu di perusahaan (Paid-in Capital).</hint>
+		<debit>[Assets] Cash</debit>
+		<credit>[Liabilities and Equity] Loans</credit>
+		<description>Melakukan pinjaman usaha</description>
+	</transaction>
+	<transaction id="2">
+		<type>Equity</type>
+		<name>Kamu memasukkan uang tabungan ke bisnis sebagai modal [value]. Post transaksi</name>
+		<hint>Jika kamu memiliki uang dari PINJAMAN [LOAN] maka uang ditangan akan meningkat dan kamu memiliki kewajiban [Liabilities]. Jika kamu memiliki uang dari simpanan atau investasi sebagai modal [EQUITY], maka uang ditangan akan meningkat sebagai modal kamu di perusahaan (Paid-in Capital).</hint>
+		<debit>[Assets] Cash</debit>
+		<credit>[Liabilities and Equity] Equity : Paid-in Capital</credit>
+		<description>Menyetor tabungan modal usaha</description>
+	</transaction>
+	<transaction id="3">
+		<type>Cart</type>
+		<name>Kamu membeli cart toko. post transaksi [value]. post transaksi</name>
+		<hint>Cart seperti property, bangunan atau perlengkapan. Kamu melakukan pembelian cart dengan uang ditangan.</hint>
+		<debit>[Assets] Cart, Sign, Equipment</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membeli toko</description>
+	</transaction>
+	<transaction id="4">
+		<type>Equipment</type>
+		<name>Kamu membeli equipment toko [value]. post transaksi</name>
+		<hint>Cart seperti property, bangunan atau perlengkapan. Kamu melakukan pembelian cart dengan uang ditangan.</hint>
+		<debit>[Assets] Cart, Sign, Equipment</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membeli perlengkapan toko</description>
+	</transaction>
+	<transaction id="5">
+		<type>Permit</type>
+		<name>Kamu membuat perizinan usaha untuk toko [value]. post transaksi</name>
+		<hint>Perizinan bisnis merupakan biaya yang dibayar dengan uang ditangan. (Sebagai catatan, beberapa bisnis menyimpan record perizinan sebagai sebuah asset, tetapi bisnis milik kamu tidak).</hint>
+		<debit>[Expense] Licence and Permits</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar perizinan toko</description>
+	</transaction>
+	<transaction id="6">
+		<type>Logo</type>
+		<name>Kamu membayar designer untuk membut logo toko [value]. post transaksi</name>
+		<hint>sebuah logo yang kamu miliki termasuk dalam property, bangunan dan perlengkapan. Kamu membayar menggunakan uang ditangan.</hint>
+		<debit>[Assets] Cart, Sign, Equipment</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar pembuatan logo</description>
+	</transaction>
+	<transaction id="7">
+		<type>Insurance</type>
+		<name>Kamu membeli asuransi untuk [value]. post transaksi</name>
+		<hint>Ansuransi bisnis kamu dibayar menggunakan dengan uang ditangan. (Sebagai catatan beberapa bisnis mencatat asuransi sebagai asset, tetapi bisnis milikmu tidak)</hint>
+		<debit>[Expense] Insurance</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar asuransi bisnis</description>
+	</transaction>
+	<transaction id="8">
+		<type>Move</type>
+		<name>Kamu membayar untuk pindah toko ke lokasi yang lain [value]. post transaksi</name>
+		<hint>Memindahkan toko memiliki cost untuk menyewa orang dan biaya lokasi yang baru. Jasa pemindahan adalah biaya yang dibayar menggunakan uang ditangan.</hint>
+		<debit>[Expense] Cart Transportation</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar biaya pindah</description>
+	</transaction>
+	<transaction id="9">
+		<type>Rental</type>
+		<name>Kamu meminjam trailer untuk storage tambahan toko [value]. post transaksi</name>
+		<hint>Menyewa sebuah trailer adalah biaya yang dibayar menggunakan uang ditangan. Sebagai catatan kamu tidak membeli sebuah trailer sebagai asset.</hint>
+		<debit>[Expense] Place Rental</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar sewa trailer</description>
+	</transaction>
+	<transaction id="10">
+		<type>Inventory</type>
+		<name>Kamu membeli inventory untuk toko [value]. post transaksi</name>
+		<hint>Material inventory dibutuhkan untuk produk yang kamu jual. Material norlmalnya dibeli dengan uang.</hint>
+		<debit>[Assets] Inventory</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membeli material</description>
+	</transaction>
+	<transaction id="11">
+		<type>Revenue</type>
+		<name>Kamu berhasil menjual barang dengan pendapatan [value]. post transaksi</name>
+		<hint>Transaksi ini untuk 4 masukan. produk diinventory dijual kepada customer yang menghasilkan uang. Uang yang diterima menghasilkan revenue dari penjualan, maka akun ini akan meningkat sebagai uang ditangan. Setiap waktu produkk dijual, mengurangi inventory yang kamu miliki yang artinya akun inventory akan berkurang sesuai nilai inventory yang dibutuhkan untuk membuat produk. Pada waktu yang sama cost untuk inventory item yang kamu beli untuk membuat produk yang terjual dicatat sebagai cost of goods.</hint>
+		<debit>[Assets] Cash</debit>
+		<credit>[Revenue] Sales</credit>
+		<description>Menjual produk</description>
+	</transaction>
+	<transaction id="12">
+		<type>Cost</type>
+		<name>Kamu berhasil menjual barang dengan hpp [value]. post transaksi</name>
+		<hint>Transaksi ini untuk 4 masukan. produk diinventory dijual kepada customer yang menghasilkan uang. Uang yang diterima menghasilkan revenue dari penjualan, maka akun ini akan meningkat sebagai uang ditangan. Setiap waktu produkk dijual, mengurangi inventory yang kamu miliki yang artinya akun inventory akan berkurang sesuai nilai inventory yang dibutuhkan untuk membuat produk. Pada waktu yang sama cost untuk inventory item yang kamu beli untuk membuat produk yang terjual dicatat sebagai cost of goods.</hint>
+		<debit>[Revenue] Less, Cost of Goods Sold</debit>
+		<credit>[Assets] Inventory</credit>
+		<description>Menjual inventory</description>
+	</transaction>
+	<transaction id="13">
+		<type>Employee</type>
+		<name>Kamu membayar employee hari ini [value]. post transaksi</name>
+		<hint>Bayaran pegawai, disebut payroll disimpan sebagai biaya yang dibayar dengan uang ditangan.</hint>
+		<debit>[Expense] Payroll</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar employee</description>
+	</transaction>
+	<transaction id="14">
+		<type>Advertising TV</type>
+		<name>Kamu membayar promosi melalui iklan tv [value]. post transaksi</name>
+		<hint>Periklanan adalah biaya yang dibayar menggunakan uang ditangan. Detail advertising disesuaikan dengan akun yang berlaku.</hint>
+		<debit>[Expense] Advertising : TV</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar Advertising TV</description>
+	</transaction>
+	<transaction id="15">
+		<type>Advertising Radio</type>
+		<name>Kamu membayar promosi melalui iklan Radio [value]. post transaksi</name>
+		<hint>Periklanan adalah biaya yang dibayar menggunakan uang ditangan. Detail advertising disesuaikan dengan akun yang berlaku.</hint>
+		<debit>[Expense] Advertising : Radio</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar Advertising Radio</description>
+	</transaction>
+	<transaction id="16">
+		<type>Advertising Newspaper</type>
+		<name>Kamu membayar promosi melalui iklan Koran [value]. post transaksi</name>
+		<hint>Periklanan adalah biaya yang dibayar menggunakan uang ditangan. Detail advertising disesuaikan dengan akun yang berlaku.</hint>
+		<debit>[Expense] Advertising : Newspaper</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar Advertising Newspaper</description>
+	</transaction>
+	<transaction id="17">
+		<type>Advertising Internet</type>
+		<name>Kamu membayar promosi melalui iklan Internet [value]. post transaksi</name>
+		<hint>Periklanan adalah biaya yang dibayar menggunakan uang ditangan. Detail advertising disesuaikan dengan akun yang berlaku.</hint>
+		<debit>[Expense] Advertising : Internet</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar Advertising Internet</description>
+	</transaction>
+	<transaction id="18">
+		<type>Advertising Event</type>
+		<name>Kamu membayar promosi melalui iklan Event [value]. post transaksi</name>
+		<hint>Periklanan adalah biaya yang dibayar menggunakan uang ditangan. Detail advertising disesuaikan dengan akun yang berlaku.</hint>
+		<debit>[Expense] Advertising : Event</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar Advertising Event</description>
+	</transaction>
+	<transaction id="19">
+		<type>Advertising Billboard</type>
+		<name>Kamu membayar promosi melalui iklan Billboard [value]. post transaksi</name>
+		<hint>Periklanan adalah biaya yang dibayar menggunakan uang ditangan. Detail advertising disesuaikan dengan akun yang berlaku.</hint>
+		<debit>[Expense] Advertising : Billboard</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar Advertising Billboard</description>
+	</transaction>
+	<transaction id="20">
+		<type>Appearance</type>
+		<name>Kamu membeli supli untuk meningkatkan Appearance [value]. Post transaksi</name>
+		<hint>Meningkatkan tampilan toko dengan membeli supply dengan uang. Ini termasuk beban marketing.</hint>
+		<debit>[Expense] Marketing : Product Appearance</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar keperluan marketing</description>
+	</transaction>
+	<transaction id="21">
+		<type>Quality</type>
+		<name>Kamu membeli supli untuk meningkatkan Quality [value]. Post transaksi</name>
+		<hint>Meningkatkan tampilan toko dengan membeli supply dengan uang. Ini termasuk beban marketing.</hint>
+		<debit>[Expense] Marketing : Product Quality</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar keperluan marketing</description>
+	</transaction>
+	<transaction id="22">
+		<type>Booster</type>
+		<name>Kamu membeli supli untuk meningkatkan kinerja toko [value]. Post transaksi</name>
+		<hint>Meningkatkan tampilan toko dengan membeli supply dengan uang. Ini termasuk beban marketing.</hint>
+		<debit>[Expense] Miscellaneous Expense</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar keperluan marketing</description>
+	</transaction>
+	<transaction id="23">
+		<type>Repair</type>
+		<name>Kamu melakukan perbaikan untuk peyusutan asset tetap [value]. Post transaksi</name>
+		<hint>Kamu memberbaiki nilai ekonomi asset agar seperti baru menggunakan uang ditangan.</hint>
+		<debit>[Expense] Repairs and Maintenance</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar perbaikan asset</description>
+	</transaction>
+	<transaction id="24">
+		<type>Loss</type>
+		<name>Kamu mengalami kerugian inventory [value]. Post transaksi</name>
+		<hint>Kamu mengalami kerugian karena masa expired material telah tiba. kerugian menjadi beban terhadap berkurangnya jumlah material.</hint>
+		<debit>[Expense] Loss Asset</debit>
+		<credit>[Assets] Inventory</credit>
+		<description>Beban kerugian inventory</description>
+	</transaction>
+	<transaction id="25">
+		<type>Training</type>
+		<name>Kamu melakukan pelatihan pegawai dengan cost [value]. Post transaksi</name>
+		<hint>Kamu meningkatkan skill pegawai melalui pelatihan menggunakan uang ditangan.</hint>
+		<debit>[Expense] Employee Training</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar beban pelatihan</description>
+	</transaction>
+	<transaction id="26">
+		<type>Instalment</type>
+		<name>Kamu membayar hutang kepada kreditor [value]. Post transaksi</name>
+		<hint>Jika kamu membayar Pinjaman [Loan] maka uang ditangan akan berkurang dan kewajiban [Liabilities] menjadi berkurang.</hint>
+		<debit>[Liabilities and Equity] Loans</debit>
+		<credit>[Assets] Cash</credit>
+		<description>Membayar pinjaman usaha</description>
+	</transaction>
+</data>

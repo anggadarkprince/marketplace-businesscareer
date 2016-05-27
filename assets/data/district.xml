@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map>    
+    <district id="1">
+		<name>Town Hall</name>
+		<atlas>location_town_hall</atlas>
+		<description>Town hall adalah pusat kota Green City, pemerintahan dan manajemen kota. Didalamnya banyak pekerja kantoran untuk pemerintah. Aktif dari senin – jumat jam kerja 8 – 17</description>
+		<priority>average</priority>
+        <population>
+			<low>0.2</low>
+			<normal>1</normal>
+			<high>2</high>
+		</population>
+		<marker>
+			<atlas>marker_village</atlas>
+			<x>808</x>
+			<y>160</y>			
+		</marker>
+		<cost>300000</cost>	
+		<shop>
+			<x>8</x>
+			<y>5</y>
+		</shop>
+    </district>
+    <district id="2">
+		<name>Factory</name>
+		<atlas>location_factory</atlas>
+		<description>District industry utama Green City, penuh dengan industry berat, pengolahan logam, kayu, semen, plastic dan lain sebagainya. Sangat sibut setiap hari jam aktif 7-17</description>
+		<priority>high</priority>
+        <population>
+			<low>1</low>
+			<normal>1.2</normal>
+			<high>1.3</high>
+		</population>
+		<marker>
+			<atlas>marker_factory</atlas>
+			<x>542</x>
+			<y>343</y>			
+		</marker>
+		<cost>300000</cost>
+		<shop>
+			<x>13</x>
+			<y>25</y>
+		</shop>
+    </district>
+	<district id="3">
+		<name>Playground</name>
+		<atlas>location_playground</atlas>
+		<description>Lokasi rekreasi kelurga dan anak – anak, ramai pada hari sabtu dan minggu. Hamper semua masyarakat berpotensi berada di lokasi ini pada hari cerah.</description>
+		<priority>low</priority>
+        <population>
+			<low>0.1</low>
+			<normal>1.3</normal>
+			<high>3</high>
+		</population>
+		<marker>
+			<atlas>marker_playground</atlas>
+			<x>708.5</x>
+			<y>199</y>			
+		</marker>
+		<cost>300000</cost>
+		<shop>
+			<x>11</x>
+			<y>8</y>
+		</shop>
+    </district>
+	<district id="4">
+		<name>Green Ville</name>
+		<atlas>location_green_ville</atlas>
+		<description>District perumahan campuran murbawisma, madyawisma dan adiwisma. Lokasi utama tempat tinggal masyarakat kota Green City.</description>
+		<priority>average</priority>
+        <population>
+			<low>0.3</low>
+			<normal>1</normal>
+			<high>1.3</high>
+		</population>
+		<marker>
+			<atlas>marker_greenvile</atlas>
+			<x>661.5</x>
+			<y>276</y>			
+		</marker>
+		<cost>300000</cost>
+		<shop>
+			<x>16</x>
+			<y>20</y>
+		</shop>
+    </district>
+	<district id="5">
+		<name>Wonderland</name>
+		<atlas>location_wonderland</atlas>
+		<description>Taman rekreasi di hari minggu dan hari libur. Berada di timur dari industry distric. Ramai oleh keluarga dan anak – anaknya. Jam operasi dari 8 - 21</description>
+		<priority>average</priority>
+        <population>
+			<low>0.3</low>
+			<normal>1</normal>
+			<high>3</high>
+		</population>
+		<marker>
+			<atlas>marker_wonderland</atlas>
+			<x>749.5</x>
+			<y>328</y>			
+		</marker>
+		<cost>400000</cost>
+		<shop>
+			<x>19</x>
+			<y>25</y>
+		</shop>
+    </district>
+	<district id="6">
+		<name>Sport Center</name>
+		<atlas>location_sport_center</atlas>
+		<description>Taman dan pusat olah raga, berada di pusat kota. Ramai saat pertandingan olah raga dan hari minggu.</description>
+		<priority>low</priority>
+        <population>
+			<low>0.3</low>
+			<normal>1</normal>
+			<high>3</high>
+		</population>
+		<marker>
+			<atlas>marker_sport</atlas>
+			<x>557</x>
+			<y>246</y>			
+		</marker>
+		<cost>300000</cost>
+		<shop>
+			<x>8</x>
+			<y>13</y>
+		</shop>
+    </district>
+	<district id="7">
+		<name>School Center</name>
+		<atlas>location_school_center</atlas>
+		<description>Pusat pendidikan berada di utara Green City, jenjang SD – SMP – SMA dan perguruan tinggi, banyak event seminar dan pamaeran pendidikan.</description>
+		<priority>high</priority>
+        <population>
+			<low>0.1</low>
+			<normal>1.2</normal>
+			<high>1.3</high>
+		</population>
+		<marker>
+			<atlas>marker_school</atlas>
+			<x>561</x>
+			<y>139</y>			
+		</marker>
+		<cost>250000</cost>
+		<shop>
+			<x>1</x>
+			<y>9</y>
+		</shop>
+    </district>
+	<district id="8">
+		<name>Times Square</name>
+		<atlas>location_times_square</atlas>
+		<description>Times square adalah pusat bisnis dagang di pusat kota. Lokasi paling padat di Green City, ramai pada siang hari dan malam hari.</description>
+		<priority>high</priority>
+        <population>
+			<low>0.1</low>
+			<normal>1.2</normal>
+			<high>1.3</high>
+		</population>
+		<marker>
+			<atlas>marker_squaretimes</atlas>
+			<x>609</x>
+			<y>202</y>			
+		</marker>
+		<cost>450000</cost>
+		<shop>
+			<x>9</x>
+			<y>8</y>
+		</shop>
+    </district>
+	<district id="9">
+		<name>Airport</name>
+		<atlas>location_airport</atlas>
+		<description>Pusat transportasi udara dan satu – satunya di Green City. Sangat ramai pada jam penerbangan malam hari.</description>
+		<priority>high</priority>
+        <population>
+			<low>1</low>
+			<normal>2</normal>
+			<high>3</high>
+		</population>
+		<marker>
+			<atlas>marker_airport</atlas>
+			<x>473</x>
+			<y>259</y>			
+		</marker>
+		<cost>300000</cost>
+		<shop>
+			<x>4</x>
+			<y>20</y>
+		</shop>
+    </district>
+	<district id="10">
+		<name>Horizon Bay</name>
+		<atlas>location_horizon_bay</atlas>
+		<description>Pantai yang berlokasi di sebelah timur Green City, ramai dengan pendatang dan beberapa dari masyarakat di hari libur. Cocok untuk bisnis di salah satu tempat wisata di Green City.</description>
+		<priority>high</priority>
+        <population>
+			<low>1</low>
+			<normal>2</normal>
+			<high>3</high>
+		</population>
+		<marker>
+			<atlas>marker_beach</atlas>
+			<x>870.5</x>
+			<y>195</y>			
+		</marker>
+		<cost>400000</cost>
+		<shop>
+			<x>21</x>
+			<y>10</y>
+		</shop>
+    </district>
+</map>

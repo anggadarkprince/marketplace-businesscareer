@@ -1,0 +1,1 @@
+﻿package sketchproject.modules {		public class PathNode 	{		public var x:Number;		public var y:Number;		public var g:Number;		public var h:Number;		public var parentNode:PathNode;				public function PathNode(xPos:Number, yPos:Number, gVal:Number, hVal:Number, link:PathNode):void {			x = xPos;			y = yPos;			g = gVal;			h = hVal;			parentNode = link;		}			}}
