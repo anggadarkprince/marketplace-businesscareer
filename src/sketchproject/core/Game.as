@@ -97,7 +97,6 @@ package sketchproject.core
 		 */
 		private function update(event:Event):void {
 			currentState.update();		
-		}
-		
+		}		
 	}
 }

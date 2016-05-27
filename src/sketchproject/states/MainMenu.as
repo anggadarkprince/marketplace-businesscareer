@@ -164,6 +164,7 @@ package sketchproject.states
 			removeEventListener(TouchEvent.TOUCH, onMenuTouched);	
 			report.removeFromParent(false);
 			market.removeFromParent(false);
+			report.removeFromParent(false);
 			removeFromParent(true);
 		}
 		
