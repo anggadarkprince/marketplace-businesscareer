@@ -1,33 +1,58 @@
 package sketchproject.managers
 {
 	import com.leebrimelow.starling.StarlingPool;
-	
+
 	import sketchproject.interfaces.IParticle;
 	import sketchproject.objects.particle.FireworkParticle;
-	
+
 	import starling.core.Starling;
 	import starling.display.Sprite;
 	import starling.events.Event;
 
-	public class FireworkParticleManager implements IParticle
+	/**
+	 * Firework particle generator.
+	 *
+	 * @author Angga
+	 */
+	public class FireworkManager implements IParticle
 	{
-		private static var instance:FireworkParticleManager;
-		
+		private static var instance:FireworkManager;
+
 		private var pool:StarlingPool;
 		private var container:Sprite;
-		
-		public function FireworkParticleManager(parent:Sprite) {
+
+		/**
+		 * Default constructor of FireworkParticle.
+		 *
+		 * @param parent
+		 */
+		public function FireworkManager(parent:Sprite)
+		{
 			pool = new StarlingPool(FireworkParticle, 25);
 			container = parent;
 		}
-		
-		public static function getInstance(parent:Sprite):FireworkParticleManager {
-			if(instance == null){
-				instance = new FireworkParticleManager(parent);
+
+		/**
+		 * Instance firework staticly.
+		 *
+		 * @param parent
+		 * @return
+		 */
+		public static function getInstance(parent:Sprite):FireworkManager
+		{
+			if (instance == null)
+			{
+				instance = new FireworkManager(parent);
 			}
 			return instance;
 		}
-		
+
+		/**
+		 * Spawn firework by given location.
+		 *
+		 * @param x
+		 * @param y
+		 */
 		public function spawn(x:int, y:int):void
 		{
 			var firestar:FireworkParticle = pool.getSprite() as FireworkParticle;
@@ -38,19 +63,29 @@ package sketchproject.managers
 			Starling.juggler.add(firestar);
 			firestar.addEventListener(Event.COMPLETE, onComplete);
 		}
-		
+
+		/**
+		 * Callback when firework has finish spawned.
+		 *
+		 * @param event
+		 */
 		private function onComplete(event:Event):void
 		{
 			var firestar:FireworkParticle = event.currentTarget as FireworkParticle;
 			Starling.juggler.remove(firestar);
-			
-			if(pool != null)
+
+			if (pool != null)
+			{
 				pool.returnSprite(firestar);
+			}
 		}
-		
+
+		/**
+		 * Destroy the all particles and this manager.
+		 */
 		public function destroy():void
 		{
-			for(var i:int=0; i<pool.items.length; i++)
+			for (var i:int = 0; i < pool.items.length; i++)
 			{
 				var firestar:FireworkParticle = pool.items[i];
 				firestar.dispose();

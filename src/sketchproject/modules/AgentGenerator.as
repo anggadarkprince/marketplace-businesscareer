@@ -1,11 +1,9 @@
 package sketchproject.modules
 {
-	import flash.events.Event;
 	import flash.geom.Point;
 	
 	import sketchproject.core.Config;
 	import sketchproject.core.Data;
-	import sketchproject.managers.ServerManager;
 	import sketchproject.objects.world.Map;
 	import sketchproject.utilities.DayCounter;
 	import sketchproject.utilities.GameUtils;
@@ -302,7 +300,7 @@ package sketchproject.modules
 				listShop.push(shop);
 			}
 			
-			var gameObject:Object 			= new Object();
+			/*var gameObject:Object 			= new Object();
 			gameObject.token 				= Data.key;
 			var server:ServerManager = new ServerManager("gameserver/get_simulation_avatar");
 			server.addEventListener(ServerManager.READY, function(event:Event):void{
@@ -319,7 +317,7 @@ package sketchproject.modules
 				twoDCoordinate = IsoHelper.get2dFromTileCoordinates(listShop[2].districtCoordinate, map.tileHeight);
 				isoPosition = IsoHelper.twoDToIso(twoDCoordinate);
 				//map.avatarTexture(ServerManager.SERVER_HOST+"assets/images/avatar/"+avatar.competitor2,isoPosition);
-			});
+			});*/
 			//server.sendRequest();
 		}		
 		

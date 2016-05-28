@@ -296,9 +296,6 @@ package sketchproject.states
 			if (isSimulationStarted)
 			{
 				map.update(clock.hour, clock.minute);
-				map.checkRadianceAtmosphere(clock.hour);
-				map.checkEventOperation(clock.hour);
-
 				clockUpdate();
 			}
 		}
@@ -350,6 +347,7 @@ package sketchproject.states
 			view.removeFromParent(false);
 			trend.removeFromParent(false);
 			report.removeFromParent(false);
+			map.removeFromParent(false);
 			removeFromParent(true);
 		}
 

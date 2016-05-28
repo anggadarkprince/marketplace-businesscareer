@@ -44,8 +44,8 @@ package sketchproject.core
 		public function loadData():void
 		{
 			var server:DataManager = new DataManager();
-			server.addEventListener(ServerManager.READY, initializingLoadData);
-			server.loadGameData();
+			// server.addEventListener(ServerManager.READY, initializingLoadData);
+			// server.loadGameData();
 		}
 		
 		/**
