@@ -1,18 +1,30 @@
 package sketchproject.utilities
 {
 	import sketchproject.core.Assets;
-	
+
 	import starling.display.Image;
 
+	/**
+	 * Map helper to build tile.
+	 *
+	 * @author Angga
+	 */
 	public class MapCreator
 	{
+		/**
+		 * Get texture overlay.
+		 *
+		 * @param id of tile
+		 * @return image texture
+		 */
 		public static function getMapOverlay(id:uint):Image
 		{
 			var tile:Image;
-			switch(id){
+			switch (id)
+			{
 				case 0:
 					tile = new Image(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTexture("dot_grass"));
-					break;					
+					break;
 				case 1:
 					tile = new Image(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTexture("dot_wall"));
 					break;
@@ -22,17 +34,26 @@ package sketchproject.utilities
 			}
 			return tile;
 		}
-		
-		
 
+		/**
+		 * Get map tile of gameworld.
+		 * id 1 - 23 are terrains
+		 * id 24 - 93 are levels
+		 * id 97 - 99 are shops
+		 *
+		 * @param id of tile
+		 * @return image texture
+		 */
 		public static function getMapTile(id:uint):Image
 		{
 			var tile:Image;
-			switch(id){
+
+			switch (id)
+			{
 				case 1:
 					tile = new Image(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTexture("crossroad"));
 					tile.name = "crossroad";
-					break;					
+					break;
 				case 2:
 					tile = new Image(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTexture("dirt"));
 					tile.name = "dirt";
@@ -121,11 +142,10 @@ package sketchproject.utilities
 					tile = new Image(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTexture("waterBeachSouth"));
 					tile.name = "waterBeachSouth";
 					break;
-				
 				case 24:
 					tile = new Image(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTexture("airportBuilding"));
 					tile.name = "airportBuilding";
-					break;				
+					break;
 				case 25:
 					tile = new Image(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTexture("squareBuildingSmall"));
 					tile.name = "squareBuildingSmall";
@@ -385,7 +405,7 @@ package sketchproject.utilities
 				case 89:
 					tile = new Image(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTexture("containerTracker"));
 					tile.name = "containerTracker";
-					break;				
+					break;
 				case 90:
 					tile = new Image(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTexture("cargoShip"));
 					tile.name = "cargoShip";
@@ -402,10 +422,9 @@ package sketchproject.utilities
 					tile = new Image(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTexture("cityParkingLarge"));
 					tile.name = "cityParkingLarge";
 					break;
-				
 				case 97:
 					tile = new Image(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTexture("shop1"));
-					tile.name = "shop1";					
+					tile.name = "shop1";
 					break;
 				case 98:
 					tile = new Image(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTexture("shop2"));
@@ -418,6 +437,5 @@ package sketchproject.utilities
 			}
 			return tile;
 		}
-
 	}
 }

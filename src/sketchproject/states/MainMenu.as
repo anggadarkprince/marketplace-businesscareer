@@ -3,7 +3,6 @@ package sketchproject.states
 	import sketchproject.core.Assets;
 	import sketchproject.core.Game;
 	import sketchproject.interfaces.IState;
-	import sketchproject.modules.Shop;
 	import sketchproject.objects.dialog.MarketDialog;
 	import sketchproject.objects.dialog.ReportDialog;
 	import sketchproject.objects.dialog.WorldDialog;
@@ -15,6 +14,11 @@ package sketchproject.states
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	
+	/**
+	 * Menu to change parameter and simulation settings.
+	 * 
+	 * @author Angga
+	 */
 	public class MainMenu extends Sprite implements IState
 	{
 		private var game:Game;
@@ -32,6 +36,11 @@ package sketchproject.states
 		private var market:MarketDialog;
 		private var report:ReportDialog;		
 		
+		/**
+		 * Constructor of MainMenu.
+		 * 
+		 * @param game container
+		 */
 		public function MainMenu(game:Game)
 		{			
 			this.game = game;
@@ -39,7 +48,8 @@ package sketchproject.states
 		}
 		
 		/**
-		 * Init sprite function
+		 * Init sprite function.
+		 * 
 		 * @return void
 		 */
 		private function init(event:Event):void
@@ -49,7 +59,8 @@ package sketchproject.states
 		}
 		
 		/**
-		 * Initializing all main menu component
+		 * Initializing all main menu component.
+		 * 
 		 * @return void
 		 */
 		public function initialize():void
@@ -168,6 +179,10 @@ package sketchproject.states
 			removeFromParent(true);
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function toString() : String 
 		{
 			return "sketchproject.states.MainMenu";

@@ -1,10 +1,6 @@
 package sketchproject.objects.world
 {
-	import flash.display.Bitmap;
-	import flash.display.Loader;
-	import flash.events.Event;
 	import flash.geom.Point;
-	import flash.net.URLRequest;
 	import flash.ui.Keyboard;
 	
 	import sketchproject.core.Assets;
@@ -31,18 +27,24 @@ package sketchproject.objects.world
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.text.TextField;
-	import starling.textures.Texture;
+	import starling.utils.HAlign;
 	import starling.utils.VAlign;
 	
+	/**
+	 * Game world map and all content of simulation.
+	 * 
+	 * @author Angga
+	 */
 	public class Map extends Sprite
 	{		
 		private var key:KeyObject = new KeyObject(Starling.current.stage);
 		
 		// the canvas
-		public var levelBackground:Sprite;	
-		public var levelMap:Sprite;
-		public var levelOverlay:Sprite;
-		public var levelWorld:Sprite;
+		public var levelBackground:Sprite; // terrains
+		public var levelMap:Sprite; // buildings
+		public var levelOverlay:Sprite; // overlay such as event text, flying object, avatar, firework
+		public var levelWorld:Sprite; // container all of level
+		public var particleContainer:Sprite;
 		public var radiance:Quad;
 		public var atmosphere:Quad;
 		
@@ -51,6 +53,7 @@ package sketchproject.objects.world
 		public var levelData:Array = [[78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,0,78,78,78,78],[78,78,78,78,0,0,88,88,88,88,88,88,88,88,88,88,0,0,0,0,0,78,78,78,78],[78,78,78,78,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,78,78,78],[78,78,78,78,0,0,0,0,0,0,0,0,0,0,0,0,0,78,78,0,0,0,78,78,78],[78,0,0,0,0,0,64,78,66,34,33,0,31,78,0,73,0,60,78,85,0,0,78,78,78],[78,78,78,78,78,0,48,0,0,0,0,0,35,30,0,0,0,0,0,0,0,0,78,78,78],[78,69,78,78,78,0,29,65,78,0,52,0,0,70,0,78,78,0,51,51,0,0,78,78,78],[78,0,78,78,78,0,0,78,78,0,0,0,78,78,0,59,78,0,51,51,0,76,78,78,78],[78,0,92,56,78,0,32,62,78,0,0,0,53,78,0,78,78,0,51,51,0,75,78,78,78],[78,0,0,0,0,0,0,0,78,78,0,0,0,0,0,58,78,0,51,51,0,77,78,78,78],[78,78,78,78,78,0,0,0,63,78,0,0,78,78,0,78,78,0,0,0,0,0,78,78,78],[78,54,78,55,78,0,25,26,27,28,0,0,71,78,0,57,78,0,50,50,0,76,78,78,78],[78,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,50,50,0,75,78,78,78],[78,78,78,78,78,0,87,78,0,87,78,0,0,0,0,78,78,0,50,50,0,76,78,78,78],[78,78,78,78,78,0,78,78,0,78,78,0,78,78,0,84,78,0,50,50,0,76,78,78,78],[78,78,78,78,78,0,67,78,0,68,78,0,61,78,0,27,0,0,0,0,0,76,78,78,78],[78,78,78,78,78,0,0,0,0,0,0,0,0,0,0,34,92,0,49,49,0,0,78,78,78],[78,78,78,78,78,0,78,78,78,0,78,78,78,0,0,0,0,0,49,49,0,0,78,78,78],[78,24,78,78,78,0,78,78,78,0,93,74,93,0,0,85,0,0,49,49,0,85,78,78,78],[78,0,0,0,0,0,82,78,78,0,78,78,0,0,0,79,0,0,49,49,0,0,78,78,78],[78,88,88,0,0,0,28,28,28,0,86,78,0,0,0,0,0,0,49,49,0,85,78,78,78],[78,78,88,0,0,0,0,0,0,0,0,0,0,0,91,0,0,0,0,0,0,0,78,78,78],[78,78,88,0,0,0,47,0,36,78,42,39,39,0,0,0,0,0,78,78,0,0,78,78,78],[78,78,88,88,0,0,0,0,37,37,44,47,0,45,0,0,0,0,78,78,0,0,78,78,78],[78,78,78,88,0,0,47,0,40,40,78,78,0,0,0,0,0,0,72,78,0,89,78,78,78],[78,78,78,88,0,78,78,0,47,47,81,78,0,0,0,78,78,0,0,0,0,47,78,78,78],[78,78,78,88,0,46,78,0,38,78,43,41,0,0,0,83,78,0,78,78,0,89,78,78,78],[78,78,78,78,0,0,0,0,0,0,0,0,0,0,0,78,78,0,80,78,0,78,78,78,78],[78,78,78,78,78,0,0,0,47,47,47,47,0,0,0,46,78,0,0,78,0,78,78,78,78],[78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,78,0,78,78,78,78]];	
 		public var walkableData:Array;
 		public var tileHeight:uint = 50;
+		
 		private var depth:int;	
 		private var indexChild:int;
 		private var delayFireworks:uint = 0;
@@ -60,12 +63,11 @@ package sketchproject.objects.world
 		private var twoDCoordinate:Point;
 		private var isoPosition:Point;
 		private var tilePivot:Point;
-		private var worldPoint:Point;
+		private var walkableRandom:Point;
 		
 		// manager
 		private var worldManager:WorldManager;
 		private var rainManager:RainManager;
-		private var particleContainer:Sprite;
 		private var coinManager:RewardManager;
 		private var fireworkManager:FireworkParticleManager;
 		
@@ -75,12 +77,17 @@ package sketchproject.objects.world
 		private var landingPlane:Image;
 		
 		// world info
-		public var event:Array;
+		public var eventLabels:Array;
 		public var isEventExist:Boolean;		
 		public var hour:int;
 		public var minute:int;
 				
-		public function Map(isSimulation:Boolean = true)
+		/**
+		 * Default constructor of Map.
+		 * 
+		 * @param isSimulation init the map and start the simulation
+		 */
+		public function Map(isSimulationStarted:Boolean = true)
 		{
 			super();
 			
@@ -97,36 +104,37 @@ package sketchproject.objects.world
 			levelWorld.addChild(levelOverlay);
 						
 			walkableData = new Array();
-			event = new Array();
+			eventLabels = new Array();
+						
+			cartesianCoordinate = new Point();
+			twoDCoordinate = new Point();
+			isoPosition = new Point();
+			tilePivot = new Point();
+			walkableRandom = new Point();
 			
-			if(isSimulation){
+			createBackground();
+			createLevel();
+			
+			worldManager = new WorldManager(this, isSimulationStarted);
+			fireworkManager = new FireworkParticleManager(levelOverlay);
+			coinManager = new RewardManager(RewardManager.REWARD_COIN,RewardManager.SPAWN_ONCE, false, levelWorld);
+			
+			// add color effect
+			if(isSimulationStarted){
 				radiance = new Quad(3000,3000,0x000000);
 				radiance.pivotX = radiance.width * 0.5;
 				radiance.pivotY = radiance.height * 0.5;
 				radiance.alpha = 0.6;
-				//addChild(radiance);
+				addChild(radiance);
 				
 				atmosphere = new Quad(3000,3000,0xffc26b);
 				atmosphere.pivotX = radiance.width * 0.5;
 				atmosphere.pivotY = radiance.height * 0.5;
 				atmosphere.alpha = 0.3;
-				atmosphere.visible = false;
-				//addChild(atmosphere);
+				addChild(atmosphere);
 			}
 			
-			cartesianCoordinate = new Point();
-			twoDCoordinate = new Point();
-			isoPosition = new Point();
-			tilePivot = new Point();
-			worldPoint = new Point();
-			
-			createBackground();
-			createLevel();
-			
-			worldManager = new WorldManager(this, isSimulation);
-			fireworkManager = new FireworkParticleManager(levelOverlay);
-			coinManager = new RewardManager(RewardManager.REWARD_COIN,RewardManager.SPAWN_ONCE, false, levelWorld);
-			
+			// add overlay sprite
 			helicopter = new MovieClip(Assets.getAtlas(Assets.ISOMERTIC,Assets.ISOMERTIC_XML).getTextures("heli"),15);
 			helicopter.x = 600;
 			helicopter.y = -200;
@@ -148,12 +156,11 @@ package sketchproject.objects.world
 			TweenInitiator.planeLandingAnimate(landingPlane);
 			levelOverlay.addChild(landingPlane); 
 			
+			// setup rain particle
 			particleContainer = new Sprite();
 			particleContainer.x = -levelBackground.width * 0.5;
 			addChild(particleContainer);
-						
-			isEventExist = (Data.event.length > 0) ? true : false;
-			
+									
 			if(int(Data.weather[0][0]) <= 3){
 				if(int(Data.weather[0][0]) == 1){
 					rainManager = new RainManager(particleContainer, RainParticle.STORM_RAIN);				
@@ -168,13 +175,52 @@ package sketchproject.objects.world
 				rainManager.spawnHeight = levelBackground.height;
 			}
 			
-			for(var i:int = 0;i < Data.event.length; i++)
+			addEventLabel(Data.event);
+			
+			addShopLabel("Your Shop", worldManager.listShop[0].districtCoordinate, 200, 50);
+			addShopLabel("Competitor Shop 1", worldManager.listShop[1].districtCoordinate, 200, 50);
+			addShopLabel("Competitor Shop 2", worldManager.listShop[2].districtCoordinate, 200, 50);
+			
+			addEventListener(TouchEvent.TOUCH, onWorldTouched);
+		}
+		
+		/**
+		 * Add text in overlay layer.
+		 * 
+		 * @param text of label
+		 * @param location coordinate
+		 * @param width text container
+		 * @param height text container
+		 * @param visibility text visibility
+		 */
+		public function addShopLabel(text:String, location:Point, width:int, height:int, visibility:Boolean = true):void{
+			var label:TextField = new TextField(width, height, text, Assets.getFont(Assets.FONT_SSBOLD).fontName, 30, 0xFFFFFF);
+			var labelPosition:Point = IsoHelper.get2dFromTileCoordinates(location,tileHeight);
+			label.pivotX = label.width * 0.5;
+			label.pivotY = label.height * 0.5;
+			label.x = IsoHelper.twoDToIso(labelPosition).x + 50;
+			label.y = IsoHelper.twoDToIso(labelPosition).y - 50;
+			label.vAlign = VAlign.TOP;
+			label.hAlign = HAlign.CENTER;
+			label.visible = visibility;
+			TweenInitiator.spriteBounce(label,label.x,label.y);
+			levelOverlay.addChild(label);
+		}
+		
+		/**
+		 * Add event label over the district event located.
+		 * 
+		 * @param dataEvents current list
+		 */
+		public function addEventLabel(dataEvents:Array):void{
+			isEventExist = (dataEvents.length > 0) ? true : false;
+			for(var i:int = 0;i < dataEvents.length; i++)
 			{
-				var label:TextField = new TextField(300, 300, Data.event[i][1]+" Event", Assets.getFont(Assets.FONT_SSBOLD).fontName, 30, 0xFFFFFF);
-				var index:int = GameUtils.randomFor(Data.event[i][5].length-1);
+				var label:TextField = new TextField(300, 300, dataEvents[i][1]+" Event", Assets.getFont(Assets.FONT_SSBOLD).fontName, 30, 0xFFFFFF);
+				var index:int = GameUtils.randomFor(dataEvents[i][5].length-1); // pointing event location in district area
 				var labelPosition:Point = IsoHelper.get2dFromTileCoordinates(new Point(
-					Number(Data.event[i][5][index].x),
-					Number(Data.event[i][5][index].y)),tileHeight);
+					Number(dataEvents[i][5][index].x),
+					Number(dataEvents[i][5][index].y)),tileHeight);
 				label.pivotX = label.width * 0.5;
 				label.pivotY = label.height * 0.5;
 				label.x = IsoHelper.twoDToIso(labelPosition).x;
@@ -183,51 +229,38 @@ package sketchproject.objects.world
 				label.visible = false;
 				TweenInitiator.spriteBounce(label,label.x,label.y);
 				levelOverlay.addChild(label);
-				event.push({"id":Config.event[i][0],"label":label});
+				eventLabels.push({"id":Config.event[i][0],"label":label});
 			}
-						
-			//addEventListener(TouchEvent.TOUCH, onWorldTouched);
 		}
 		
-		// called from agent generator
-		public function avatarTexture(texture:String, location:Point):void
-		{
-			var loader:Loader = new Loader();
-			loader.load (new URLRequest(texture));
-			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onComplete);
-			
-			function onComplete(e:Event):void
-			{
-				var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;	
-				var texture:Texture = Texture.fromBitmap (loadedBitmap);
-				
-				var avatarImage:Image = new Image(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture("avatar_wrapper_shop"));
-				avatarImage.x = location.x + 15;
-				avatarImage.y = location.y - 100;
-				TweenInitiator.spriteBounce(avatarImage, avatarImage.x, avatarImage.y);
-				levelOverlay.addChild(avatarImage);
-				
-				avatarImage = new Image(texture);
-				avatarImage.width = 63;
-				avatarImage.height = 63;
-				avatarImage.x = location.x + 17;
-				avatarImage.y = location.y - 98;
-				TweenInitiator.spriteBounce(avatarImage, avatarImage.x, avatarImage.y);
-				levelOverlay.addChild(avatarImage);
-			}	
-		}
-		
+		/**
+		 * Spawn coin when agent buy an item.
+		 * 
+		 * @param location
+		 */
 		public function spawnCoin(location:Point):void
 		{			
 			coinManager.spawn(location.x, location.y, location.x, location.y-100);
 		}
 				
+		/**
+		 * Select random location from walkable coordinate list.
+		 * 
+		 * @return 
+		 */
 		public function generateWalkableCoordinate():Point
 		{			
-			worldPoint = walkableData[Math.floor(Math.random() * walkableData.length)];
-			return worldPoint;
+			walkableRandom = walkableData[Math.floor(Math.random() * walkableData.length)];
+			return walkableRandom;
 		}
 		
+		/**
+		 * Put agent location into map by given location.
+		 * (+tileHeight/2) to make agent center of the tile
+		 * 
+		 * @param location of agent should be placed
+		 * @return 
+		 */
 		public function placeAgentLocation(location:Point):Point
 		{
 			var point:Point = new Point();
@@ -236,6 +269,11 @@ package sketchproject.objects.world
 			return point;
 		}						
 		
+		/**
+		 * Generate terrain level.
+		 * loop through background data, get coordinate -> convert 2D -> convert iso
+		 * put tile into map by passing tile data, position and container
+		 */
 		private function createBackground():void
 		{				
 			for (var y:uint=0; y<backgroundData.length; y++)
@@ -251,6 +289,12 @@ package sketchproject.objects.world
 			levelBackground.flatten();			
 		}
 		
+		/**
+		 * Generate building level.
+		 * loop through level data, get coordinate -> convert 2D -> convert iso
+		 * put tile into map by passing tile data, position and container
+		 * add 0 value from tile data as walkable area
+		 */
 		private function createLevel():void
 		{	
 			for (var y:uint=0; y<levelData.length; y++)
@@ -272,6 +316,13 @@ package sketchproject.objects.world
 			}
 		}
 		
+		/**
+		 * Put tile into right position at their container.
+		 * 
+		 * @param tile id
+		 * @param isoCoordinate position of tile should be placed
+		 * @param container of tile
+		 */
 		public function placeTile(tile:int, isoCoordinate:Point, container:DisplayObjectContainer):void
 		{
 			var tileImage:Image = MapCreator.getMapTile(tile);
@@ -285,6 +336,12 @@ package sketchproject.objects.world
 			container.addChild(tileImage);
 		}
 		
+		/**
+		 * Make sure pivot of tiles in the right position - left bottom base.
+		 * 
+		 * @param tileId
+		 * @return 
+		 */
 		private function getPivotTile(tileId:String):Point
 		{
 			for (var i:uint=0; i<Config.levelPivot.length; i++)
@@ -299,6 +356,9 @@ package sketchproject.objects.world
 			return new Point(0,0);
 		}
 					
+		/**
+		 * Sort tiles and agents by z-index (y position)
+		 */
 		private function depthSort():void
 		{	
 			for(var i:uint = 0; i<levelMap.numChildren; i++)
@@ -313,6 +373,12 @@ package sketchproject.objects.world
 			}
 		}
 		
+		/**
+		 * Update map and simulation.
+		 * 
+		 * @param hour of simulation
+		 * @param minute of simulation
+		 */
 		public function update(hour:int, minute:int):void
 		{
 			this.hour = hour;
@@ -336,6 +402,12 @@ package sketchproject.objects.world
 			}
 		}
 		
+		/**
+		 * Radiance gives dark and light,
+		 * atmosphere gives color overlay heat and cold effect.
+		 * 
+		 * @param hour
+		 */
 		public function checkRadianceAtmosphere(hour:int):void
 		{
 			if(hour >= 3 && hour<8)
@@ -371,29 +443,40 @@ package sketchproject.objects.world
 			}
 		}	
 				
+		/**
+		 * Check time of event begin then show or hide the label,
+		 * index 2 is start hour, index 3 is finish hour.
+		 * 
+		 * @param hour
+		 */
 		public function checkEventOperation(hour:int):void
 		{
 			for(var i:int = 0;i < Data.event.length; i++)
 			{
 				if(hour >= Data.event[i][2] && hour < Data.event[i][3])
 				{
-					event[i].label.visible = true;
+					eventLabels[i].label.visible = true;
 					if(delayFireworks++ == 50){
-						fireworkManager.spawn(event[i].label.x, event[i].label.y);
+						fireworkManager.spawn(eventLabels[i].label.x, eventLabels[i].label.y);
 						delayFireworks = 0;
 					}
 				}
 				else
 				{
-					event[i].label.visible = false;
+					eventLabels[i].label.visible = false;
 				}
 			}
 		}
 		
+		/**
+		 * Unecessary event listener to check the coordinate of game map.
+		 * 
+		 * @param e
+		 */
 		private function onWorldTouched(e:TouchEvent):void{
 			var touch:Touch = e.getTouch(stage);
 			
-			if (touch.phase == TouchPhase.ENDED )
+			if (touch != null && touch.phase == TouchPhase.ENDED )
 			{				
 				var position:Point = touch.getLocation(levelBackground);
 				
