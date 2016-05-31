@@ -160,7 +160,7 @@ package sketchproject.modules.states
 				if((agent.action.checkState(agent.homewardAction) || agent.targetDistrict == "Hospital") && agent.isSick)
 				{
 					if(agent.health > (8+GameUtils.randomFor(2))){
-						trace(agent.agentId, agent.role,"stop in home or hospital because is not sick anymore");	
+						//trace(agent.agentId, agent.role,"stop in home or hospital because is not sick anymore");	
 						agent.isSick = false;						
 						agent.action.checkState(agent.idleAction,true);
 						agent.action.checkState(agent.homewardAction,true);
@@ -171,7 +171,7 @@ package sketchproject.modules.states
 				if((agent.action.checkState(agent.homewardAction) || agent.targetDistrict == "Hospital") && agent.isStress)
 				{
 					if(agent.stress < (2-GameUtils.randomFor(2))){
-						trace(agent.agentId, agent.role,"stop in home or hospital because is not stress anymore");	
+						//trace(agent.agentId, agent.role,"stop in home or hospital because is not stress anymore");	
 						agent.isSick = false;						
 						agent.action.checkState(agent.idleAction,true);
 						agent.action.checkState(agent.homewardAction,true);
@@ -194,7 +194,7 @@ package sketchproject.modules.states
 				if(agent.action.checkState(agent.playingAction) && agent.isStress)
 				{
 					if(agent.stress < GameUtils.randomFor(2)){
-						trace(agent.agentId, agent.role,"stop playing not stress anymore");
+						//trace(agent.agentId, agent.role,"stop playing not stress anymore");
 						agent.isStress = false;
 						agent.action.checkState(agent.idleAction,true);
 						agent.action.checkState(agent.playingAction,true);
@@ -203,13 +203,13 @@ package sketchproject.modules.states
 				
 				// check if agent now is playing and he/she is play at will and meet a couple hour then boring
 				if(agent.action.checkState(agent.playingAction) && currentHour == idleTaken && !agent.isStress){
-					trace(agent.agentId, agent.role,"stop playing because boring");
+					//trace(agent.agentId, agent.role,"stop playing because boring");
 					agent.action.checkState(agent.idleAction,true);
 					agent.action.checkState(agent.playingAction,true);
 				}
 				
 				
-				trace(agent.agentId, agent.role, "agent stress",agent.stress,"agent health",agent.health);
+				//trace(agent.agentId, agent.role, "agent stress",agent.stress,"agent health",agent.health);
 				lastHour = currentHour;
 			}			
 			

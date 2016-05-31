@@ -318,7 +318,7 @@ package sketchproject.objects.dialog
 		{
 			var count:int = Data.valuePopulation; //WorldManager.instance.listAgents.length;
 			if(count > 0){
-				agent = WorldManager.instance.listAgents[Math.floor(Math.random() * count)];
+				agent = WorldManager.instance.listAgent[Math.floor(Math.random() * count)];
 				update();
 			}
 		}

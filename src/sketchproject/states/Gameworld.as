@@ -166,7 +166,7 @@ package sketchproject.states
 			label.y = 525.9;
 			addChild(label);
 
-			label = new TextField(150, 30, Data.weather[0][1] + " Degree " + Data.weather[0][2], Assets.getFont(Assets.FONT_SSREGULAR).fontName, 14, 0x00CCFF);
+			label = new TextField(150, 30, Data.weather[Data.weather.length-1][1] + " Degree " + Data.weather[Data.weather.length-1][2], Assets.getFont(Assets.FONT_SSREGULAR).fontName, 14, 0x00CCFF);
 			label.hAlign = HAlign.LEFT;
 			label.vAlign = VAlign.TOP;
 			label.x = 219.85;

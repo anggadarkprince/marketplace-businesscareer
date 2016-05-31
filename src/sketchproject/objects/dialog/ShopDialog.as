@@ -18,6 +18,7 @@ package sketchproject.objects.dialog
 	public class ShopDialog extends DialogOverlay
 	{
 		private var shopName:String;
+		
 		private var background:Image;
 		private var bar:Quad;
 
@@ -109,7 +110,7 @@ package sketchproject.objects.dialog
 		public function ShopDialog(name:String)
 		{
 			super();
-			
+
 			shopName = name;
 
 			background = new Image(Assets.getAtlas(Assets.CONTENT, Assets.CONTENT_XML).getTexture("dialogSetupShop"));
@@ -512,7 +513,7 @@ package sketchproject.objects.dialog
 				}
 				addChild(bar);
 			}
-			
+
 			// price
 			priceFood1 = new Quad(10, 10, 0xFF7979);
 			priceFood1.width = Math.ceil(Math.random() * 25) * 2;
@@ -626,7 +627,7 @@ package sketchproject.objects.dialog
 
 		/**
 		 * Handle touch in this dialog.
-		 * 
+		 *
 		 * @param touch
 		 */
 		private function onTouched(touch:TouchEvent):void
@@ -1125,47 +1126,248 @@ package sketchproject.objects.dialog
 					}
 				}
 
-				if (touch.getTouch(this).phase == TouchPhase.ENDED)
+				if (touch.getTouch(buttonClose, TouchPhase.ENDED))
 				{
-					getShopData();
+					// getShopData();
 				}
 			}
 		}
+		
+		/**
+		 * Get shop name.
+		 * 
+		 * @return 
+		 */
+		public override function get name():String{
+			return this.shopName;
+		}
+		
+		/**
+		 * Get advertisement data.
+		 * 
+		 * @return 
+		 */
+		public function get advertisement():Object{
+			var adver:Object = new Object();
+			adver.tv = adverTv.width / 5;
+			adver.radio = adverRadio.width / 5;
+			adver.newspaper = adverNews.width / 5;
+			adver.internet = adverInternet.width / 5;
+			adver.event = adverEvent.width / 5;
+			adver.billboard = adverBillboard.width / 5;
+			return adver;
+		}
+		
+		/**
+		 * Get product price.
+		 * 
+		 * @return 
+		 */
+		public function get price():Object{
+			var price:Object = new Object();
+			price.food1 = priceFood1.width / 2;
+			price.food2 = priceFood2.width / 2;
+			price.food3 = priceFood3.width / 2;
+			price.drink1 = priceDrink1.width / 2;
+			price.drink2 = priceDrink2.width / 2;
+			return price;
+		}
+		
+		/**
+		 * Get product quality.
+		 * 
+		 * @return 
+		 */
+		public function get quality():Object{
+			var quality:Object = new Object();
+			var quality1:int = qualityFood1.width / 5;
+			var quality2:int = qualityFood2.width / 5;
+			var quality3:int = qualityFood3.width / 5;
+			var quality4:int = qualityDrink1.width / 5;
+			var quality5:int = qualityDrink2.width / 5;
+			
+			quality.food1 = [quality1, quality1, quality1];
+			quality.food2 = [quality2, quality2];
+			quality.food3 = [quality3, quality3];
+			quality.drink1 = [quality4, quality4, quality4];
+			quality.drink2 = [quality5, quality5];
+			return quality;
+		}
+		
+		/**
+		 * Get shop decoration.
+		 * 
+		 * @return 
+		 */
+		public function get decoration():Object{
+			var decoration:Object = new Object();
+			decoration.modern = decorationModern.width / 5;
+			decoration.colorfull = decorationColorfull.width / 5;
+			decoration.vintage = decorationVintage.width / 5;
+			return decoration;
+		}
+		
+		/**
+		 * Get shop cleaness.
+		 * 
+		 * @return 
+		 */
+		public function get cleaness():Object{
+			var cleaness:Object = new Object();
+			cleaness.product = cleanessProduct.width / 5;
+			cleaness.place = cleanessPlace.width / 5;
+			return cleaness;
+		}
+		
+		/**
+		 * Get shop scent.
+		 * 
+		 * @return 
+		 */
+		public function get scent():Object{
+			var scent:Object = new Object();
+			scent.ginger = scentGinger.width / 5;
+			scent.jasmine = scentJasmine.width / 5;
+			scent.rosemary = scentRosemary.width / 5;
+			return scent;
+		}
+		
+		/**
+		 * Get employee service.
+		 * 
+		 * @return 
+		 */
+		public function get service():Array{
+			var service:Array = [
+				employeeDianServices.width / 5,
+				employeeFrandaServices.width / 5,
+				employeeDavidServices.width / 5,
+				employeeDhiniServices.width / 5,
+				employeeChristianServices.width / 5,
+				employeeRezaServices.width / 5,
+				employeeVinoServices.width / 5
+			];
+			return service;
+		}
+		
+		/**
+		 * Get employe morale.
+		 * 
+		 * @return 
+		 */
+		public function get morale():Array{
+			var morale:Array = [
+				employeeDianMorale.width / 5,
+				employeeFrandaMorale.width / 5,
+				employeeDavidMorale.width / 5,
+				employeeDhiniMorale.width / 5,
+				employeeChristianMorale.width / 5,
+				employeeRezaMorale.width / 5,
+				employeeVinoMorale.width / 5
+			];
+			return morale;
+		}
+		
+		/**
+		 * Get employee productivity.
+		 * 
+		 * @return 
+		 */
+		public function get productivity():Array{
+			var productivity:Array = [
+				employeeDianProductivity.width / 5,
+				employeeFrandaProductivity.width / 5,
+				employeeDavidProductivity.width / 5,
+				employeeDhiniProductivity.width / 5,
+				employeeChristianProductivity.width / 5,
+				employeeRezaProductivity.width / 5,
+				employeeVinoProductivity.width / 5
+			];
+			return productivity;
+		}
+		
+		/**
+		 * Get shop research.
+		 * 
+		 * @return 
+		 */
+		public function get research():Object{
+			var research:Object = new Object();
+			research.marketing = researchMarketing.color == 0xFF7979 ? 1 : 0;
+			research.service = researchServices.color == 0xFF7979 ? 1 : 0;
+			research.pos = researchPointsale.color == 0xFF7979 ? 1 : 0;
+			research.product = researchProduct.color == 0xFF7979 ? 1 : 0;
+			research.facility = researchFacility.color == 0xFF7979 ? 1 : 0;
+			return research;
+		}
+		
+		/**
+		 * Get employee benefit.
+		 * 
+		 * @return 
+		 */
+		public function get benefit():Object{
+			var benefit:Object = new Object();
+			benefit.reward = incentiveReward.color == 0xFF7979 ? 1 : 0;
+			benefit.career = incentiveCareer.color == 0xFF7979 ? 1 : 0;
+			benefit.culture = incentiveCultural.color == 0xFF7979 ? 1 : 0;
+			benefit.personalization = incentivePersonalization.color == 0xFF7979 ? 1 : 0;
+			benefit.management = incentiveManagement.color == 0xFF7979 ? 1 : 0;
+			benefit.health = benefitHealth.color == 0xFF7979 ? 1 : 0;
+			benefit.education = benefitEducation.color == 0xFF7979 ? 1 : 0;
+			benefit.financial = benefitAdditional.color == 0xFF7979 ? 1 : 0;
+			benefit.practice = benefitPolice.color == 0xFF7979 ? 1 : 0;
+			return benefit;
+		}
+		
+		/**
+		 * Get booster data.
+		 * 
+		 * @return 
+		 */
+		public function get booster():Object{
+			var booster:Object = new Object();
+			booster.shop = boosterShop.width / 5;
+			booster.product = boosterProduct.width / 5;
+			booster.employee = boosterEmployee.width / 5;
+			booster.lucky = boosterLucky.width / 5;
+			return booster;
+		}
 
+		/**
+		 * Print shop data
+		 */
 		public function getShopData():void
 		{
-			trace("Shop "+shopName);
+			trace("Shop " + shopName);
 			trace("-----------------------------");
 			trace("-- decoration --------------");
 			trace("---- modern", decorationModern.width / 5);
 			trace("---- colorfull", decorationColorfull.width / 5);
 			trace("---- vintage", decorationVintage.width / 5);
 			trace("-- cleaness --------------");
-			trace("---- product", decorationModern.width / 5);
-			trace("---- place", decorationColorfull.width / 5);
+			trace("---- product", cleanessProduct.width / 5);
+			trace("---- place", cleanessPlace.width / 5);
 			trace("-- scent --------------");
-			trace("---- ginger", decorationVintage.width / 5);
-			trace("---- jasmine", decorationVintage.width / 5);
-			trace("---- rosemary", decorationVintage.width / 5);
-			trace("");
-			trace("product -------------------");
-			trace("-- food --------------");
+			trace("---- ginger", scentGinger.width / 5);
+			trace("---- jasmine", scentJasmine.width / 5);
+			trace("---- rosemary", scentRosemary.width / 5);
+			trace("-- product -------------------");
+			trace("--- food");
 			trace("---- food1 price", priceFood1.width / 2, "quality", qualityFood1.width / 5);
 			trace("---- food2 price", priceFood2.width / 2, "quality", qualityFood2.width / 5);
 			trace("---- food3 price", priceFood3.width / 2, "quality", qualityFood3.width / 5);
-			trace("-- drink --------------");
+			trace("--- drink");
 			trace("---- drink1 price", priceDrink1.width / 2, "quality", qualityDrink1.width / 5);
 			trace("---- drink2 price", priceDrink2.width / 2, "quality", qualityDrink2.width / 5);
-			trace("");
-			trace("advertisement ---------------");
+			trace("-- advertisement ---------------");
 			trace("---- tv", adverTv.width / 5);
 			trace("---- radio", adverRadio.width / 5);
-			trace("---- news", adverNews.width / 5);
+			trace("---- newspaper", adverNews.width / 5);
 			trace("---- internet", adverInternet.width / 5);
 			trace("---- event", adverEvent.width / 5);
 			trace("---- billboard", adverBillboard.width / 5);
-			trace("");
-			trace("employee---------------");
+			trace("-- employee ---------------");
 			trace("---- dian", employeeDianMorale.width / 5, employeeDianServices.width / 5, employeeDianProductivity.width / 5);
 			trace("---- franda", employeeFrandaMorale.width / 5, employeeFrandaServices.width / 5, employeeFrandaProductivity.width / 5);
 			trace("---- david", employeeDavidMorale.width / 5, employeeDavidServices.width / 5, employeeDavidProductivity.width / 5);
@@ -1173,27 +1375,24 @@ package sketchproject.objects.dialog
 			trace("---- christian", employeeChristianMorale.width / 5, employeeChristianServices.width / 5, employeeChristianProductivity.width / 5);
 			trace("---- reza", employeeRezaMorale.width / 5, employeeRezaServices.width / 5, employeeRezaProductivity.width / 5);
 			trace("---- vino", employeeVinoMorale.width / 5, employeeVinoServices.width / 5, employeeVinoProductivity.width / 5);
-			trace("");
-			trace("booster---------------");
+			trace("-- booster ---------------");
 			trace("---- shop", boosterShop.width / 5);
 			trace("---- product", boosterProduct.width / 5);
 			trace("---- employee", boosterEmployee.width / 5);
 			trace("---- lucky", boosterLucky.width / 5);
-			trace("");
-			trace("research & Program---------------");
-			trace("-- research---------------");
+			trace("-- research ---------------");
 			trace("---- marketing", (researchMarketing.color == 0xFF7979) ? 1 : 0);
 			trace("---- service", (researchServices.color == 0xFF7979) ? 1 : 0);
 			trace("---- pos", (researchPointsale.color == 0xFF7979) ? 1 : 0);
 			trace("---- product", (researchProduct.color == 0xFF7979) ? 1 : 0);
 			trace("---- facility", (researchFacility.color == 0xFF7979) ? 1 : 0);
-			trace("-- incentive--------------");
+			trace("-- incentive --------------");
 			trace("---- reward", (incentiveReward.color == 0xFF7979) ? 1 : 0);
 			trace("---- career", (incentiveCareer.color == 0xFF7979) ? 1 : 0);
 			trace("---- culture", (incentiveCultural.color == 0xFF7979) ? 1 : 0);
 			trace("---- personalization", (incentivePersonalization.color == 0xFF7979) ? 1 : 0);
 			trace("---- management", (incentiveManagement.color == 0xFF7979) ? 1 : 0);
-			trace("-- benefit--------------");
+			trace("-- benefit --------------");
 			trace("---- health", (benefitHealth.color == 0xFF7979) ? 1 : 0);
 			trace("---- education", (benefitEducation.color == 0xFF7979) ? 1 : 0);
 			trace("---- additional financial", (benefitAdditional.color == 0xFF7979) ? 1 : 0);

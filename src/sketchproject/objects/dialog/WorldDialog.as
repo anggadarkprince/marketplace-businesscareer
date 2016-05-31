@@ -13,7 +13,7 @@ package sketchproject.objects.dialog
 
 	/**
 	 * Global setting of game world.
-	 * 
+	 *
 	 * @author Angga
 	 */
 	public class WorldDialog extends DialogOverlay
@@ -385,22 +385,35 @@ package sketchproject.objects.dialog
 			barAddicted.width = 120 * Data.valueAddicted / 10;
 			barBuyingPower.width = 120 * Data.valueBuying / 10;
 			barEmotion.width = 120 * Data.valueEmotion / 10;
+		}
 
-			trace("WORLD SETTING");
-			trace("-------------------------");
-			trace("Population :", Data.valuePopulation);
-			trace("Weather :", Data.valueWeather);
-			trace("Event :", Data.valueEvent);
-			trace("Competitor :", Data.valueCompetitor);
+		/**
+		 * Close dialog and print last setting.
+		 */
+		public override function closeDialog():void
+		{
+			super.closeDialog();
+			getWorldData();
+		}
 
-			trace("Variant :", Data.valueVariant);
-			trace("Addicted :", Data.valueAddicted);
-			trace("Buying Power :", Data.valueBuying);
-			trace("Emotion :", Data.valueEmotion);
-			trace("");
+		/**
+		 * Print shop data
+		 */
+		public function getWorldData():void
+		{
+			trace("[World Setting] -----------------");
+			trace("---------------------------------");
+			trace("-- Population :", Data.valuePopulation);
+			trace("-- Weather :", Data.valueWeather);
+			trace("-- Event :", Data.valueEvent);
+			trace("-- Competitor :", Data.valueCompetitor);
+			trace("-- Variant :", Data.valueVariant);
+			trace("-- Addicted :", Data.valueAddicted);
+			trace("-- Buying Power :", Data.valueBuying);
+			trace("-- Emotion :", Data.valueEmotion);
 			trace("Day :", Data.playtime, "(", (Data.playtime % 6 == 0) || (Data.playtime % 7 == 0) ? "Weekend" : "Regular Day", ")");
 			trace("Is Holiday :", DayCounter.holiday);
-			trace("-------------------------\n");
+			trace("---------------------------------\n");
 		}
 	}
 }

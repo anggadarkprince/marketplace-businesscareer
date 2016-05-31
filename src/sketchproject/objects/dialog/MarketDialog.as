@@ -95,17 +95,17 @@ package sketchproject.objects.dialog
 			addChild(buttonShopCompetitor2);
 
 			if(shopPlayer == null){
-				shopPlayer = new ShopDialog("Player");				
+				shopPlayer = new ShopDialog("Player Shop");				
 			}
 			addChild(shopPlayer);
 			
 			if(shopCompetitor1 == null){
-				shopCompetitor1 = new ShopDialog("Competitor 1");
+				shopCompetitor1 = new ShopDialog("Competitor 1 Shop");
 			}			
 			addChild(shopCompetitor1);
 
 			if(shopCompetitor2 == null){
-				shopCompetitor2 = new ShopDialog("Competitor 2");
+				shopCompetitor2 = new ShopDialog("Competitor 2 Shop");
 			}			
 			addChild(shopCompetitor2);
 

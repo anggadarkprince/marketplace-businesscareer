@@ -12,6 +12,6 @@ package sketchproject.managers
 		 * Constant directory data
 		 * @default 
 		 */
-		public static const SERVER_HOST:String = "../"; //"http://localhost/businesscareer/";
+		public static const SERVER_HOST:String = "../";
 	}
 }

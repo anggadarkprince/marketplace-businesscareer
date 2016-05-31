@@ -116,10 +116,6 @@ package sketchproject.objects.world
 			createBackground();
 			createLevel();
 
-			worldManager = new WorldManager(this, isSimulationStarted);
-			fireworkManager = new FireworkManager(levelOverlay);
-			coinManager = new RewardManager(RewardManager.REWARD_COIN, RewardManager.SPAWN_ONCE, false, levelWorld);
-
 			// add color effect
 			if (isSimulationStarted)
 			{
@@ -135,6 +131,10 @@ package sketchproject.objects.world
 				atmosphere.alpha = 0.3;
 				addChild(atmosphere);
 			}
+
+			worldManager = new WorldManager(this, isSimulationStarted);
+			fireworkManager = new FireworkManager(levelOverlay);
+			coinManager = new RewardManager(RewardManager.REWARD_COIN, RewardManager.SPAWN_ONCE, false, levelWorld);
 
 			// add overlay sprite
 			helicopter = new MovieClip(Assets.getAtlas(Assets.ISOMERTIC, Assets.ISOMERTIC_XML).getTextures("heli"), 15);
@@ -163,17 +163,19 @@ package sketchproject.objects.world
 			particleContainer.x = -levelBackground.width * 0.5;
 			addChild(particleContainer);
 
-			if (int(Data.weather[0][0]) <= 3)
+			var indexWeather:int = Data.weather.length - 1;
+			var weather:int = int(Data.weather[indexWeather][0]);
+			if (weather <= 3)
 			{
-				if (int(Data.weather[0][0]) == 1)
+				if (weather == 1)
 				{
 					rainManager = new RainManager(particleContainer, RainParticle.STORM_RAIN);
 				}
-				else if (int(Data.weather[0][0]) == 2)
+				else if (weather == 2)
 				{
 					rainManager = new RainManager(particleContainer, RainParticle.HEAVY_RAIN);
 				}
-				else if (int(Data.weather[0][0]) == 3)
+				else if (weather == 3)
 				{
 					rainManager = new RainManager(particleContainer, RainParticle.LIGHT_RAIN);
 				}
@@ -184,8 +186,8 @@ package sketchproject.objects.world
 			addEventLabel(Data.event);
 
 			addShopLabel("Your Shop", worldManager.listShop[0].districtCoordinate, 200, 50);
-			addShopLabel("Competitor Shop 1", worldManager.listShop[1].districtCoordinate, 200, 50);
-			addShopLabel("Competitor Shop 2", worldManager.listShop[2].districtCoordinate, 200, 50);
+			addShopLabel("Competitor Shop 1", worldManager.listShop[1].districtCoordinate, 200, 100);
+			addShopLabel("Competitor Shop 2", worldManager.listShop[2].districtCoordinate, 200, 100);
 
 			addEventListener(TouchEvent.TOUCH, onWorldTouched);
 		}
@@ -262,9 +264,9 @@ package sketchproject.objects.world
 
 		/**
 		 * Put agent location into map by given location.
-		 * (+tileHeight/2) to make agent center of the tile
+		 * (+tileHeight/2) to make agent center of the tile into 2D cartesian location
 		 *
-		 * @param location of agent should be placed
+		 * @param location coordinate of agent should be placed
 		 * @return
 		 */
 		public function placeAgentLocation(location:Point):Point
@@ -390,12 +392,13 @@ package sketchproject.objects.world
 			this.hour = hour;
 			this.minute = minute;
 
+			// update main simulation
 			worldManager.update();
-			
+
 			checkRadianceAtmosphere(hour);
 			checkEventOperation(hour);
 
-			if (int(Data.weather[0][0]) <= 3)
+			if (int(Data.weather[Data.weather.length - 1][0]) <= 3)
 			{
 				rainManager.update();
 			}
@@ -423,13 +426,13 @@ package sketchproject.objects.world
 			if (hour >= 3 && hour < 8)
 			{
 				radiance.alpha = (8 - hour) * 0.04;
-				if (int(Data.weather[0][0]) <= 3)
+				if (int(Data.weather[Data.weather.length-1][0]) <= 3)
 				{
-					atmosphere.alpha = (hour - 3) * ((0.4 - (0.1 * int(Data.weather[0][0]))) / 5);
+					atmosphere.alpha = (hour - 3) * ((0.4 - (0.1 * int(Data.weather[Data.weather.length-1][0]))) / 5);
 				}
-				else if (int(Data.weather[0][0]) >= 8)
+				else if (int(Data.weather[Data.weather.length-1][0]) >= 8)
 				{
-					atmosphere.alpha = (hour - 3) * ((0.4 - (0.1 * (11 - int(Data.weather[0][0])))) / 5);
+					atmosphere.alpha = (hour - 3) * ((0.4 - (0.1 * (11 - int(Data.weather[Data.weather.length-1][0])))) / 5);
 				}
 			}
 			else if (hour >= 17 || hour < 3)
@@ -437,20 +440,20 @@ package sketchproject.objects.world
 				if (hour < 21)
 				{
 					radiance.alpha = (hour - 17) * 0.06;
-					if (int(Data.weather[0][0]) <= 3 && hour >= 17)
+					if (int(Data.weather[Data.weather.length-1][0]) <= 3 && hour >= 17)
 					{
-						atmosphere.alpha = (21 - hour) * ((0.4 - (0.1 * int(Data.weather[0][0]))) / 4);
+						atmosphere.alpha = (21 - hour) * ((0.4 - (0.1 * int(Data.weather[Data.weather.length-1][0]))) / 4);
 					}
-					else if (int(Data.weather[0][0]) >= 8 && hour >= 17)
+					else if (int(Data.weather[Data.weather.length-1][0]) >= 8 && hour >= 17)
 					{
-						atmosphere.alpha = (21 - hour) * ((0.4 - (0.1 * (11 - int(Data.weather[0][0])))) / 4);
+						atmosphere.alpha = (21 - hour) * ((0.4 - (0.1 * (11 - int(Data.weather[Data.weather.length-1][0])))) / 4);
 					}
 				}
 			}
 			else
 			{
 				radiance.alpha = 0;
-				atmosphere.alpha = (0.4 - (0.1 * (11 - int(Data.weather[0][0]))));
+				atmosphere.alpha = (0.4 - (0.1 * (11 - int(Data.weather[Data.weather.length-1][0]))));
 			}
 		}
 
@@ -501,24 +504,23 @@ package sketchproject.objects.world
 				clickPt.y += tileHeight / 2;
 				clickPt = IsoHelper.getTileCoordinates(clickPt, tileHeight);
 
-				trace("touch " + position, "coordinate " + clickPt);
+				trace("[Touch] " + position, "coordinate " + clickPt);
 
 				if (clickPt.x < 0 || clickPt.y < 0 || clickPt.x > levelData.length - 1 || clickPt.x > levelData[0].length - 1)
 				{
-					trace("invalid");
+					trace("[Touch] invalid");
 					//we have clicked outside
 					return;
 				}
 				if (levelData[clickPt.y][clickPt.x] != 0)
 				{
-					trace("wall");
+					trace("[Touch] wall");
 					//we clicked on a wall
 					return;
 				}
-				trace("find ", clickPt);
 			}
 		}
-		
+
 		/**
 		 * Destroy all map component
 		 */
@@ -528,7 +530,7 @@ package sketchproject.objects.world
 			radiance.removeFromParent();
 			atmosphere.removeFromParent();
 			particleContainer.removeFromParent();
-			
+
 			rainManager.destroy();
 		}
 	}

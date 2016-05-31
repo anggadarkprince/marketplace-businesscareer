@@ -239,26 +239,26 @@ package sketchproject.objects.dialog
 				b = 0;
 				c = 0;
 
-				for (var j:int = 0; j < WorldManager.instance.listAgents.length; j++)
+				for (var j:int = 0; j < WorldManager.instance.listAgent.length; j++)
 				{
-					if (WorldManager.instance.listAgents[j].choice == 1)
+					if (WorldManager.instance.listAgent[j].choice == 1)
 					{
 						a++;
 					}
-					else if (WorldManager.instance.listAgents[j].choice == 2)
+					else if (WorldManager.instance.listAgent[j].choice == 2)
 					{
 						b++;
 					}
-					else if (WorldManager.instance.listAgents[j].choice == 3)
+					else if (WorldManager.instance.listAgent[j].choice == 3)
 					{
 						c++;
 					}
 				}
 
 				// update marketshare list
-				myShop.updateMarkershare(100 * a / WorldManager.instance.listAgents.length);
-				competitor1Shop.updateMarkershare(100 * b / WorldManager.instance.listAgents.length);
-				competitor2Shop.updateMarkershare(100 * c / WorldManager.instance.listAgents.length);
+				myShop.updateMarkershare(100 * a / WorldManager.instance.listAgent.length);
+				competitor1Shop.updateMarkershare(100 * b / WorldManager.instance.listAgent.length);
+				competitor2Shop.updateMarkershare(100 * c / WorldManager.instance.listAgent.length);
 
 				// update profit list
 				myShop.updateProfit();
