@@ -47,7 +47,7 @@ package sketchproject.core
 		public static var advertising:Array			= [["1","NONE","NONE"],["2","NONE","NONE"],["3","NONE","NONE"],["4","NONE","NONE"],["5","NONE","NONE"],["6","NONE","NONE"]];
 		
 		/** parameter **/
-		public static var valuePopulation:int 		= 50;
+		public static var valuePopulation:int 		= 1;
 		public static var valueWeather:int 			= 7;
 		public static var valueEvent:int 			= 4;
 		public static var valueCompetitor:int		= 2;		

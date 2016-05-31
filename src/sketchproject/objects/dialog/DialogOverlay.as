@@ -11,11 +11,30 @@ package sketchproject.objects.dialog
 	import starling.display.Sprite;
 	import starling.events.Event;
 	
+	/**
+	 * Base of all dialogs.
+	 * 
+	 * @author Angga
+	 */
 	public class DialogOverlay extends Sprite
 	{
+		/**
+		 * Background overlay.
+		 * 
+		 * @default 
+		 */
 		protected var overlay:Quad;
+		
+		/**
+		 * General button close.
+		 * 
+		 * @default 
+		 */
 		protected var buttonClose:Button;
 		
+		/**
+		 * Constructor of DialogOverlay
+		 */
 		public function DialogOverlay()
 		{
 			super();
@@ -44,6 +63,9 @@ package sketchproject.objects.dialog
 			visible = false;
 		}
 		
+		/**
+		 * Show up and scale up the dialog.
+		 */
 		public function openDialog():void
 		{
 			visible = true;
@@ -60,6 +82,9 @@ package sketchproject.objects.dialog
 			);	
 		}
 		
+		/**
+		 * Scale down and hide the dialog.
+		 */
 		public function closeDialog():void
 		{
 			Assets.sfxChannel = Assets.sfxClick.play(0,0,Assets.sfxTransform);
@@ -79,6 +104,9 @@ package sketchproject.objects.dialog
 			);
 		}
 		
+		/**
+		 * Remove this dialog from parent.
+		 */
 		public function destroy():void
 		{
 			removeFromParent(true);
