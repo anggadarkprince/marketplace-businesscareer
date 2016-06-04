@@ -11,11 +11,11 @@ package sketchproject.modules
 	 */
 	public class Shop
 	{
-		public static const PRODUCT_FOOD_1:String = "Food1";
-		public static const PRODUCT_FOOD_2:String = "Food2";
-		public static const PRODUCT_FOOD_3:String = "Food3";
-		public static const PRODUCT_DRINK_1:String = "Drink1";
-		public static const PRODUCT_DRINK_2:String = "Drink2";
+		public static const PRODUCT_FOOD_1:String = "food1";
+		public static const PRODUCT_FOOD_2:String = "food2";
+		public static const PRODUCT_FOOD_3:String = "food3";
+		public static const PRODUCT_DRINK_1:String = "drink1";
+		public static const PRODUCT_DRINK_2:String = "drink2";
 		
 		// shop
 		public var shopId:int;
