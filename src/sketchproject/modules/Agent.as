@@ -9,6 +9,7 @@ package sketchproject.modules
 	import sketchproject.modules.states.FindingState;
 	import sketchproject.modules.states.HomewardState;
 	import sketchproject.modules.states.IdleState;
+	import sketchproject.modules.states.InfluenceState;
 	import sketchproject.modules.states.PlayingState;
 	import sketchproject.modules.states.StudyingState;
 	import sketchproject.modules.states.TradingState;
@@ -40,6 +41,9 @@ package sketchproject.modules
 		public static const DISTRICT_MURBAWISMA:String = "murbawisma";
 		public static const DISTRICT_MADYAWISMA:String = "madyawisma";
 		public static const DISTRICT_ADIWISMA:String = "adiwisma";
+		
+		public static const INFLUENCE_RECOMMENDATION:String = "recommendation"
+		public static const INFLUENCE_DISQUALIFICATION:String = "disqualification"
 
 		public var action:StackFSM;
 
@@ -80,9 +84,12 @@ package sketchproject.modules
 		public var priceThreshold:int;
 		public var qualitySensitivity:int;
 		public var qualityThreshold:int;
+		public var susceptibility:int;
+		public var followerTendency:int;
 		public var acceptance:int;
 		public var rejection:int;
 		public var choice:int;
+		public var unselected:int;
 		public var consumption:int;
 		public var consumptionTime:Array;
 
@@ -114,6 +121,7 @@ package sketchproject.modules
 		public var vacationAction:IState;
 		public var homewardAction:IState;
 		public var visitingAction:IState;
+		public var influenceAction:IState;
 		public var findingAction:IState;
 
 		// additional vars
@@ -135,6 +143,8 @@ package sketchproject.modules
 		public var isGoingEvent:Boolean;
 		public var eventId:int;
 		public var targetDistrict:String;
+		
+		public var hasAttendingEventChecked:Boolean;
 		public var attendingEventList:Array;
 
 		/**
@@ -152,6 +162,8 @@ package sketchproject.modules
 			mainRoleDone = false;
 			isGoingEvent = false;
 			isGoingTask = false;
+			
+			hasAttendingEventChecked = false;
 			attendingEventList = new Array();
 
 			isGoingTaskByDay = false;
@@ -165,6 +177,7 @@ package sketchproject.modules
 			stress = 2;
 			health = 8;
 			choice = 0;
+			unselected = 0;
 
 			speed = 0.5 + Math.random();
 
@@ -207,6 +220,7 @@ package sketchproject.modules
 			vacationAction = new VacationState(this);
 			eatingAction = new EatingState(this);
 			visitingAction = new VisitingState(this);
+			influenceAction = new InfluenceState(this);
 			findingAction = new FindingState(this);
 		}
 
@@ -278,6 +292,9 @@ package sketchproject.modules
 				case "need":
 					perceptImage.texture = Assets.getAtlas(Assets.NPC, Assets.NPC_XML).getTexture("percept_need");
 					break;
+				case "none":
+					perceptImage.visible = false;
+					break;
 			}
 		}
 
@@ -286,18 +303,18 @@ package sketchproject.modules
 		 *
 		 * @param contact
 		 */
-		public function choiceReaction(contact:String):void
+		public function choiceReaction(contact:int):void
 		{
 			choiceImage.visible = true;
 			switch (contact)
 			{
-				case "player":
+				case 1:
 					choiceImage.texture = Assets.getAtlas(Assets.NPC, Assets.NPC_XML).getTexture("side1");
 					break;
-				case "competitor1":
+				case 2:
 					choiceImage.texture = Assets.getAtlas(Assets.NPC, Assets.NPC_XML).getTexture("side2");
 					break;
-				case "competitor2":
+				case 3:
 					choiceImage.texture = Assets.getAtlas(Assets.NPC, Assets.NPC_XML).getTexture("side3");
 					break;
 			}

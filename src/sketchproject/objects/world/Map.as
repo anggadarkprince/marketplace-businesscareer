@@ -203,7 +203,7 @@ package sketchproject.objects.world
 		 */
 		public function addShopLabel(text:String, location:Point, width:int, height:int, visibility:Boolean = true):void
 		{
-			var label:TextField = new TextField(width, height, text, Assets.getFont(Assets.FONT_SSBOLD).fontName, 30, 0xFFFFFF);
+			var label:TextField = new TextField(width, height, text, Assets.getFont(Assets.FONT_SSBOLD).fontName, 23, 0xFFFFFF);
 			var labelPosition:Point = IsoHelper.get2dFromTileCoordinates(location, tileHeight);
 			label.pivotX = label.width * 0.5;
 			label.pivotY = label.height * 0.5;
@@ -226,7 +226,7 @@ package sketchproject.objects.world
 			isEventExist = (dataEvents.length > 0) ? true : false;
 			for (var i:int = 0; i < dataEvents.length; i++)
 			{
-				var label:TextField = new TextField(300, 300, dataEvents[i][1] + " Event", Assets.getFont(Assets.FONT_SSBOLD).fontName, 30, 0xFFFFFF);
+				var label:TextField = new TextField(300, 300, dataEvents[i][1] + " Event", Assets.getFont(Assets.FONT_SSBOLD).fontName, 25, 0xFFFFFF);
 				var index:int = GameUtils.randomFor(dataEvents[i][5].length - 1); // pointing event location in district area
 				var labelPosition:Point = IsoHelper.get2dFromTileCoordinates(new Point(Number(dataEvents[i][5][index].x), Number(dataEvents[i][5][index].y)), tileHeight);
 				label.pivotX = label.width * 0.5;
@@ -252,7 +252,7 @@ package sketchproject.objects.world
 		}
 
 		/**
-		 * Select random location from walkable coordinate list.
+		 * Select random location from walkable coordinate list for wandering state.
 		 *
 		 * @return
 		 */
@@ -504,17 +504,17 @@ package sketchproject.objects.world
 				clickPt.y += tileHeight / 2;
 				clickPt = IsoHelper.getTileCoordinates(clickPt, tileHeight);
 
-				trace("[Touch] " + position, "coordinate " + clickPt);
+				// trace("[Touch] " + position, "coordinate " + clickPt);
 
 				if (clickPt.x < 0 || clickPt.y < 0 || clickPt.x > levelData.length - 1 || clickPt.x > levelData[0].length - 1)
 				{
-					trace("[Touch] invalid");
+					// trace("[Touch] invalid");
 					//we have clicked outside
 					return;
 				}
 				if (levelData[clickPt.y][clickPt.x] != 0)
 				{
-					trace("[Touch] wall");
+					// trace("[Touch] wall");
 					//we clicked on a wall
 					return;
 				}

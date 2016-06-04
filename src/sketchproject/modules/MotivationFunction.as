@@ -1,386 +1,507 @@
 package sketchproject.modules
 {
-	import sketchproject.managers.WorldManager;
-	import sketchproject.states.Gameworld;
 
 	/**
-	 * ...
+	 * Calculate motivation agent to make buying decision.
+	 *
 	 * @author Angga Ari Wijaya
 	 */
-	public class MotivationFunction 
+	public class MotivationFunction
 	{
-		public var M:Number;
-		
-		public var PS:Number;
-		public var P:Number;
-		public var QS:Number;
-		public var Q:Number;
-		public var SUS:Number;
-		public var AD:Number;
-		public var FT:Number;
-		public var INFL:Number;
-		
-		public var MList:Array = [];
-		
-		public var shop:Array = [];
-		public var agent:Agent;
-				
-		public function MotivationFunction() 
+		private var M:Number;
+		private var Mmax:int;
+		private var Mmin:int;
+		private var PS:Number;
+		private var P:Number;
+		private var QS:Number;
+		private var Q:Number;
+		private var SUS:Number;
+		private var AD:Number;
+		private var FT:Number;
+		private var INFL:Number;
+
+		private var MList:Array;
+
+		private var shopList:Array;
+		private var agent:Agent;
+
+		/**
+		 * Default constructor of MotivationFunction.
+		 *
+		 * @param agent
+		 * @param shop
+		 */
+		public function MotivationFunction(agent:Agent = null, shops:Array = null)
 		{
-			
-		}	
-		
+			this.agent = agent;
+			this.shopList = shops;
+		}
+
+		/**
+		 * Getter final agent's motivation of brand i.
+		 * @return Mi
+		 */
 		public function get m():Number
 		{
 			return this.M;
 		}
+
+		/**
+		 * Setter final agent's motivation of brand i.
+		 * @param Mi
+		 */
 		public function set m(Mi:Number):void
 		{
 			this.M = Mi;
 		}
-		
+
+		/**
+		 * Getter price sensitivity of brand i.
+		 * @return PSi
+		 */
 		public function get ps():Number
 		{
 			return this.PS;
 		}
+
+		/**
+		 * Setter price sensitivity of brand i.
+		 * @param PSi
+		 */
 		public function set ps(PSi:Number):void
 		{
 			this.PS = PSi;
 		}
-		
+
+		/**
+		 * Getter price of brand i product i.
+		 * @return Pi
+		 */
 		public function get p():Number
 		{
 			return this.P;
 		}
+
+		/**
+		 * Setter price of brand i product i.
+		 * @param Pi
+		 */
 		public function set p(Pi:Number):void
 		{
 			this.P = Pi;
 		}
-		
+
+		/**
+		 * Getter quality sensitivity of brand i.
+		 * @return qsi
+		 */
 		public function get qs():Number
 		{
 			return this.QS;
 		}
+
+		/**
+		 * Setter quality sensitivity of brand i.
+		 * @param QSi
+		 */
 		public function set qs(QSi:Number):void
 		{
 			this.QS = QSi;
 		}
-		
+
+		/**
+		 * Getter quality of brand i product i
+		 * @return qi
+		 */
 		public function get q():Number
 		{
 			return this.Q;
 		}
+
+		/**
+		 * Setter quality of brand i product i.
+		 * @param Qi
+		 */
 		public function set q(Qi:Number):void
 		{
 			this.Q = Qi;
 		}
-		
+
+		/**
+		 * Getter susceptibility agent to brand's advertisement.
+		 * @return susi
+		 */
 		public function get sus():Number
 		{
 			return this.SUS;
 		}
+
+		/**
+		 * Setter susceptibility agent to brand's advertisement.
+		 * @param susi
+		 */
 		public function set sus(susi:Number):void
 		{
 			this.SUS = susi;
 		}
-		
+
+		/**
+		 * Getter advertising intensity of brand i.
+		 * @return adi
+		 */
 		public function get ad():Number
 		{
 			return this.AD;
 		}
+
+		/**
+		 * Setter advertising intensity of brand i.
+		 * @param adi
+		 */
 		public function set ad(adi:Number):void
 		{
 			this.AD = adi;
 		}
-		
+
+		/**
+		 * Getter agent's follower tendency of the perceived influence to brand i.
+		 * @return fti
+		 */
 		public function get ft():Number
 		{
 			return this.FT;
 		}
+
+		/**
+		 * Setter agent's follower tendency of the perceived influence to brand i.
+		 * @param fti
+		 */
 		public function set ft(fti:Number):void
 		{
 			this.FT = fti;
 		}
-		
+
+		/**
+		 * Getter perceived influence exerted by other agents to brand i.
+		 * @return
+		 */
 		public function get infl():Number
 		{
 			return this.INFL;
 		}
+
+		/**
+		 * Setter perceived influence exerted by other agents to brand i.
+		 * @param infli
+		 */
 		public function set infl(infli:Number):void
 		{
 			this.INFL = infli;
 		}
-		
-		
-		/* motivation */
-		
-		public function motivation(shop:Array, agent:Agent, product:String):void
+
+		/**
+		 * Calculate motivation function of agent to produce decision of product.
+		 *
+		 * @param shop list collection of shops
+		 * @param agent that make decision
+		 * @param product selection
+		 */
+		public function motivation(shops:Array, agent:Agent, product:String):Shop
 		{
-			this.shop = shop;
-			this.agent = agent;
 			MList = [];
-			for (var i:int = 0; i < shop.length; i++) 
+
+			for (var i:int = 0; i < shops.length; i++)
 			{
-				
-				// find Pi
-				p = calculateProductPrice(shop[i], product);
-				
-				// find Pave
-				var pave:Number = calaculatePriceAvarage(shop, product);
-				
-				// find PSi
+				// calculate price of product
+				p = calculateProductPrice(shops[i], product);
+
+				// calculate price average of product in all shops
+				var pave:Number = calaculatePriceAvarage(shops, product);
+
+				// calculate agent's product sensitivy against product price
 				ps = calculatePriceSensitivity(agent, P, pave);
-				
-				// find Qi
-				q = calculateProductQuality(shop[i], agent, product);
-				
-				// find Qave
-				var qave:Number = calculateQualityAverage(shop, agent, product);
-				
-				// find QSi
+
+				// calculate product quality by find out product component 
+				q = calculateProductQuality(shops[i], agent, product);
+
+				// calculate quality average of product in all shops
+				var qave:Number = calculateQualityAverage(shops, agent, product);
+
+				// calculate agent's quality sensitivity against product quality 
 				qs = calculateQualitySensitivity(agent, Q, qave);
-						
-				// find sus
+
+				// find susceptibility of brand advertisement to agent
 				sus = susceptibility(agent);
-				
-				// find ad
-				ad = advertising(shop[i], agent);
-				
-				// find ft
+
+				// find advertisement intensity of brand i
+				ad = advertising(shops[i], agent);
+
+				// find follower tendency of perceived influence by other agent regarding brand i
 				ft = followerTendency(agent);
-				
-				// find infl
-				infl = influence(agent, i);
-								
+
+				// find perceived influence from other agent to brand i
+				infl = influence(agent, i + 1);
+
+				// calculate motivation function of brand i
 				m = (ps * p) + (qs * q) + (sus * ad) + (ft * infl);
-				
+
+				// save current brand motivation related shop
 				MList.push(m);
-				
-				/*
-				trace("price "+product+" : " + shop[i].priceA);
-				trace("price "+product+" average : " + pave);
-				trace("price sensitivity : " + ps);
-				
-				trace("quality " + product + " : " + q);
-				trace("quality "+product+" average : " + qave);
-				
-				trace("quality sensitivity : " + qs);
-				trace("sus : " + sus);
-				trace("ad : " + ad);
-				trace("ft : " + ft);
-				trace("infl : " + infl);
-				trace("m : " + m);
-				trace("------------------------------");
-				*/
 			}
-			
-			trace(agent.agentId, "choice shop",shop[maxM(MList)].shopId);
-			
-			agent.choice = maxM(MList) + 1;
-			shop[agent.choice-1].transactionTotal+=1;
-			shop[agent.choice-1].grossProfit+=calculateProductPrice;
-						
-			if(agent.choice == 1){				
-				agent.choiceReaction("player");
-			}
-			else if(agent.choice == 2){
-				agent.choiceReaction("competitor1");
-			}
-			else if(agent.choice == 3){
-				agent.choiceReaction("competitor2");
-			}
+
+			Mmax = maxM(MList);
+
+			agent.choice = MList.indexOf(Mmax) + 1;
+			agent.unselected = MList.indexOf(Mmin) + 1;
+			agent.choiceReaction(agent.choice);
+
+			shops[agent.choice - 1].transactionTotal += 1;
+			shops[agent.choice - 1].grossProfit += calculateProductPrice;
+
+			return shops[agent.choice - 1];
 		}
-		
-		/* find max of motivation against product */
-		
-		public function maxM(data:Array):int
-		{
-			var max:Number = data[0];
-			for (var i:int = 0; i < data.length; i++) 
-			{
-				if (data[i] > max)
-				{
-					max = data[i];
-				}
-			}
-			
-			return MList.indexOf(max);
-		}
-		
-					
-		
-		/* price function */
-		
-		public function calculatePriceSensitivity(agent:Agent, pi:Number, pavei:Number):Number
-		{
-			return Math.pow(agent.priceSensitivity, ((pi - pavei) * -1)) + agent.buyingPower;
-		}
-		
+
+		/**
+		 * Calculate product by component and material.
+		 *
+		 * @param shop collection
+		 * @param product will be selected
+		 * @return product price
+		 */
 		public function calculateProductPrice(shop:Shop, product:String):Number
 		{
-			switch(product) {
-				case "A":
+			switch (product)
+			{
+				case Shop.PRODUCT_FOOD_1:
 					return shop.price.food1;
 					break;
-				case "B":
+				case Shop.PRODUCT_FOOD_2:
 					return shop.price.food2;
 					break;
-				case "C":
+				case Shop.PRODUCT_FOOD_3:
 					return shop.price.food3;
 					break;
-				case "D":
+				case Shop.PRODUCT_DRINK_1:
 					return shop.price.drink1;
 					break;
-				case "E":
+				case Shop.PRODUCT_DRINK_2:
 					return shop.price.drink2;
+					break;
+				default:
+					throw new ArgumentError("One product must be selected");
 					break;
 			}
 			return 0;
 		}
-		
+
+		/**
+		 * Find out expected price of product.
+		 *
+		 * @param shop collection of brand
+		 * @param product selected
+		 * @return price average
+		 */
 		public function calaculatePriceAvarage(shop:Array, product:String):Number
 		{
 			var total:Number = 0;
-			for (var i:int = 0; i < shop.length; i++) 
+			for (var i:int = 0; i < shop.length; i++)
 			{
 				total += calculateProductPrice(shop[i] as Shop, product);
 			}
 			return total / shop.length;
 		}
-		
-		
-		/* quality function */
-		
-		public function calculateQualitySensitivity(agent:Agent, qi:Number, qavei:Number):Number
+
+		/**
+		 * Calculate price sensitivity agent by product.
+		 *
+		 * @param agent that evaluate sensitivity
+		 * @param pi price product i
+		 * @param pavei price average product i in all shops
+		 * @return price sensitivity
+		 */
+		public function calculatePriceSensitivity(agent:Agent, pi:Number, pavei:Number):Number
 		{
-			return Math.pow(agent.qualitySensitivity, Math.abs(qi - qavei)) + agent.buyingPower;
+			return Math.pow(agent.buyingPower, ((pi - pavei) * -1)) + agent.priceSensitivity;
 		}
-		
+
+		/**
+		 * Calculate quality by product and measure how important
+		 * part of quality to an agent.
+		 *
+		 * @param shop collection
+		 * @param agent that evaluate how important the quality
+		 * @param product that will be selected
+		 * @return product quality
+		 */
 		public function calculateProductQuality(shop:Shop, agent:Agent, product:String):Number
 		{
 			var total:Number = 0;
 			var j:int = 0;
-			switch(product) {
-				case "A":	
-					for (j = 0; j < shop.quality.food1.length; j++) 
+			switch (product)
+			{
+				case Shop.PRODUCT_FOOD_1:
+					for (j = 0; j < shop.quality.food1.length; j++)
 					{
 						total += shop.quality.food1[j] * agent.productQualityAssesment.food1[j];
 					}
 					return total / shop.quality.food1.length;
 					break;
-				case "B":
-					for (j = 0; j < shop.quality.food2.length; j++) 
+				case Shop.PRODUCT_FOOD_2:
+					for (j = 0; j < shop.quality.food2.length; j++)
 					{
 						total += shop.quality.food2[j] * agent.productQualityAssesment.food2[j];
 					}
 					return total / shop.quality.food2.length;
 					break;
-				case "C":
-					for (j = 0; j < shop.quality.food3.length; j++) 
+				case Shop.PRODUCT_FOOD_3:
+					for (j = 0; j < shop.quality.food3.length; j++)
 					{
 						total += shop.quality.food3[j] * agent.productQualityAssesment.food3[j];
 					}
 					return total / shop.quality.food3.length;
 					break;
-				case "D":
-					for (j = 0; j < shop.quality.drink1.length; j++) 
+				case Shop.PRODUCT_DRINK_1:
+					for (j = 0; j < shop.quality.drink1.length; j++)
 					{
 						total += shop.quality.drink1[j] * agent.productQualityAssesment.drink1[j];
 					}
 					return total / shop.quality.drink1.length;
 					break;
-				case "E":
-					for (j = 0; j < shop.quality.drink2.length; j++) 
+				case Shop.PRODUCT_DRINK_2:
+					for (j = 0; j < shop.quality.drink2.length; j++)
 					{
 						total += shop.quality.drink2[j] * agent.productQualityAssesment.drink2[j];
 					}
 					return total / shop.quality.drink2.length;
 					break;
+				default:
+					throw new ArgumentError("One product must be selected");
+					break;
 			}
 			return 0;
 		}
-		
-		public function calculateQualityAverage(shop:Array, agent:Agent, product:String) :Number
+
+		/**
+		 * Calculate quality average in all shops.
+		 *
+		 * @param shop collection
+		 * @param agent that evaluate the quality
+		 * @param product that will be selected
+		 * @return quality average
+		 */
+		public function calculateQualityAverage(shop:Array, agent:Agent, product:String):Number
 		{
 			var total:Number = 0;
-			for (var i:int = 0; i < shop.length; i++) 
+			for (var i:int = 0; i < shop.length; i++)
 			{
-				total += calculateProductQuality(shop[i] as Shop, agent, product);				
+				total += calculateProductQuality(shop[i] as Shop, agent, product);
 			}
-			return total/shop.length;
+			return total / shop.length;
 		}
-		
-		
-		
-		/* susceptibility */
-		
-		public function susceptibility(agent:Agent):Number 
+
+		/**
+		 * Calculate quality sensitivity agent by product.
+		 *
+		 * @param agent that evaluate sensitivity
+		 * @param qi quality of product i
+		 * @param qavei quality avarage
+		 * @return quality sensitivity
+		 */
+		public function calculateQualitySensitivity(agent:Agent, qi:Number, qavei:Number):Number
 		{
-			// theta value 9
-			return agent.rejection;
+			return Math.pow(agent.buyingPower, Math.abs(qi - qavei)) + agent.qualitySensitivity;
 		}
-		
-		
-		
-		/* advertising function */
-		
+
+		/**
+		 * Find out how vulnerable agent against advertisement.
+		 *
+		 * @param agent that evaluate susceptibility
+		 * @return susceptibility
+		 */
+		public function susceptibility(agent:Agent):Number
+		{
+			return agent.susceptibility;
+		}
+
+		/**
+		 * Calculate agent interest about advertisement.
+		 * 
+		 * @param shop current shop
+		 * @param agent that evaluate the advertisement
+		 * @return advertisement intensivity
+		 */
 		public function advertising(shop:Shop, agent:Agent):Number
 		{
-			var total:Number = 0;
-			var ads:Number = 0;
-			for (var ad:String in shop.advertising) {
-				if (shop.advertising[ad] != 0)
-				{
-					total += shop.advertising[ad] * agent.adverContactRate[ad];
-					ads++;
-				}
-			}
-			if (ads != 0) {
-				return total / ads;			
-			}
-			return 0;
+			var total:Number = 0;			
+			total += shop.advertising.tv * agent.adverContactRate.tv;
+			total += shop.advertising.radio * agent.adverContactRate.radio;
+			total += shop.advertising.newspaper * agent.adverContactRate.newspaper;
+			total += shop.advertising.internet * agent.adverContactRate.internet;
+			total += shop.advertising.event * agent.adverContactRate.event;
+			total += shop.advertising.billboard * agent.adverContactRate.billboard;
+			return total / 6;
 		}
-		
-		
-		
-		/* follower function */
-		
+
+
+		/**
+		 * Find out how vulnerable agent against influence.
+		 *
+		 * @param agent that evaluate follower tendency
+		 * @return follower tendency
+		 */
 		public function followerTendency(agent:Agent):Number
 		{
-			// lambda value 30
-			return agent.acceptance;
+			return agent.followerTendency;
 		}
-		
-		
-		
-		/* influence function */
-		
-		public function influence(agent:Agent, shopn:int):Number
+
+		/**
+		 * Find out how agent receive the influence each shop.
+		 *
+		 * @param agent that evaluate the influence
+		 * @param shop current evaluation
+		 * @return influence
+		 */
+		public function influence(agent:Agent, shop:int):Number
 		{
-			switch(shopn){
+			switch (shop)
+			{
 				case 1:
-					return agent.shopInfluence.shop1;
+					return agent.shopInfluence.shopPlayer.recommendation - agent.shopInfluence.shopPlayer.disqualification;
 					break;
 				case 2:
-					return agent.shopInfluence.shop2;
+					return agent.shopInfluence.shopCompetitor1.recommendation - agent.shopInfluence.shopCompetitor1.disqualification;
 					break;
 				case 3:
-					return agent.shopInfluence.shop3;
+					return agent.shopInfluence.shopCompetitor2.recommendation - agent.shopInfluence.shopCompetitor2.disqualification;
 					break;
 			}
 			return 0;
 		}
-		
-		
-				
-		public function service(shop:Shop, agent:Agent):Number
-		{
-			var serv:Number = agent.serviceResponseAssesment.service*shop.service;
-			serv+=agent.serviceResponseAssesment.morale*shop.morale;
-			serv+=agent.serviceResponseAssesment.productivity*shop.productivity;
-			return serv;
-		}
-		
-	}
 
+		/**
+		 * Find out max motivation of agent to select one of shops.
+		 *
+		 * @param data motivation collection
+		 * @return max value
+		 */
+		public function maxM(data:Array):int
+		{
+			Mmax = data[0];
+			Mmin = data[0];
+
+			for (var i:int = 0; i < data.length; i++)
+			{
+				if (data[i] > Mmax)
+				{
+					Mmax = data[i];
+				}
+				if (data[i] < Mmin)
+				{
+					Mmin = data[i];
+				}
+			}
+
+			return Mmax;
+		}
+	}
 }

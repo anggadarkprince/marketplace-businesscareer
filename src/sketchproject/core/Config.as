@@ -193,6 +193,24 @@ package sketchproject.core
 		public static var bookStoreCoordinate:Array = [{"x": 16, "y": 3}, {"x": 16, "y": 4}, {"x": 16, "y": 5}, {"x": 17, "y": 5}, {"x": 18, "y": 5}, {"x": 19, "y": 5}];
 		public static var mallCoordinate:Array = [{"x": 15, "y": 12}, {"x": 16, "y": 12}, {"x": 17, "y": 12}, {"x": 17, "y": 11}, {"x": 17, "y": 10}, {"x": 17, "y": 9}, {"x": 17, "y": 8}, {"x": 17, "y": 7}, {"x": 17, "y": 6}, {"x": 14, "y": 16}, {"x": 14, "y": 15}, {"x": 14, "y": 14}, {"x": 14, "y": 13}];
 
-		public static var districtCollection:Array = [{name: "Airport", location: airportCoordinate}, {name: "School Center", location: schoolCoordinate}, {name: "Times Square", location: timesSquareCoordinate}, {name: "Sport Center", location: villageCoordinate}, {name: "Green Ville", location: murbawismaCoordinate}, {name: "Green Ville Silver", location: madyawismaCoordinate}, {name: "Green Ville Diamond", location: adiwismaCoordinate}, {name: "Play Ground", location: playgroundCoordinate}, {name: "Horizon Bay", location: beachCoordinate}, {name: "Factory", location: factoryCoordinate}, {name: "Wonderland", location: wonderlandCoordinate}, {name: "Sport Center", location: sportCenterCoordinate}, {name: "Town Hall", location: townHallCoordinate}, {name: "Game Center", location: gameCenterCoordinate}, {name: "Hospital", location: hospitalCoordinate}, {name: "Theater", location: theaterCoordinate}, {name: "Book Store", location: bookStoreCoordinate}, {name: "Mall", location: mallCoordinate}];
+		public static var districtCollection:Array = [
+			{name: "Airport", location: airportCoordinate}, 
+			{name: "School Center", location: schoolCoordinate}, 
+			{name: "Times Square", location: timesSquareCoordinate}, 
+			{name: "Sport Center", location: villageCoordinate}, 
+			{name: "Green Ville", location: murbawismaCoordinate}, 
+			{name: "Green Ville Silver", location: madyawismaCoordinate}, 
+			{name: "Green Ville Diamond", location: adiwismaCoordinate}, 
+			{name: "Playground", location: playgroundCoordinate}, 
+			{name: "Horizon Bay", location: beachCoordinate}, 
+			{name: "Factory", location: factoryCoordinate}, 
+			{name: "Wonderland", location: wonderlandCoordinate}, 
+			{name: "Sport Center", location: sportCenterCoordinate}, 
+			{name: "Town Hall", location: townHallCoordinate}, 
+			{name: "Game Center", location: gameCenterCoordinate}, 
+			{name: "Hospital", location: hospitalCoordinate}, 
+			{name: "Theater", location: theaterCoordinate}, 
+			{name: "Book Store", location: bookStoreCoordinate}, 
+			{name: "Mall", location: mallCoordinate}];
 	}
 }

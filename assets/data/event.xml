@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data>    
 	<event id="1">
-		<name>Pertandingan Sepak Bola</name>
+		<name>Soccer Game</name>
 		<district>Sport Center</district>
 		<traffic>
 			<normal>avg</normal>
@@ -19,7 +19,7 @@
 		</time>
 	</event>
 	<event id="2">
-		<name>Pertandingan Bulu Tangkis</name>
+		<name>Volley Game</name>
 		<district>Sport Center</district>
 		<traffic>
 			<normal>avg</normal>
@@ -37,7 +37,7 @@
 		</time>
 	</event>
 	<event id="3">
-		<name>Pertandingan Basket</name>
+		<name>Basket Game</name>
 		<district>Sport Center</district>
 		<traffic>
 			<normal>low</normal>
@@ -55,7 +55,7 @@
 		</time>		
 	</event>
     <event id="4">		
-		<name>Konser Musik</name>
+		<name>Music Concert</name>
 		<district>Town Hall</district>
 		<traffic>
 			<normal>avg</normal>
@@ -73,7 +73,7 @@
 		</time>
 	</event>
 	<event id="5">
-		<name>Dirgahayu Green City</name>
+		<name>Green City Parade</name>
 		<district>Town Hall</district>
 		<traffic>
 			<normal>avg</normal>
@@ -92,7 +92,7 @@
 	</event>
 	<event id="6">			
 		<name>Sport Competition</name>
-		<district>Play Ground</district>
+		<district>Playground</district>
 		<traffic>
 			<normal>low</normal>
 			<weekend>high</weekend>
@@ -110,7 +110,7 @@
 	</event>
 	<event id="7">
 		<name>Drawing Contest</name>
-		<district>Play Ground</district>
+		<district>Playground</district>
 		<traffic>
 			<normal>avg</normal>
 			<weekend>high</weekend>
@@ -253,7 +253,7 @@
 		</time>
 	</event>
 	<event id="15">
-		<name>Special Holiday</name>
+		<name>Special Opening</name>
 		<district>Wonderland</district>
 		<traffic>
 			<normal>avg</normal>
@@ -271,7 +271,7 @@
 		</time>
 	</event>
 	<event id="16">
-		<name>Product Demo</name>
+		<name>New Product Demo</name>
 		<district>Green Ville</district>
 		<traffic>
 			<normal>avg</normal>

@@ -1,7 +1,7 @@
 package sketchproject.modules
 {
 	import flash.geom.Point;
-	
+
 	import sketchproject.core.Config;
 	import sketchproject.core.Data;
 	import sketchproject.objects.dialog.MarketDialog;
@@ -165,12 +165,12 @@ package sketchproject.modules
 
 			// add weather into list
 			var atlas:String = "weather_" + String(Config.weather[forecast - 1][1]).toLowerCase().replace(" ", "_");
-			Data.weather.push(new Array(forecast, 			// 0 index of weather
-				temprature, 								// 1 current temprature
-				String(Config.weather[forecast - 1][1]), 	// 2 weather name
-				atlas, 										// 3 atlas
-				String(Config.weather[forecast - 1][5]), 	// 4 status
-				String(Config.weather[forecast - 1][4])) 	// 5 probability
+			Data.weather.push(new Array(forecast, // 0 index of weather
+				temprature, // 1 current temprature
+				String(Config.weather[forecast - 1][1]), // 2 weather name
+				atlas, // 3 atlas
+				String(Config.weather[forecast - 1][5]), // 4 status
+				String(Config.weather[forecast - 1][4])) // 5 probability
 				);
 
 			// add blue or red atmosphere depend on generated weather index
@@ -285,14 +285,14 @@ package sketchproject.modules
 					}
 
 					// add new event
-					var event:Array = [int(Config.event[eventIndex][0]), 	// 0 event id
-						String(Config.event[eventIndex][1]), 				// 1 event name
-						int(Config.event[eventIndex][5][0]), 				// 2 time start
-						int(Config.event[eventIndex][5][1]), 				// 3 time finish
-						String(Config.event[eventIndex][3][trafficDay]), 	// 4 traffic (low, avg, high)
-						location, 											// 5 location set coordinate
-						Config.event[eventIndex][4], 						// 6 event characteristic education,art,athletic
-						Config.event[eventIndex][2] 						// 7 district name
+					var event:Array = [int(Config.event[eventIndex][0]), // 0 event id
+						String(Config.event[eventIndex][1]), // 1 event name
+						int(Config.event[eventIndex][5][0]), // 2 time start
+						int(Config.event[eventIndex][5][1]), // 3 time finish
+						String(Config.event[eventIndex][3][trafficDay]), // 4 traffic (low, avg, high)
+						location, // 5 location set coordinate
+						Config.event[eventIndex][4], // 6 event characteristic education,art,athletic
+						Config.event[eventIndex][2] // 7 district name
 						];
 					Data.event.push(event);
 				}
@@ -434,77 +434,67 @@ package sketchproject.modules
 				}
 
 				// distribute role and action will
-				var role:int = Math.ceil(Math.random() * 3);
-				agent.actionWill = GameUtils.randomFor(variation) + range;
-				switch (role)
+				if (agent.role == null)
 				{
-					case 1:
-						agent.role = Agent.ROLE_TRADER;
-						if (agent.actionWill < 5)
-						{
-							agent.actionWill += GameUtils.randomFor(3) - 1;
-						}
-						break;
-					case 2:
-						agent.role = Agent.ROLE_WORKER;
-						if (agent.actionWill < 6)
-						{
-							agent.actionWill += GameUtils.randomFor(3) - 1;
-						}
-						break;
-					case 3:
-						agent.role = Agent.ROLE_STUDENT;
-						if (GameUtils.randomFor(10) < 5)
-						{
-							agent.actionWill += GameUtils.randomFor(3);
-						}
-						break;
+					var role:int = Math.ceil(Math.random() * 3);
+					agent.actionWill = GameUtils.randomFor(variation) + range;
+					switch (role)
+					{
+						case 1:
+							agent.role = Agent.ROLE_TRADER;
+							if (agent.actionWill < 5)
+							{
+								agent.actionWill += GameUtils.randomFor(3) - 1;
+							}
+							break;
+						case 2:
+							agent.role = Agent.ROLE_WORKER;
+							if (agent.actionWill < 6)
+							{
+								agent.actionWill += GameUtils.randomFor(3) - 1;
+							}
+							break;
+						case 3:
+							agent.role = Agent.ROLE_STUDENT;
+							if (GameUtils.randomFor(10) < 5)
+							{
+								agent.actionWill += GameUtils.randomFor(3);
+							}
+							break;
+					}
 				}
 
 				// prefer to give a recommendation or disqualification
-				if (agent.district == Agent.DISTRICT_VILLAGE)
-				{
-					agent.acceptance = variation * 0.6;
-					agent.rejection = 1 - agent.acceptance;
-				}
-				else if (agent.district == Agent.DISTRICT_MURBAWISMA)
-				{
-					agent.acceptance = variation * 0.4;
-					agent.rejection = 1 - agent.acceptance;
-				}
-				else if (agent.district == Agent.DISTRICT_MADYAWISMA)
-				{
-					agent.acceptance = variation * 0.8;
-					agent.rejection = 1 - agent.acceptance;
-				}
-				else if (agent.district == Agent.DISTRICT_ADIWISMA)
-				{
-					agent.acceptance = variation * 1;
-					agent.rejection = 1 - agent.acceptance;
-				}
-
 				// sensitivity distribution
 				var priceSensitivity:int;
 				var qualitySensitivity:int;
 				var priceThreshold:int;
 				var qualityThreshold:int;
-				switch (agentList[i].district)
+				switch (agent.district)
 				{
 					case Agent.DISTRICT_VILLAGE:
 						priceSensitivity = ((Math.random() * 50) + 20) * -1;
 						qualitySensitivity = (Math.random() * 20) + 20;
+						agent.acceptance = variation * 0.6;
+						agent.rejection = 1 - agent.acceptance;
 						break;
 					case Agent.DISTRICT_MURBAWISMA:
 						priceSensitivity = ((Math.random() * 50) + 30) * -1;
 						qualitySensitivity = (Math.random() * 20) + 40;
+						agent.acceptance = variation * 0.4;
+						agent.rejection = 1 - agent.acceptance;
 						break;
 					case Agent.DISTRICT_MADYAWISMA:
 						priceSensitivity = ((Math.random() * 50) + 40) * -1;
 						qualitySensitivity = (Math.random() * 20) + 60;
+						agent.acceptance = variation * 0.8;
+						agent.rejection = 1 - agent.acceptance;
 						break;
 					case Agent.DISTRICT_ADIWISMA:
 						priceSensitivity = ((Math.random() * 50) + 50) * -1;
 						qualitySensitivity = (Math.random() * 20) + 80;
+						agent.acceptance = variation * 1;
+						agent.rejection = 1 - agent.acceptance;
 						break
 				}
 
@@ -567,19 +557,37 @@ package sketchproject.modules
 
 				if (agent.district == Agent.DISTRICT_VILLAGE)
 				{
-					agent.buyingPower = Math.floor(Math.random() * 3) + 4;
+					agent.buyingPower = Math.floor(Math.random() * 3) + 2;
 				}
 				else if (agent.district == Agent.DISTRICT_MURBAWISMA)
 				{
-					agent.buyingPower = Math.floor(Math.random() * 3) + 5;
+					agent.buyingPower = Math.floor(Math.random() * 3) + 3;
 				}
 				else if (agent.district == Agent.DISTRICT_MADYAWISMA)
 				{
-					agent.buyingPower = Math.floor(Math.random() * 3) + 6;
+					agent.buyingPower = Math.floor(Math.random() * 3) + 4;
 				}
 				else if (agent.district == Agent.DISTRICT_ADIWISMA)
 				{
-					agent.buyingPower = Math.floor(Math.random() * 3) + 7;
+					agent.buyingPower = Math.floor(Math.random() * 3) + 5;
+				}
+
+				if (agent.role == Agent.ROLE_STUDENT)
+				{
+					agent.buyingPower += GameUtils.randomFor(2);
+				}
+				else if (agent.role == Agent.ROLE_WORKER)
+				{
+					agent.buyingPower += GameUtils.randomFor(3);
+				}
+				else if (agent.role == Agent.ROLE_TRADER)
+				{
+					agent.buyingPower += GameUtils.randomFor(4);
+				}
+
+				if (agent.buyingPower > 10)
+				{
+					agent.buyingPower = 10;
 				}
 			}
 		}
@@ -597,7 +605,6 @@ package sketchproject.modules
 			{
 				emotion = GameUtils.randomFor(generate) + (10 - generate);
 				agentList[i].emotion = emotion;
-					// trace("emotion", emotion);
 			}
 		}
 
@@ -629,15 +636,19 @@ package sketchproject.modules
 				freeman.actionWill = 5;
 				freeman.emotion = 5;
 				freeman.consumption = 1;
+				freeman.choice = GameUtils.randomFor(3);
+				freeman.unselected = GameUtils.randomFor(3);
 				freeman.action.pushState(freeman.wanderingAction); // default state is wandering
 				agentList.push(freeman);
 				map.levelMap.addChild(freeman);
 			}
+
+			generateSocialVariant(agentList, Data.valueVariant);
 		}
-		
+
 		/**
 		 * Move variable setting into shop.
-		 * 
+		 *
 		 * @param shop
 		 * @param shopMarketSetting
 		 */
@@ -647,19 +658,19 @@ package sketchproject.modules
 			shop.advertising = shopMarketSetting.advertisement;
 			shop.price = shopMarketSetting.price;
 			shop.quality = shopMarketSetting.quality;
-			
+
 			shop.decoration = shopMarketSetting.decoration;
 			shop.cleaness = shopMarketSetting.cleaness;
 			shop.scent = shopMarketSetting.scent;
-			
+
 			shop.productivity = shopMarketSetting.productivity;
 			shop.morale = shopMarketSetting.morale;
 			shop.service = shopMarketSetting.service;
-			
+
 			shop.businessResearch = shopMarketSetting.research;
 			shop.employeeBenefit = shopMarketSetting.benefit;
 			shop.booster = shopMarketSetting.booster;
-			
+
 			shop.getShopData();
 		}
 
