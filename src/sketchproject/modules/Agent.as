@@ -81,9 +81,7 @@ package sketchproject.modules
 
 		// motivation
 		public var priceSensitivity:int;
-		public var priceThreshold:int;
 		public var qualitySensitivity:int;
-		public var qualityThreshold:int;
 		public var susceptibility:int;
 		public var followerTendency:int;
 		public var acceptance:int;
@@ -483,9 +481,9 @@ package sketchproject.modules
 			
 			trace("-- motivation --------------------");
 			trace("---- price", priceSensitivity);
-			trace("---- price threshold", priceThreshold);
+			trace("---- price threshold", priceSensitivity - (GameUtils.randomFor(10, false) + 5));
 			trace("---- quality", qualitySensitivity);
-			trace("---- quality threshold", qualityThreshold);
+			trace("---- quality threshold", qualitySensitivity - (GameUtils.randomFor(10, false) + 5));
 			trace("---- acceptance", acceptance);
 			trace("---- rejection", rejection);
 			trace("---- choice", choice);

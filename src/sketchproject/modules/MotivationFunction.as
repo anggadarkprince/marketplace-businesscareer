@@ -432,13 +432,11 @@ package sketchproject.modules
 		 */
 		public function advertising(shop:Shop, agent:Agent):Number
 		{
-			var total:Number = 0;			
-			total += shop.advertising.tv * agent.adverContactRate.tv;
-			total += shop.advertising.radio * agent.adverContactRate.radio;
-			total += shop.advertising.newspaper * agent.adverContactRate.newspaper;
-			total += shop.advertising.internet * agent.adverContactRate.internet;
-			total += shop.advertising.event * agent.adverContactRate.event;
-			total += shop.advertising.billboard * agent.adverContactRate.billboard;
+			var total:Number = 0;	
+			for(var advertisement:String in shop.advertising)
+			{
+				total += shop.advertising[advertisement] * agent.adverContactRate[advertisement];
+			}
 			return total / 6;
 		}
 

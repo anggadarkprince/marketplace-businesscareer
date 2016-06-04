@@ -4,6 +4,7 @@ package sketchproject.objects.dialog
 	import sketchproject.core.Data;
 	import sketchproject.managers.WorldManager;
 	import sketchproject.modules.Agent;
+	import sketchproject.utilities.GameUtils;
 	
 	import starling.display.Button;
 	import starling.display.Image;
@@ -338,9 +339,9 @@ package sketchproject.objects.dialog
 				actionWill.text = String(agent.actionWill);
 				
 				priceSensitivity.text = String(agent.priceSensitivity);
-				priceThreshold.text = String(agent.priceThreshold);			
+				priceThreshold.text = String(agent.priceSensitivity - (GameUtils.randomFor(10, false) + 5));			
 				qualitySensitivity.text = String(agent.qualitySensitivity);
-				qualityThreshold.text = String(agent.qualityThreshold);
+				qualityThreshold.text = String(agent.qualitySensitivity - (GameUtils.randomFor(10, false) + 5));
 				recommendation.text = String(agent.acceptance);
 				disqualification.text = String(agent.rejection);
 				environmentEval.text = String((agent.decorationMatch.modern+agent.decorationMatch.colorfull+agent.decorationMatch.vintage)+","+(agent.cleanessMatch.product+agent.cleanessMatch.place)+","+(agent.scentMatch.ginger+agent.scentMatch.jasmine+agent.scentMatch.rosemary));

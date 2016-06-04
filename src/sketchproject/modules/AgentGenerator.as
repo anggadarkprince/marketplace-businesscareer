@@ -498,14 +498,9 @@ package sketchproject.modules
 						break
 				}
 
-				priceThreshold = priceSensitivity - (GameUtils.randomFor(10, false) + 5);
-				qualityThreshold = qualitySensitivity - (GameUtils.randomFor(10, false) + 5);
-
 				// assign trait into agent
 				agent.priceSensitivity = priceSensitivity;
 				agent.qualitySensitivity = qualitySensitivity;
-				agent.priceThreshold = priceThreshold;
-				agent.qualityThreshold = qualityThreshold;
 
 				// add some stats
 				agent.stress = GameUtils.randomFor(3);
@@ -698,9 +693,9 @@ package sketchproject.modules
 
 			trace("-- motivation --------------------");
 			trace("---- price", agent.priceSensitivity);
-			trace("---- price threshold", agent.priceThreshold);
+			trace("---- price threshold", agent.priceSensitivity - (GameUtils.randomFor(10, false) + 5));
 			trace("---- quality", agent.qualitySensitivity);
-			trace("---- quality threshold", agent.qualityThreshold);
+			trace("---- quality threshold", agent.qualitySensitivity - (GameUtils.randomFor(10, false) + 5));
 			trace("---- acceptance", agent.acceptance);
 			trace("---- rejection", agent.rejection);
 			trace("---- choice", agent.choice);

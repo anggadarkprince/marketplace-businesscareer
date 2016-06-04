@@ -17,6 +17,43 @@ package sketchproject.modules
 		}
 
 		/**
+		 * Select shop by the most influenced agent.
+		 *
+		 * @param shopList shop collection
+		 * @param agent that evaluate the influence
+		 * @return most influencing agent
+		 */
+		public function influenceSelection(shopList:Array, agent:Agent):Shop
+		{
+			var inflShopPlayer:int = agent.shopInfluence.shopPlayer.recommendation - agent.shopInfluence.shopPlayer.disqualification;
+			var inflShopCompetitor1:int = agent.shopInfluence.shopCompetitor1.recommendation - agent.shopInfluence.shopCompetitor1.disqualification;
+			var inflShopCompetitor2:int = agent.shopInfluence.shopCompetitor2.recommendation - agent.shopInfluence.shopCompetitor2.disqualification;
+
+			if (inflShopPlayer > inflShopCompetitor1)
+			{
+				if (inflShopPlayer > inflShopCompetitor2)
+				{
+					return shopList[0];
+				}
+				else
+				{
+					return shopList[2];
+				}
+			}
+			else
+			{
+				if (inflShopCompetitor1 > inflShopCompetitor2)
+				{
+					return shopList[1];
+				}
+				else
+				{
+					return shopList[2];
+				}
+			}
+		}
+
+		/**
 		 * Select shop for neutral agent.
 		 *
 		 * @param shopList collection
@@ -26,17 +63,79 @@ package sketchproject.modules
 		public function accidentalSelection(shopList:Array, agent:Agent):Shop
 		{
 			var selectedShop:Shop;
-			selectedShop = selectRandomShop(shopList);
-			selectedShop = selectRandomLucky(shopList);
-			selectedShop = selectNearestShop(shopList, agent);
-			selectedShop = selectMostPopularShop(shopList);
-			selectedShop = selectMostCheap(shopList);
-			selectedShop = selectMostFinest(shopList, agent);
-			selectedShop = selectGoodServices(shopList, agent);
-			selectedShop = selectGoodEnvironment(shopList, agent);
-			selectedShop = selectIntenseAdvertising(shopList, agent);
-			selectedShop = selectAdvancedShop(shopList);
-			selectedShop = selectBestShop(shopList, agent);
+			var probability:int = GameUtils.randomFor(100);
+
+			// 25% random choice
+			if (probability <= 25)
+			{
+				probability = GameUtils.randomFor(100);
+				// 50% uniform random
+				if (probability <= 50)
+				{
+					selectedShop = selectRandomShop(shopList);
+				}
+				// 50% lucky random supported by booster feature
+				else
+				{
+					selectedShop = selectRandomLucky(shopList);
+				}
+			}
+			// 50% consumer basic
+			else if (probability <= 75)
+			{
+				probability = GameUtils.randomFor(100);
+				// 30% nearest location
+				if (probability <= 30)
+				{
+					selectedShop = selectNearestShop(shopList, agent);
+				}
+				// 10% top seller
+				else if (probability <= 40)
+				{
+					selectedShop = selectMostPopularShop(shopList);
+				}
+				// 25% lowest price
+				else if (probability <= 65)
+				{
+					selectedShop = selectCheapestShop(shopList);
+				}
+				// 20% best quality
+				else if (probability <= 85)
+				{
+					selectedShop = selectFinestShop(shopList, agent);
+				}
+				// 15% best all features
+				else
+				{
+					selectedShop = selectBestShop(shopList, agent);
+				}
+			}
+			// 25% shop feature
+			else
+			{
+				probability = GameUtils.randomFor(100);
+				// 25% good service according agent trait
+				if (probability <= 25)
+				{
+					selectedShop = selectGoodService(shopList, agent);
+				}
+				// 25% comfort environment according agent trait
+				else if (probability <= 50)
+				{
+					selectedShop = selectGoodEnvironment(shopList, agent);
+				}
+				// 25% intense advertising according agent trait
+				else if (probability <= 75)
+				{
+					selectedShop = selectIntenseAdvertising(shopList, agent);
+				}
+				// 25% most active feature
+				else
+				{
+					selectedShop = selectAdvancedShop(shopList);
+				}
+			}
+
 			return selectedShop;
 		}
 
@@ -59,30 +158,34 @@ package sketchproject.modules
 		 */
 		public function selectRandomLucky(shopList:Array):Shop
 		{
+			var total:Number = 0;
 			var luckyShop:Shop;
-			var total:Number;
 
+			// get total lucky of all shops
 			for (var i:int = 0; i < shopList.length; i++)
 			{
 				var shop:Shop = shopList[i] as Shop;
 				total += shop.booster.lucky;
 			}
 
+			// if no shop use lucky booster, just call uniform random
 			if (total == 0)
 			{
 				return selectRandomShop(shopList);
 			}
 
+			// distribute into percent
 			var luckyShop1:Number = shopList[0].booster.lucky / total * 100;
 			var luckyShop2:Number = shopList[1].booster.lucky / total * 100;
 			var luckyShop3:Number = shopList[2].booster.lucky / total * 100;
 
+			// produce probability event by the precentage of lucky shop
 			var random:Number = GameUtils.randomFor(100);
-			if (random < luckyShop1)
+			if (random <= luckyShop1)
 			{
 				luckyShop = shopList[0];
 			}
-			else if (random < (luckyShop1 + luckyShop2))
+			else if (random <= (luckyShop1 + luckyShop2))
 			{
 				luckyShop = shopList[1];
 			}
@@ -108,8 +211,12 @@ package sketchproject.modules
 			for (var i:uint = 0; i < shopList.length; i++)
 			{
 				var shop:Shop = shopList[i] as Shop;
+
+				// get delta x and delta y from two point
 				var dx:int = agent.coordinate.x - shop.districtCoordinate.x;
 				var dy:int = agent.coordinate.y - shop.districtCoordinate.y;
+
+				// calculate distance delta x and delta y
 				var distance:Number = GameUtils.getDistance(dx, dy);
 				if (distance < nearest)
 				{
@@ -117,6 +224,7 @@ package sketchproject.modules
 					nearestShop = shop;
 				}
 			}
+
 			return nearestShop;
 		}
 
@@ -128,17 +236,19 @@ package sketchproject.modules
 		 */
 		public function selectMostPopularShop(shopList:Array):Shop
 		{
-			var mostPopular:int = int.MIN_VALUE;
+			var mostPopular:int = -1000000;
 			var popularShop:Shop;
 			for (var i:uint = 0; i < shopList.length; i++)
 			{
 				var shop:Shop = shopList[i] as Shop;
+
 				if (shop.transactionTotal > mostPopular)
 				{
 					mostPopular = shop.transactionTotal;
 					popularShop = shop;
 				}
 			}
+
 			return popularShop;
 		}
 
@@ -148,7 +258,7 @@ package sketchproject.modules
 		 * @param shopList collection
 		 * @return cheapest shop
 		 */
-		public function selectMostCheap(shopList:Array):Shop
+		public function selectCheapestShop(shopList:Array):Shop
 		{
 			var cheapest:Number = Number.MAX_VALUE;
 			var cheapestShop:Shop;
@@ -183,7 +293,7 @@ package sketchproject.modules
 		 * @param agent that evaluate the quality
 		 * @return finest shop
 		 */
-		public function selectMostFinest(shopList:Array, agent:Agent):Shop
+		public function selectFinestShop(shopList:Array, agent:Agent):Shop
 		{
 			var finest:Number = -1000000;
 			var finestShop:Shop;
@@ -194,6 +304,8 @@ package sketchproject.modules
 			for (var i:int = 0; i < shopList.length; i++)
 			{
 				var shop:Shop = shopList[i] as Shop;
+
+				// retrieve quality and agent assessment
 				var food1:Number = motivation.calculateProductQuality(shop, agent, Shop.PRODUCT_FOOD_1);
 				var food2:Number = motivation.calculateProductQuality(shop, agent, Shop.PRODUCT_FOOD_2);
 				var food3:Number = motivation.calculateProductQuality(shop, agent, Shop.PRODUCT_FOOD_3);
@@ -202,9 +314,11 @@ package sketchproject.modules
 
 				finestAvg = (food1 + food2 + food3 + drink1 + drink2) / 5;
 
-				var productBooster:Number = shop.booster.employee * 0.25 / 10;
+				// calculate product booster
+				var productBooster:Number = 1 + (shop.booster.product * 0.25 / 10);
 
-				finestAvg *= 1 + productBooster;
+				// add booster to multiple the quality of product
+				finestAvg *= productBooster;
 
 				if (finestAvg > finest)
 				{
@@ -212,6 +326,7 @@ package sketchproject.modules
 					finestShop = shop;
 				}
 			}
+
 			return finestShop;
 		}
 
@@ -222,17 +337,20 @@ package sketchproject.modules
 		 * @param agent that evaluate the services
 		 * @return shop
 		 */
-		public function selectGoodServices(shopList:Array, agent:Agent):Shop
+		public function selectGoodService(shopList:Array, agent:Agent):Shop
 		{
-			var greatestService:Number = -1000000;
-			var greatestShop:Shop;
+			var service:Number = -1000000;
+			var serviceShop:Shop;
+			var serviceAvg:Number;
+
 			for (var i:int = 0; i < shopList.length; i++)
 			{
 				var shop:Shop = shopList[i] as Shop;
+
 				var productivityEval:Number = 0;
 				var moraleEval:Number = 0;
 				var serviceEval:Number = 0;
-				var evalAverage:Number;
+
 				for (var j:int = 0; j < shop.productivity; j++)
 				{
 					productivityEval += shop.productivity[j] * agent.serviceResponseAssesment.productivity;
@@ -240,19 +358,22 @@ package sketchproject.modules
 					serviceEval += shop.productivity[j] * agent.serviceResponseAssesment.services;
 				}
 
-				evalAverage = (productivityEval + moraleEval + serviceEval) / 3;
+				serviceAvg = (productivityEval + moraleEval + serviceEval) / 3;
 
-				var employeeBooster:Number = shop.booster.employee * 0.25 / 10;
+				// calculate employee booster
+				var employeeBooster:Number = 1 + (shop.booster.employee * 0.25 / 10);
 
-				evalAverage *= 1 + employeeBooster;
+				// add booster to multiple the services of employee
+				serviceAvg *= employeeBooster;
 
-				if (evalAverage > greatestService)
+				if (serviceAvg > service)
 				{
-					greatestService = evalAverage;
-					greatestShop = shop;
+					service = serviceAvg;
+					serviceShop = shop;
 				}
 			}
-			return greatestShop;
+
+			return serviceShop;
 		}
 
 		/**
@@ -264,25 +385,51 @@ package sketchproject.modules
 		 */
 		public function selectGoodEnvironment(shopList:Array, agent:Agent):Shop
 		{
-			var comfortEnvironment:Number = -1000000;
-			var comfortShop:Shop;
+			var environment:Number = -1000000;
+			var environmentShop:Shop;
+			var environmentAvg:Number;
+
 			for (var i:int = 0; i < shopList.length; i++)
 			{
 				var shop:Shop = shopList[i] as Shop;
-				var decoration:Number = (shop.decoration.modern * agent.decorationMatch.modern) + (shop.decoration.colorfull * agent.decorationMatch.colorfull) + (shop.decoration.vintage * agent.decorationMatch.vintage)
-				var cleaness:Number = (shop.cleaness.product * agent.cleanessMatch.product) + (shop.cleaness.place * agent.cleanessMatch.place);
-				var scent:Number = (shop.scent.ginger * agent.scentMatch.ginger) + (shop.scent.jasmine * agent.scentMatch.jasmine) + (shop.scent.rosemary * agent.scentMatch.rosemary);
-				var environmentAverage:Number = (decoration + cleaness + scent) / 3;
-				var shopBooster:Number = shop.booster.employee * 0.25 / 10;
-				environmentAverage *= 1 + shopBooster;
-				if (environmentAverage > comfortEnvironment)
+
+				// calculate decoration and agent assessment
+				var decorationTotal:Number = 0;
+				for (var decoration:String in shop.decoration)
 				{
-					comfortEnvironment = environmentAverage;
-					comfortShop = shop;
+					decorationTotal += shop.decoration[decoration] * agent.decorationMatch[decoration];
+				}
+
+				// calculate cleaness and agent assessment
+				var cleanessTotal:Number = 0;
+				for (var cleaness:String in shop.cleaness)
+				{
+					cleanessTotal += shop.cleaness[cleaness] * agent.cleanessMatch[cleaness];
+				}
+
+				// calculate scent and agent assessment
+				var scentTotal:Number = 0;
+				for (var scent:String in shop.scent)
+				{
+					scentTotal += shop.scent[scent] * agent.scentMatch[scent];
+				}
+
+				environmentAvg = (decorationTotal + cleanessTotal + scentTotal) / 3;
+
+				// calculate shop booster
+				var shopBooster:Number = 1 + (shop.booster.shop * 0.25 / 10);
+
+				// add booster to multiple the shop environment
+				environmentAvg *= shopBooster;
+
+				if (environmentAvg > environment)
+				{
+					environment = environmentAvg;
+					environmentShop = shop;
 				}
 			}
 
-			return comfortShop;
+			return environmentShop;
 		}
 
 		/**
@@ -340,48 +487,11 @@ package sketchproject.modules
 				if (total > advanced)
 				{
 					advanced = total;
-					advancedShop = shop
+					advancedShop = shop;
 				}
 			}
 
 			return advancedShop;
-		}
-
-		/**
-		 * Select shop by the most influenced agent.
-		 *
-		 * @param shopList shop collection
-		 * @param agent that evaluate the influence
-		 * @return most influencing agent
-		 */
-		public function selectInfluence(shopList:Shop, agent:Agent):Shop
-		{
-			var inflShopPlayer:int = agent.shopInfluence.shopPlayer.recommendation - agent.shopInfluence.shopPlayer.disqualification;
-			var inflShopCompetitor1:int = agent.shopInfluence.shopCompetitor1.recommendation - agent.shopInfluence.shopCompetitor1.disqualification;
-			var inflShopCompetitor2:int = agent.shopInfluence.shopCompetitor2.recommendation - agent.shopInfluence.shopCompetitor2.disqualification;
-			if (inflShopPlayer > inflShopCompetitor1)
-			{
-				if (inflShopPlayer > inflShopCompetitor2)
-				{
-					return shopList[0];
-				}
-				else
-				{
-					return shopList[2];
-				}
-			}
-			else
-			{
-				if (inflShopCompetitor1 > inflShopCompetitor2)
-				{
-					return shopList[1];
-				}
-				else
-				{
-					return shopList[2];
-				}
-			}
-			return null;
 		}
 
 		/**
@@ -402,13 +512,13 @@ package sketchproject.modules
 			var mostPopular:Shop = selectMostPopularShop(shopList);
 			bestShops[mostPopular.shopId - 1]++;
 
-			var cheapestShop:Shop = selectMostCheap(shopList);
+			var cheapestShop:Shop = selectCheapestShop(shopList);
 			bestShops[cheapestShop.shopId - 1]++;
 
-			var finestShop:Shop = selectMostFinest(shopList, agent);
+			var finestShop:Shop = selectFinestShop(shopList, agent);
 			bestShops[finestShop.shopId - 1]++;
 
-			var goodServices:Shop = selectGoodServices(shopList, agent);
+			var goodServices:Shop = selectGoodService(shopList, agent);
 			bestShops[goodServices.shopId - 1]++;
 
 			var goodEnvironment:Shop = selectGoodEnvironment(shopList, agent);
@@ -443,13 +553,13 @@ package sketchproject.modules
 				}
 			}
 
-			// if result is equal
+			// if results are equal pick random shop
 			if (bestShops[0] == bestShops[1] && bestShops[0] == bestShops[2])
 			{
 				bestShop = selectRandomShop(shopList);
 			}
 
-			// if result shop id 1 has equal number with shop id 2
+			// if result shop id 1 and shop id 2 are equal, they have equal chance to be picked
 			if ((bestShop.shopId == 1 || bestShop.shopId == 2) && bestShops[0] == bestShops[1])
 			{
 				if (GameUtils.probability(0.5))
@@ -461,7 +571,7 @@ package sketchproject.modules
 					bestShop = shopList[1];
 				}
 			}
-			// if result shop id 1 has equal number with shop id 3
+			// if result shop id 1 and shop id 3 are equal, they have equal chance to be picked
 			else if ((bestShop.shopId == 1 || bestShop.shopId == 3) && bestShops[0] == bestShops[2])
 			{
 				if (GameUtils.probability(0.5))
@@ -473,7 +583,7 @@ package sketchproject.modules
 					bestShop = shopList[2];
 				}
 			}
-			// if result shop id 2 has equal number with shop id 3
+			// if result shop id 2 and shop id 3 are equal, they have equal chance to be picked
 			else if ((bestShop.shopId == 2 || bestShop.shopId == 3) && bestShops[1] == bestShops[2])
 			{
 				if (GameUtils.probability(0.5))
