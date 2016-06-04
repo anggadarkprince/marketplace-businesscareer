@@ -2,16 +2,27 @@ package sketchproject.modules
 {
 	import sketchproject.interfaces.IState;
 
+	/**
+	 * Brain controller of agent.
+	 * 
+	 * @author Angga
+	 */
 	public class StackFSM 
 	{
 		public var stackState:Array;
 		public var currentState:IState;
 		
+		/**
+		 * Default contructor of StackFSM
+		 */
 		public function StackFSM() 
 		{
 			this.stackState = new Array();
 		}
 		
+		/**
+		 * Updating current state.
+		 */
 		public function update() :void 
 		{
 			currentState = getCurrentState();
@@ -22,6 +33,11 @@ package sketchproject.modules
 			}
 		}
 		
+		/**
+		 * Remove last inserted state / pop current state.
+		 * 
+		 * @return removed state
+		 */
 		public function popState():IState 
 		{
 			currentState.destroy();
@@ -36,6 +52,11 @@ package sketchproject.modules
 			return lastState;
 		}
 		
+		/**
+		 * Insert new state and initialize immediately.
+		 * 
+		 * @param state new action
+		 */
 		public function pushState(state:IState) :void 
 		{
 			if (getCurrentState() != state) 
@@ -45,11 +66,23 @@ package sketchproject.modules
 			}
 		}
 		
+		/**
+		 * Retrieve current state.
+		 * 
+		 * @return current state
+		 */
 		public function getCurrentState():IState 
 		{
 			return stackState.length > 0 ? stackState[stackState.length - 1] : null;
 		}
 		
+		/**
+		 * Check if state is given exist and give an option to remove it.
+		 * 
+		 * @param state that will be find
+		 * @param remove option if want to destroy
+		 * @return status if state is found
+		 */
 		public function checkState(state:IState, remove:Boolean = false):Boolean 
 		{
 			for (var i:int = 0; i < stackState.length; i++) 
@@ -67,6 +100,9 @@ package sketchproject.modules
 			return false;
 		}
 		
+		/**
+		 * Remove all states.
+		 */
 		public function clearState():void 
 		{
 			for (var i:int = stackState.length-1; i >= 0; i--) 
@@ -75,6 +111,9 @@ package sketchproject.modules
 			}
 		}
 		
+		/**
+		 * Print current state list of agent.
+		 */
 		public function logState():void
 		{
 			trace("\n---------statelist---------");

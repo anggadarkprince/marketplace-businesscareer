@@ -1,6 +1,5 @@
 package sketchproject.managers
 {
-	import sketchproject.core.Config;
 	import sketchproject.core.Data;
 	import sketchproject.modules.Agent;
 	import sketchproject.modules.AgentGenerator;
@@ -9,6 +8,11 @@ package sketchproject.managers
 	import sketchproject.utilities.DayCounter;
 	import sketchproject.utilities.GameUtils;
 
+	/**
+	 * Game world controller.
+	 *
+	 * @author Angga
+	 */
 	public class WorldManager
 	{
 		public static var instance:WorldManager;
@@ -26,8 +30,6 @@ package sketchproject.managers
 		private var dx:Number;
 		private var dy:Number;
 
-		private var change:int = 0;
-
 		/**
 		 * Default constructor of WorldManager.
 		 *
@@ -44,18 +46,20 @@ package sketchproject.managers
 
 			agentGenerator = new AgentGenerator();
 
-			if (isSimulation)
+			if (false)
 			{
 				agentGenerator.generateAgent(listAgent, listShop, map);
 			}
 			else
 			{
-				agentGenerator.generateFreeman(listAgent, 100, map);
+				agentGenerator.generateFreeman(listAgent, 300, map);
+				agentGenerator.generateWeather(Data.valueWeather, map);
+				agentGenerator.generateEvent(Data.valueEvent);
+				agentGenerator.generateCompetitor(listShop, Data.valueCompetitor, map);
 			}
 
 			delay = 0;
 		}
-
 
 		/**
 		 * Update all agents, perform rule checker and motivation function.
@@ -97,13 +101,21 @@ package sketchproject.managers
 						holidayTriggered(agent, map.hour);
 					}
 
+					/**
+					 * check if events attract agent to attend.
+					 */
+					if (eventEvaluation(agent))
+					{
+						checkEventStart(agent);
+						checkEventEnd(agent);
+					}
 
 					/**
 					 * check if agent close enough to give influence
 					 */
 					if (influenceEvaluation(agent, listAgent))
 					{
-						// trace("do influence action");						
+						agent.action.pushState(agent.influenceAction);
 					}
 
 					/**
@@ -549,7 +561,7 @@ package sketchproject.managers
 				}
 				else
 				{
-					trace("                |-- [state:visiting] agent id", agent.agentId, "go to hospital because agent is unwell 50% probability");
+					trace("                |-- [state:visiting] agent id", agent.agentId, "go to hospital because agent is unwell by 50% probability");
 					agent.targetDistrict = "Hospital";
 					agent.action.pushState(agent.visitingAction);
 				}
@@ -628,9 +640,9 @@ package sketchproject.managers
 		 */
 		public function holidayTriggered(agent:Agent, hour:int):void
 		{
-			trace("  - day off evaluation");
 			if (hour == agent.freeTime && agent.isFree)
 			{
+				trace("  - day off evaluation");
 				trace("    |-- agent id", agent.agentId, "has freetime at", agent.freeTime);
 				holidayEvaluation(agent);
 				agent.isFree = false;
@@ -666,63 +678,115 @@ package sketchproject.managers
 		}
 
 		/**
-		 * Check event in game world get started.
+		 * Evaluation all events if matched with agent trait.
 		 *
 		 * @param agent that will to take evaluation
-		 * @return status if event has begun
 		 */
-		public function checkEventStart(agent:Agent):Boolean
+		public function eventEvaluation(agent:Agent):Boolean
 		{
-			trace("      - event evaluation");
-			if (map.isEventExist && !agent.isGoingEvent)
+			if (map.isEventExist && !agent.hasAttendingEventChecked)
 			{
+				var hasEvaluated:Boolean = false;
 				for (var i:int = 0; i < Data.event.length; i++)
 				{
-					if (map.hour >= Data.event[i][2] && map.hour < Data.event[i][3])
+					for (var j:int = 0; i < agent.attendingEventList.length; i++)
 					{
-						generateProbability = 30 - (Math.abs(agent.education - Data.event[i][6][0]) + Math.abs(agent.art - Data.event[i][6][1]) + Math.abs(agent.athletic - Data.event[i][6][2]));
+						if (agent.attendingEventList[j].eventId == Data.event[i][0])
+						{
+							hasEvaluated = true;
+							break;
+						}
+					}
+					if (!hasEvaluated)
+					{
+						trace("      - event evaluation", Data.event[i][1]);
+
+						var isAttendingEvent:Boolean = false;
+
+						var deltaEducation:Number = Math.abs(agent.education - Data.event[i][6][0]);
+						var deltaArt:Number = Math.abs(agent.art - Data.event[i][6][1]);
+						var deltaAthletic:Number = Math.abs(agent.athletic - Data.event[i][6][2]);
+						generateProbability = 30 - (deltaEducation + deltaArt + deltaAthletic);
+
 						if (GameUtils.randomFor(30) < generateProbability)
 						{
 							trace("        |-- event criteria match");
 							if (GameUtils.probability(0.01))
 							{
-								trace("          |-- agent id", agent.agentId, " agent doesn't attend to event because 1% accidental probability");
-								return false;
+								trace("          |-- agent id", agent.agentId, "agent doesn't attend to event because 1% accidental probability");
+								isAttendingEvent = false;
 							}
 
-							trace("          |-- agent id", agent.agentId, " agent attend to event");
-
-							agent.eventId = Data.event[i][0];
-							agent.targetDistrict = Data.event[i][7];
-							agent.isGoingEvent = true;
-							agent.action.pushState(agent.visitingAction);
-
-							return true;
+							trace("          |-- agent id", agent.agentId, "agent attend to event");
+							isAttendingEvent = true;
 						}
 						else
 						{
 							trace("        |-- event criteria doesn't match");
 							if (GameUtils.probability(0.01))
 							{
-								trace("          |-- agent id", agent.agentId, " agent attend to event because 1% accidental probability");
-								agent.eventId = Data.event[i][0];
-								agent.targetDistrict = Config.event[agent.eventId - 1][2];
-								agent.isGoingEvent = true;
-								agent.action.pushState(agent.visitingAction);
-								return true;
+								trace("          |-- agent id", agent.agentId, "agent attend to event because 1% accidental probability");
+								isAttendingEvent = true;
 							}
 
-							trace("          |-- agent id", agent.agentId, " agent doesn't attend to event");
+							trace("          |-- agent id", agent.agentId, "agent doesn't attend to event");
+							isAttendingEvent = false;
+						}
 
-							return false;
+						if (isAttendingEvent)
+						{
+							var extraTime:int = GameUtils.randomFor(2) - 1;
+							if (GameUtils.probability(0.5))
+							{
+								extraTime = extraTime * -1;
+							}
+						}
+
+						agent.attendingEventList.push({eventId: Data.event[i][0], eventName: Data.event[i][1], eventLocation: Data.event[i][7], eventStart: Data.event[i][2], eventFinish: int(Data.event[i][3]) + extraTime, eventAttending: isAttendingEvent});
+					}
+				}
+				agent.hasAttendingEventChecked = true;
+			}
+
+			return agent.hasAttendingEventChecked;
+		}
+
+		/**
+		 * Check event in game world get started.
+		 *
+		 * @param agent that will to take evaluation
+		 * @return status if event has begun
+		 */
+		public function checkEventStart(agent:Agent):void
+		{
+			if (!agent.isGoingEvent)
+			{
+				for (var i:int = 0; i < Data.event.length; i++)
+				{
+					if (map.hour >= Data.event[i][2] && map.hour < Data.event[i][3])
+					{
+						for (var j:int = 0; j < agent.attendingEventList.length; j++)
+						{
+							if (Data.event[i][0] == agent.attendingEventList[j].eventId)
+							{
+								if (Boolean(agent.attendingEventList[j].eventAttending))
+								{
+									trace("            |-- agent id", agent.agentId, "now attending to event", agent.attendingEventList[j].eventName);
+									agent.eventId = Data.event[i][0];
+									agent.targetDistrict = Data.event[i][7];
+									agent.isGoingEvent = true;
+									agent.action.pushState(agent.visitingAction);
+								}
+								else
+								{
+									agent.attendingEventList.splice(j, 1);
+								}
+								break;
+							}
 						}
 					}
 				}
 			}
-
-			trace("        |-- there is no active event or agent is going to event");
-
-			return false;
 		}
 
 		/**
@@ -731,30 +795,30 @@ package sketchproject.managers
 		 * @param agent that will to take evaluation
 		 * @return status if event has ended
 		 */
-		public function checkEventEnd(agent:Agent):Boolean
+		public function checkEventEnd(agent:Agent):void
 		{
-			if (map.isEventExist && agent.isGoingEvent)
+			if (agent.isGoingEvent)
 			{
 				for (var i:int = 0; i < Data.event.length; i++)
 				{
-					if (agent.eventId == Data.event[i][0])
+					for (var j:int = 0; j < agent.attendingEventList.length; j++)
 					{
-						if (map.hour >= Data.event[i][3])
+						if (Data.event[i][0] == agent.attendingEventList[j].eventId)
 						{
-							trace("          |-- agent id", agent.agentId, " agent leave event", Data.event[i][1]);
+							if (map.hour >= agent.attendingEventList[j].eventFinish)
+							{
+								trace("          |-- agent id", agent.agentId, " agent leaves event", Data.event[i][1]);
 
-							agent.action.checkState(agent.visitingAction, true);
-							agent.isGoingEvent = false;
-							agent.eventId = 0;
-							return true;
+								agent.action.checkState(agent.visitingAction, true);
+								agent.isGoingEvent = false;
+								agent.eventId = 0;
+								agent.attendingEventList.splice(j, 1);
+								break;
+							}
 						}
 					}
 				}
 			}
-
-			trace("        |-- there is no active event or agent did not attend the event");
-
-			return false;
 		}
 
 		/**
@@ -766,44 +830,86 @@ package sketchproject.managers
 		 */
 		public function influenceEvaluation(agent:Agent, listAgent:Array):Boolean
 		{
-			trace("    - influence evaluation");
-			if (GameUtils.randomFor(100) < 5)
+			if (agent.action.getCurrentState() != agent.idleAction && agent.action.getCurrentState() != agent.influenceAction)
 			{
-				trace("      |-- try to influencing people by 5% probability");
-				for (var j:int = 0; j < listAgent.length; j++)
+				if (GameUtils.randomFor(100) == 10)
 				{
-					if (agent.agentId != Agent(listAgent[j]).agentId)
+					for (var j:int = 0; j < listAgent.length; j++)
 					{
-						dx = agent.x - Agent(listAgent[j]).x;
-						dy = agent.y - Agent(listAgent[j]).y;
-
-						if (GameUtils.getDistance(dx, dy) < 30)
+						if (agent.agentId != Agent(listAgent[j]).agentId)
 						{
-							trace("        |-- agent id", agent.agentId, "is close enough to influencing agent id", Agent(listAgent[j]).agentId);
-							// action probability
-							if (GameUtils.probability(agent.actionWill * 0.1))
+							dx = agent.x - Agent(listAgent[j]).x;
+							dy = agent.y - Agent(listAgent[j]).y;
+
+							if (GameUtils.getDistance(dx, dy) < 30)
 							{
-								trace("          |-- agent id", agent.agentId, "has motivation to give influence");
-								// recommendation
-								if (GameUtils.probability(0.5))
+								trace("    - influence evaluation");
+								trace("      |-- try to influencing people by 5% probability");
+								trace("        |-- agent id", agent.agentId, "is close enough to influencing agent id", Agent(listAgent[j]).agentId);
+								// influence probability
+								if (GameUtils.probability(agent.actionWill * 0.1))
 								{
-									trace("            |-- agent id", agent.agentId, "gives recommendation");
+									trace("          |-- agent id", agent.agentId, "has motivation giving influence");
+									giveInfluence(agent, listAgent[j]);
+									
 									return true;
 								}
-								// disqualification
 								else
 								{
-									trace("            |-- agent id", agent.agentId, "gives disqualification");
-									return true;
+									trace("      |-- agent won't influence people");
 								}
 							}
 						}
 					}
 				}
 			}
-			trace("      |-- agent won't influence people");
+
 			return false;
 		}
 
+		/**
+		 * Giving influence to another agent.
+		 *
+		 * @param agent who gives influence
+		 * @param target who receives the influence
+		 * @param type of infulence, neither recommendation or disqualification
+		 */
+		public function giveInfluence(agent:Agent, target:Agent):void
+		{
+			if (agent.choice != 0 && agent.unselected != 0)
+			{
+				var recommendation:int;
+				var disqualification:int;
+				switch (agent.choice)
+				{
+					case 1:
+						recommendation = int(target.shopInfluence.shopPlayer.recommendation);
+						target.shopInfluence.shopPlayer.recommendation = recommendation + 1;
+						disqualification = int(target.shopInfluence.shopPlayer.disqualification);
+						target.shopInfluence.shopPlayer.disqualification = disqualification + 1;
+						break;
+					case 2:
+						recommendation = int(target.shopInfluence.shopCompetitor1.recommendation);
+						target.shopInfluence.shopCompetitor1.recommendation = recommendation + 1;
+						disqualification = int(target.shopInfluence.shopCompetitor1.disqualification);
+						target.shopInfluence.shopCompetitor1.disqualification = disqualification + 1;
+						break;
+					case 3:
+						recommendation = int(target.shopInfluence.shopCompetitor2.recommendation);
+						target.shopInfluence.shopCompetitor2.recommendation = recommendation + 1;
+						disqualification = int(target.shopInfluence.shopCompetitor2.disqualification);
+						target.shopInfluence.shopCompetitor2.disqualification = disqualification + 1;
+						break;
+				}
+				trace("              |-- agent id", target.agentId, " as target : shop influence");
+				trace("                |-- shop 1 (player) recommendation", target.shopInfluence.shopPlayer.recommendation, "disqualification", target.shopInfluence.shopPlayer.disqualification);
+				trace("                |-- shop 2 (competitor 1) recommendation", target.shopInfluence.shopCompetitor1.recommendation, "disqualification", target.shopInfluence.shopCompetitor1.disqualification);
+				trace("                |-- shop 3 (competitor 2) recommendation", target.shopInfluence.shopCompetitor2.recommendation, "disqualification", target.shopInfluence.shopCompetitor2.disqualification);
+			}
+			else
+			{
+				trace("              |-- agent id", target.agentId, " has nothing to recomended");
+			}
+		}
 	}
 }
