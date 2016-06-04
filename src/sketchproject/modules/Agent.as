@@ -1,7 +1,7 @@
 package sketchproject.modules
 {
 	import flash.geom.Point;
-	
+
 	import sketchproject.core.Assets;
 	import sketchproject.interfaces.IState;
 	import sketchproject.managers.WorldManager;
@@ -19,7 +19,7 @@ package sketchproject.modules
 	import sketchproject.modules.states.WorkingState;
 	import sketchproject.utilities.GameUtils;
 	import sketchproject.utilities.IsoHelper;
-	
+
 	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.MovieClip;
@@ -36,12 +36,12 @@ package sketchproject.modules
 		public static const ROLE_WORKER:String = "worker";
 		public static const ROLE_STUDENT:String = "student";
 		public static const ROLE_TRADER:String = "trader";
-		
+
 		public static const DISTRICT_VILLAGE:String = "village";
 		public static const DISTRICT_MURBAWISMA:String = "murbawisma";
 		public static const DISTRICT_MADYAWISMA:String = "madyawisma";
 		public static const DISTRICT_ADIWISMA:String = "adiwisma";
-		
+
 		public static const INFLUENCE_RECOMMENDATION:String = "recommendation"
 		public static const INFLUENCE_DISQUALIFICATION:String = "disqualification"
 
@@ -65,7 +65,7 @@ package sketchproject.modules
 		public var cartesian:Point; // 2D coordinate
 		public var destination:Point;
 		public var path:Array;
-		
+
 		// personality trait
 		public var agentId:int;
 		public var role:String;
@@ -80,10 +80,9 @@ package sketchproject.modules
 		public var health:Number;
 
 		// motivation
+		public var income:int;
 		public var priceSensitivity:int;
-		public var priceThreshold:int;
 		public var qualitySensitivity:int;
-		public var qualityThreshold:int;
 		public var susceptibility:int;
 		public var followerTendency:int;
 		public var acceptance:int;
@@ -92,6 +91,7 @@ package sketchproject.modules
 		public var unselected:int;
 		public var consumption:int;
 		public var consumptionTime:Array;
+		public var isEating:Boolean;
 
 		// environment taste
 		public var decorationMatch:Object;
@@ -143,7 +143,7 @@ package sketchproject.modules
 		public var isGoingEvent:Boolean;
 		public var eventId:int;
 		public var targetDistrict:String;
-		
+
 		public var hasAttendingEventChecked:Boolean;
 		public var attendingEventList:Array;
 
@@ -162,7 +162,7 @@ package sketchproject.modules
 			mainRoleDone = false;
 			isGoingEvent = false;
 			isGoingTask = false;
-			
+
 			hasAttendingEventChecked = false;
 			attendingEventList = new Array();
 
@@ -173,6 +173,7 @@ package sketchproject.modules
 			isFree = false;
 			isStress = false;
 			isSick = false;
+			isEating = false;
 
 			stress = 2;
 			health = 8;
@@ -460,7 +461,7 @@ package sketchproject.modules
 				}
 			}
 		}
-		
+
 		/**
 		 * Print agent data.
 		 */
@@ -480,23 +481,23 @@ package sketchproject.modules
 			trace("---- action will", actionWill);
 			trace("---- stress", stress);
 			trace("---- health", health);
-			
+
 			trace("-- motivation --------------------");
 			trace("---- price", priceSensitivity);
-			trace("---- price threshold", priceThreshold);
+			trace("---- price threshold", priceSensitivity - (GameUtils.randomFor(10, false) + 5));
 			trace("---- quality", qualitySensitivity);
-			trace("---- quality threshold", qualityThreshold);
+			trace("---- quality threshold", qualitySensitivity - (GameUtils.randomFor(10, false) + 5));
 			trace("---- acceptance", acceptance);
 			trace("---- rejection", rejection);
 			trace("---- choice", choice);
 			trace("---- consumption", consumption);
 			trace("---- consumption time", consumptionTime);
-			
+
 			trace("-- environment -------------------");
 			trace("---- decoration", decorationMatch.modern, decorationMatch.colorfull, decorationMatch.vintage);
 			trace("---- cleaness", cleanessMatch.product, cleanessMatch.place);
 			trace("---- scent", scentMatch.ginger, scentMatch.jasmine, scentMatch.rosemary);
-			
+
 			trace("-- advertisment ------------------");
 			trace("---- adver tv", adverContactRate.tv);
 			trace("---- adver radio", adverContactRate.radio);
@@ -504,23 +505,23 @@ package sketchproject.modules
 			trace("---- adver internet", adverContactRate.internet);
 			trace("---- adver event", adverContactRate.event);
 			trace("---- adver billboard", adverContactRate.billboard);
-			
+
 			trace("-- quality -----------------------");
 			trace("---- quality food 1", productQualityAssesment.food1);
 			trace("---- quality food 2", productQualityAssesment.food2);
 			trace("---- quality food 3", productQualityAssesment.food3);
 			trace("---- quality drink 1", productQualityAssesment.drink1);
 			trace("---- quality drink 2", productQualityAssesment.drink2);
-			
+
 			trace("-- service -----------------------");
 			trace("---- morale", serviceResponseAssesment.morale);
 			trace("---- services", serviceResponseAssesment.services);
 			trace("---- productivity", serviceResponseAssesment.productivity);
-			
+
 			trace("-- influence ---------------------");
 			trace("---- shop player", serviceResponseAssesment.shopPlayer);
 			trace("---- shop competitor1", serviceResponseAssesment.shopCompetitor1);
-			trace("---- shop competitor2", serviceResponseAssesment.shopCompetitor2);			
+			trace("---- shop competitor2", serviceResponseAssesment.shopCompetitor2);
 			trace("----------------------------------\n");
 		}
 	}

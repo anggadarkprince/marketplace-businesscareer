@@ -208,7 +208,7 @@ package sketchproject.modules
 		 */
 		public function motivation(shops:Array, agent:Agent, product:String):Shop
 		{
-			MList = [];
+			MList = new Array();
 
 			for (var i:int = 0; i < shops.length; i++)
 			{
@@ -240,25 +240,28 @@ package sketchproject.modules
 				ft = followerTendency(agent);
 
 				// find perceived influence from other agent to brand i
-				infl = influence(agent, i + 1);
+				infl = influence(shops[i], agent);
 
 				// calculate motivation function of brand i
 				m = (ps * p) + (qs * q) + (sus * ad) + (ft * infl);
 
-				// save current brand motivation related shop
+				// save current brand motivation related shop index
 				MList.push(m);
 			}
 
-			Mmax = maxM(MList);
+			// calculate max and min motivation of shops selection
+			Mmax = calculateM(MList);
 
-			agent.choice = MList.indexOf(Mmax) + 1;
-			agent.unselected = MList.indexOf(Mmin) + 1;
-			agent.choiceReaction(agent.choice);
+			var indexMax:int = MList.indexOf(Mmax);
+			var indexMin:int = MList.indexOf(Mmin);
 
-			shops[agent.choice - 1].transactionTotal += 1;
-			shops[agent.choice - 1].grossProfit += calculateProductPrice;
+			var shopMax:Shop = shops[indexMax];
+			var shopMin:Shop = shops[indexMin];
 
-			return shops[agent.choice - 1];
+			agent.choice = shopMax.shopId;
+			agent.unselected = shopMin.shopId;
+
+			return shopMax;
 		}
 
 		/**
@@ -270,28 +273,15 @@ package sketchproject.modules
 		 */
 		public function calculateProductPrice(shop:Shop, product:String):Number
 		{
-			switch (product)
+			for (var productName:String in shop.price)
 			{
-				case Shop.PRODUCT_FOOD_1:
-					return shop.price.food1;
-					break;
-				case Shop.PRODUCT_FOOD_2:
-					return shop.price.food2;
-					break;
-				case Shop.PRODUCT_FOOD_3:
-					return shop.price.food3;
-					break;
-				case Shop.PRODUCT_DRINK_1:
-					return shop.price.drink1;
-					break;
-				case Shop.PRODUCT_DRINK_2:
-					return shop.price.drink2;
-					break;
-				default:
-					throw new ArgumentError("One product must be selected");
-					break;
+				if (productName == product)
+				{
+					return shop.price[product];
+				}
 			}
-			return 0;
+
+			throw new ArgumentError("One available product price must be selected");
 		}
 
 		/**
@@ -301,14 +291,19 @@ package sketchproject.modules
 		 * @param product selected
 		 * @return price average
 		 */
-		public function calaculatePriceAvarage(shop:Array, product:String):Number
+		public function calaculatePriceAvarage(shops:Array, product:String):Number
 		{
-			var total:Number = 0;
-			for (var i:int = 0; i < shop.length; i++)
+			if (shops == null || shops.length == 0)
 			{
-				total += calculateProductPrice(shop[i] as Shop, product);
+				throw new ArgumentError("shop data should at least 1 available");
 			}
-			return total / shop.length;
+
+			var total:Number = 0;
+			for (var i:int = 0; i < shops.length; i++)
+			{
+				total += calculateProductPrice(shops[i] as Shop, product);
+			}
+			return total / shops.length;
 		}
 
 		/**
@@ -321,7 +316,7 @@ package sketchproject.modules
 		 */
 		public function calculatePriceSensitivity(agent:Agent, pi:Number, pavei:Number):Number
 		{
-			return Math.pow(agent.buyingPower, ((pi - pavei) * -1)) + agent.priceSensitivity;
+			return Math.pow(-agent.buyingPower, (pi - pavei)) + agent.priceSensitivity;
 		}
 
 		/**
@@ -337,48 +332,20 @@ package sketchproject.modules
 		{
 			var total:Number = 0;
 			var j:int = 0;
-			switch (product)
+
+			for (var quality:String in shop.quality)
 			{
-				case Shop.PRODUCT_FOOD_1:
-					for (j = 0; j < shop.quality.food1.length; j++)
+				if (quality == product)
+				{
+					for (j = 0; j < shop.quality[product].length; j++)
 					{
-						total += shop.quality.food1[j] * agent.productQualityAssesment.food1[j];
+						total += shop.quality[product][j] * agent.productQualityAssesment[product][j];
 					}
-					return total / shop.quality.food1.length;
-					break;
-				case Shop.PRODUCT_FOOD_2:
-					for (j = 0; j < shop.quality.food2.length; j++)
-					{
-						total += shop.quality.food2[j] * agent.productQualityAssesment.food2[j];
-					}
-					return total / shop.quality.food2.length;
-					break;
-				case Shop.PRODUCT_FOOD_3:
-					for (j = 0; j < shop.quality.food3.length; j++)
-					{
-						total += shop.quality.food3[j] * agent.productQualityAssesment.food3[j];
-					}
-					return total / shop.quality.food3.length;
-					break;
-				case Shop.PRODUCT_DRINK_1:
-					for (j = 0; j < shop.quality.drink1.length; j++)
-					{
-						total += shop.quality.drink1[j] * agent.productQualityAssesment.drink1[j];
-					}
-					return total / shop.quality.drink1.length;
-					break;
-				case Shop.PRODUCT_DRINK_2:
-					for (j = 0; j < shop.quality.drink2.length; j++)
-					{
-						total += shop.quality.drink2[j] * agent.productQualityAssesment.drink2[j];
-					}
-					return total / shop.quality.drink2.length;
-					break;
-				default:
-					throw new ArgumentError("One product must be selected");
-					break;
+					return total / shop.quality[product].length;
+				}
 			}
-			return 0;
+
+			throw new ArgumentError("One available product quality must be selected");
 		}
 
 		/**
@@ -389,14 +356,19 @@ package sketchproject.modules
 		 * @param product that will be selected
 		 * @return quality average
 		 */
-		public function calculateQualityAverage(shop:Array, agent:Agent, product:String):Number
+		public function calculateQualityAverage(shops:Array, agent:Agent, product:String):Number
 		{
-			var total:Number = 0;
-			for (var i:int = 0; i < shop.length; i++)
+			if (shops == null || shops.length == 0)
 			{
-				total += calculateProductQuality(shop[i] as Shop, agent, product);
+				throw new ArgumentError("shop data should at least 1 available");
 			}
-			return total / shop.length;
+
+			var total:Number = 0;
+			for (var i:int = 0; i < shops.length; i++)
+			{
+				total += calculateProductQuality(shops[i] as Shop, agent, product);
+			}
+			return total / shops.length;
 		}
 
 		/**
@@ -425,21 +397,21 @@ package sketchproject.modules
 
 		/**
 		 * Calculate agent interest about advertisement.
-		 * 
+		 *
 		 * @param shop current shop
 		 * @param agent that evaluate the advertisement
 		 * @return advertisement intensivity
 		 */
 		public function advertising(shop:Shop, agent:Agent):Number
 		{
-			var total:Number = 0;			
-			total += shop.advertising.tv * agent.adverContactRate.tv;
-			total += shop.advertising.radio * agent.adverContactRate.radio;
-			total += shop.advertising.newspaper * agent.adverContactRate.newspaper;
-			total += shop.advertising.internet * agent.adverContactRate.internet;
-			total += shop.advertising.event * agent.adverContactRate.event;
-			total += shop.advertising.billboard * agent.adverContactRate.billboard;
-			return total / 6;
+			var total:Number = 0;
+			var totalAdver:uint = 0;
+			for (var advertisement:String in shop.advertising)
+			{
+				total += shop.advertising[advertisement] * agent.adverContactRate[advertisement];
+				totalAdver++;
+			}
+			return total / totalAdver;
 		}
 
 
@@ -461,9 +433,9 @@ package sketchproject.modules
 		 * @param shop current evaluation
 		 * @return influence
 		 */
-		public function influence(agent:Agent, shop:int):Number
+		public function influence(shop:Shop, agent:Agent):Number
 		{
-			switch (shop)
+			switch (shop.shopId)
 			{
 				case 1:
 					return agent.shopInfluence.shopPlayer.recommendation - agent.shopInfluence.shopPlayer.disqualification;
@@ -474,8 +446,9 @@ package sketchproject.modules
 				case 3:
 					return agent.shopInfluence.shopCompetitor2.recommendation - agent.shopInfluence.shopCompetitor2.disqualification;
 					break;
+				default:
+					return 0;
 			}
-			return 0;
 		}
 
 		/**
@@ -484,20 +457,25 @@ package sketchproject.modules
 		 * @param data motivation collection
 		 * @return max value
 		 */
-		public function maxM(data:Array):int
+		public function calculateM(motivationData:Array):int
 		{
-			Mmax = data[0];
-			Mmin = data[0];
-
-			for (var i:int = 0; i < data.length; i++)
+			if (motivationData == null || motivationData.length == 0)
 			{
-				if (data[i] > Mmax)
+				throw new ArgumentError("motivation data cannot be null or empty");
+			}
+
+			Mmax = motivationData[0];
+			Mmin = motivationData[0];
+
+			for (var i:int = 0; i < motivationData.length; i++)
+			{
+				if (motivationData[i] > Mmax)
 				{
-					Mmax = data[i];
+					Mmax = motivationData[i];
 				}
-				if (data[i] < Mmin)
+				if (motivationData[i] < Mmin)
 				{
-					Mmin = data[i];
+					Mmin = motivationData[i];
 				}
 			}
 

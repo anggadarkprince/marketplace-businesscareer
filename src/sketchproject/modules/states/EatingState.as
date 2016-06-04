@@ -5,8 +5,11 @@ package sketchproject.modules.states
 	import sketchproject.interfaces.IState;
 	import sketchproject.managers.WorldManager;
 	import sketchproject.modules.Agent;
+	import sketchproject.modules.DecisionFunction;
+	import sketchproject.modules.MotivationFunction;
 	import sketchproject.modules.PathFinder;
 	import sketchproject.modules.Shop;
+	import sketchproject.utilities.GameUtils;
 	import sketchproject.utilities.IsoHelper;
 
 	/**
@@ -21,8 +24,9 @@ package sketchproject.modules.states
 		private var updated:Boolean;
 		private var shopName:String;
 		private var shopCoordinate:Point;
-		private var isBought:Boolean;
 		private var shop:Shop;
+		private var motivationFunction:MotivationFunction;
+		private var decisionFunction:DecisionFunction;
 
 		/**
 		 * Default constructor of EatingState.
@@ -33,6 +37,8 @@ package sketchproject.modules.states
 		{
 			this.agent = agent;
 			this.name = "eating";
+			motivationFunction = new MotivationFunction();
+			decisionFunction = new DecisionFunction();
 		}
 
 		/**
@@ -46,29 +52,41 @@ package sketchproject.modules.states
 
 			shopCoordinate = new Point();
 
-			isBought = false;
+			var product:String = shop.productList[GameUtils.randomFor(shop.productList.length) - 1];
 
-			// do the math
-
-			// optimistic agent
-
-			// pesimistic agent
-
-			// neutral agent.
-
-			if (agent.choice == 1)
+			if (agent.role == Agent.ROLE_FREEMAN)
 			{
-				shop = WorldManager.instance.listShop[0] as Shop;
+				shop = decisionFunction.accidentalSelection(WorldManager.instance.listShop, agent);
 			}
-			else if (agent.choice == 2)
+			else
 			{
+				// do the math
+				var decisionMaking:uint = GameUtils.randomFor(100);
+				if (decisionMaking < 80)
+				{
+					// optimistic agent					
+					trace("        |-- [state:eating] method optimistic");
+					shop = motivationFunction.motivation(WorldManager.instance.listShop, agent, product);
+				}
+				else if (decisionMaking < 90)
+				{
+					// pesimistic agent
+					trace("        |-- [state:eating] method pesimistic");
+					shop = decisionFunction.influenceSelection(WorldManager.instance.listShop, agent);
+				}
+				else
+				{
+					// neutral agent					
+					trace("        |-- [state:eating] method neutral");
+					shop = decisionFunction.accidentalSelection(WorldManager.instance.listShop, agent);
+				}
+			}
 
-				shop = WorldManager.instance.listShop[1] as Shop;
-			}
-			else if (agent.choice == 3)
-			{
-				shop = WorldManager.instance.listShop[2] as Shop;
-			}
+			agent.choice = shop.shopId;
+			agent.choiceReaction(agent.choice);
+
+			shop.transactionTotal += 1;
+			shop.grossProfit += motivationFunction.calculateProductPrice(shop, product);
 
 			shopCoordinate = shop.districtCoordinate;
 			shopName = shop.shopName;
@@ -79,6 +97,9 @@ package sketchproject.modules.states
 			agent.path.unshift(shopCoordinate);
 			agent.isMoving = true;
 
+			trace("        |-- [state:eating] choice shop id", shop.shopId, "name", shop.shopName);
+			trace("        |-- [state:eating] product", product, "price", motivationFunction.calculateProductPrice(shop, product));
+			trace("        |-- [state:eating] transaction #", shop.transactionTotal, "profit", shop.grossProfit);
 			trace("        |-- [state:eating] destination", shopCoordinate);
 			trace("        |-- [state:eating] path", agent.path);
 		}
@@ -105,10 +126,10 @@ package sketchproject.modules.states
 				isometric.x = isometric.x + 50;
 
 				WorldManager.instance.map.spawnCoin(isometric);
-				agent.alpha = 0.3;
-				isBought = true;
 
 				trace("        |-- [state:eating] agent id", agent.agentId, "arrived in", shopName);
+
+				agent.action.popState();
 			}
 		}
 
@@ -117,11 +138,9 @@ package sketchproject.modules.states
 		 */
 		public function destroy():void
 		{
-			trace("  |-- [state:wandering] agent id", agent.agentId, ": onExit");
+			trace("  |-- [state:eating] agent id", agent.agentId, ": onExit");
 
-			agent.alpha = 1;
 			updated = false;
-			isBought = false;
 		}
 
 		/**

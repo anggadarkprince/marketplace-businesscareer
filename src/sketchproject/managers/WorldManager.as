@@ -118,6 +118,19 @@ package sketchproject.managers
 						agent.action.pushState(agent.influenceAction);
 					}
 
+					if (consumptionTime(agent, listShop))
+					{
+						if (agent.action.getCurrentState() == agent.idleAction)
+						{
+							agent.action.popState();
+						}
+						if (agent.action.getCurrentState() == agent.influenceAction)
+						{
+							agent.action.popState();
+						}
+						agent.action.pushState(agent.eatingAction);
+					}
+
 					/**
 					 * for all agent except freeman will return home at 22
 					 */
@@ -132,6 +145,29 @@ package sketchproject.managers
 					delay = 0;
 				}
 			}
+		}
+
+		/**
+		 * Check if time to eat.
+		 *
+		 * @param agent that need to buy something
+		 * @param shopList collection of shop
+		 * @return
+		 */
+		public function consumptionTime(agent:Agent, shopList:Array):Boolean
+		{
+			if (!agent.isEating && agent.consumption > 0)
+			{
+				if (agent.consumptionTime[agent.consumptionTime.length - agent.consumption].hour == map.hour)
+				{
+					if (agent.consumptionTime[agent.consumptionTime.length - agent.consumption].minute >= map.minute)
+					{
+						agent.isEating = true;
+						return true;
+					}
+				}
+			}
+			return false;
 		}
 
 		/**
@@ -684,7 +720,7 @@ package sketchproject.managers
 		 */
 		public function eventEvaluation(agent:Agent):Boolean
 		{
-			if (map.isEventExist && !agent.hasAttendingEventChecked)
+			if (map.isEventExist && !agent.hasAttendingEventChecked && agent.role != Agent.ROLE_FREEMAN)
 			{
 				var hasEvaluated:Boolean = false;
 				for (var i:int = 0; i < Data.event.length; i++)
@@ -809,6 +845,10 @@ package sketchproject.managers
 							{
 								trace("          |-- agent id", agent.agentId, " agent leaves event", Data.event[i][1]);
 
+								if (agent.action.getCurrentState() == agent.idleAction)
+								{
+									agent.action.checkState(agent.idleAction, true);
+								}
 								agent.action.checkState(agent.visitingAction, true);
 								agent.isGoingEvent = false;
 								agent.eventId = 0;
@@ -849,9 +889,9 @@ package sketchproject.managers
 								// influence probability
 								if (GameUtils.probability(agent.actionWill * 0.1))
 								{
-									trace("          |-- agent id", agent.agentId, "has motivation giving influence");
+									trace("          |-- agent id", agent.agentId, "has motivation to giving influence");
 									giveInfluence(agent, listAgent[j]);
-									
+
 									return true;
 								}
 								else
@@ -876,27 +916,38 @@ package sketchproject.managers
 		 */
 		public function giveInfluence(agent:Agent, target:Agent):void
 		{
-			if (agent.choice != 0 && agent.unselected != 0)
+			if (agent.choice != 0 || agent.unselected != 0)
 			{
 				var recommendation:int;
 				var disqualification:int;
+
 				switch (agent.choice)
 				{
 					case 1:
 						recommendation = int(target.shopInfluence.shopPlayer.recommendation);
 						target.shopInfluence.shopPlayer.recommendation = recommendation + 1;
-						disqualification = int(target.shopInfluence.shopPlayer.disqualification);
-						target.shopInfluence.shopPlayer.disqualification = disqualification + 1;
 						break;
 					case 2:
 						recommendation = int(target.shopInfluence.shopCompetitor1.recommendation);
 						target.shopInfluence.shopCompetitor1.recommendation = recommendation + 1;
-						disqualification = int(target.shopInfluence.shopCompetitor1.disqualification);
-						target.shopInfluence.shopCompetitor1.disqualification = disqualification + 1;
 						break;
 					case 3:
 						recommendation = int(target.shopInfluence.shopCompetitor2.recommendation);
 						target.shopInfluence.shopCompetitor2.recommendation = recommendation + 1;
+						break;
+				}
+
+				switch (agent.unselected)
+				{
+					case 1:
+						disqualification = int(target.shopInfluence.shopPlayer.disqualification);
+						target.shopInfluence.shopPlayer.disqualification = disqualification + 1;
+						break;
+					case 2:
+						disqualification = int(target.shopInfluence.shopCompetitor1.disqualification);
+						target.shopInfluence.shopCompetitor1.disqualification = disqualification + 1;
+						break;
+					case 3:
 						disqualification = int(target.shopInfluence.shopCompetitor2.disqualification);
 						target.shopInfluence.shopCompetitor2.disqualification = disqualification + 1;
 						break;
