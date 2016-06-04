@@ -473,25 +473,25 @@ package sketchproject.modules
 				switch (agent.district)
 				{
 					case Agent.DISTRICT_VILLAGE:
-						priceSensitivity = ((Math.random() * 50) + 20) * -1;
+						priceSensitivity = ((Math.random() * 20) + 20) * -1;
 						qualitySensitivity = (Math.random() * 20) + 20;
 						agent.acceptance = variation * 0.6;
 						agent.rejection = 1 - agent.acceptance;
 						break;
 					case Agent.DISTRICT_MURBAWISMA:
-						priceSensitivity = ((Math.random() * 50) + 30) * -1;
+						priceSensitivity = ((Math.random() * 20) + 40) * -1;
 						qualitySensitivity = (Math.random() * 20) + 40;
 						agent.acceptance = variation * 0.4;
 						agent.rejection = 1 - agent.acceptance;
 						break;
 					case Agent.DISTRICT_MADYAWISMA:
-						priceSensitivity = ((Math.random() * 50) + 40) * -1;
+						priceSensitivity = ((Math.random() * 20) + 60) * -1;
 						qualitySensitivity = (Math.random() * 20) + 60;
 						agent.acceptance = variation * 0.8;
 						agent.rejection = 1 - agent.acceptance;
 						break;
 					case Agent.DISTRICT_ADIWISMA:
-						priceSensitivity = ((Math.random() * 50) + 50) * -1;
+						priceSensitivity = ((Math.random() * 20) + 80) * -1;
 						qualitySensitivity = (Math.random() * 20) + 80;
 						agent.acceptance = variation * 1;
 						agent.rejection = 1 - agent.acceptance;
@@ -499,8 +499,11 @@ package sketchproject.modules
 				}
 
 				// assign trait into agent
+				agent.income = Math.random() * 75 + 600;
 				agent.priceSensitivity = priceSensitivity;
 				agent.qualitySensitivity = qualitySensitivity;
+				agent.susceptibility = Math.random() * 20 + 55;
+				agent.followerTendency = Math.random() * 20 + 55;
 
 				// add some stats
 				agent.stress = GameUtils.randomFor(3);
@@ -532,7 +535,6 @@ package sketchproject.modules
 				{
 					var timegen:int = GameUtils.randomFor(part) - 1; // worst case scenario at least delay 1 hour to the next consumption
 					agent.consumptionTime.push({"hour": Math.round(part * j + timegen) + 6, "minute": GameUtils.randomFor(6) * 10});
-						// trace("agent",agent[i].agentId, agent[i].consumptionTime[j].hour,agent[i].consumptionTime[j].minute);
 				}
 			}
 		}
@@ -633,6 +635,8 @@ package sketchproject.modules
 				freeman.consumption = 1;
 				freeman.choice = GameUtils.randomFor(3);
 				freeman.unselected = GameUtils.randomFor(3);
+				freeman.consumption = 2;
+				freeman.consumptionTime = [{"hour": GameUtils.randomFor(5) + 6, "minute": GameUtils.randomFor(6) * 10}, {"hour": GameUtils.randomFor(5) + 12, "minute": GameUtils.randomFor(6) * 10}];
 				freeman.action.pushState(freeman.wanderingAction); // default state is wandering
 				agentList.push(freeman);
 				map.levelMap.addChild(freeman);

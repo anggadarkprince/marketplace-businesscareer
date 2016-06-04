@@ -261,11 +261,6 @@ package sketchproject.modules
 			agent.choice = shopMax.shopId;
 			agent.unselected = shopMin.shopId;
 
-			agent.choiceReaction(agent.choice);
-
-			shopMax.transactionTotal += 1;
-			shopMax.grossProfit += calculateProductPrice;
-
 			return shopMax;
 		}
 
