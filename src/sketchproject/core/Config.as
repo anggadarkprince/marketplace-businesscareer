@@ -1,6 +1,10 @@
 package sketchproject.core
 {
-
+	/**
+	 * Global game config.
+	 * 
+	 * @author Angga
+	 */
 	public class Config
 	{
 		/** settings **/

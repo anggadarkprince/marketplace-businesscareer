@@ -1,7 +1,7 @@
 package sketchproject.modules
 {
 	import flash.geom.Point;
-
+	
 	import sketchproject.core.Config;
 	import sketchproject.core.Data;
 	import sketchproject.objects.dialog.MarketDialog;
@@ -159,6 +159,11 @@ package sketchproject.modules
 
 			// attempt to fetch middle of weather value, if generate setting is 6 then try to produce 3-8
 			var forecast:int = Math.ceil((Math.random() * weatherRange)) + range; // weather
+			if(weatherRange > 5){
+				if(GameUtils.probability(0.1)){
+					forecast = GameUtils.randomFor(3);
+				}
+			}
 			var tempratureMin:int = int(Config.weather[forecast - 1][2]); // index 2 is min temp
 			var tempratureMax:int = int(Config.weather[forecast - 1][3]); // index 3 is min max
 			var temprature:int = Math.ceil(Math.random() * (tempratureMax - tempratureMin)) + tempratureMin;
@@ -615,7 +620,7 @@ package sketchproject.modules
 		public function generateFreeman(agentList:Array, population:int, map:Map):void
 		{
 			// generate 20% of total population for freeman
-			var generate:int = Math.round(20 / 100 * population);
+			var generate:int = Math.round(10 / 100 * population);
 			var freeman:Agent;
 			var i:int = agentList.length;
 			var limit:int = agentList.length + generate;

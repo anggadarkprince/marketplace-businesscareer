@@ -72,6 +72,7 @@ package sketchproject.modules.states
 			
 			updated = false;
 			agent.perceptReaction("none");
+			agent.isInfluencing = false;
 		}
 		
 		/**

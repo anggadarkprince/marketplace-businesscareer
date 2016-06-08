@@ -9,8 +9,8 @@ package sketchproject.modules
 	public class MotivationFunction
 	{
 		private var M:Number;
-		private var Mmax:int;
-		private var Mmin:int;
+		private var Mmax:Number;
+		private var Mmin:Number;
 		private var PS:Number;
 		private var P:Number;
 		private var QS:Number;
@@ -21,6 +21,8 @@ package sketchproject.modules
 		private var INFL:Number;
 
 		private var MList:Array;
+		private var indexMax:int;
+		private var indexMin:int;
 
 		private var shopList:Array;
 		private var agent:Agent;
@@ -251,16 +253,13 @@ package sketchproject.modules
 
 			// calculate max and min motivation of shops selection
 			Mmax = calculateM(MList);
-
-			var indexMax:int = MList.indexOf(Mmax);
-			var indexMin:int = MList.indexOf(Mmin);
-
+			
 			var shopMax:Shop = shops[indexMax];
 			var shopMin:Shop = shops[indexMin];
-
+			
 			agent.choice = shopMax.shopId;
 			agent.unselected = shopMin.shopId;
-
+			
 			return shopMax;
 		}
 
@@ -472,12 +471,15 @@ package sketchproject.modules
 				if (motivationData[i] > Mmax)
 				{
 					Mmax = motivationData[i];
+					indexMax = i;
 				}
 				if (motivationData[i] < Mmin)
 				{
 					Mmin = motivationData[i];
+					indexMin = i;
 				}
 			}
+			// trace("motivation data",motivationData, "max",Mmax);
 
 			return Mmax;
 		}

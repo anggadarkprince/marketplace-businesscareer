@@ -61,7 +61,7 @@ package sketchproject.modules
 		{
 			if (getCurrentState() != state)
 			{
-				if (getCurrentState().toString() == "sketchproject.modules.states.EatingState")
+				if (getCurrentState() != null && getCurrentState().toString() == "sketchproject.modules.states.EatingState")
 				{
 					stackState.splice(stackState.length - 1, 0, state);
 				}

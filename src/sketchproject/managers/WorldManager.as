@@ -46,7 +46,7 @@ package sketchproject.managers
 
 			agentGenerator = new AgentGenerator();
 
-			if (false)
+			if (isSimulation)
 			{
 				agentGenerator.generateAgent(listAgent, listShop, map);
 			}
@@ -115,11 +115,18 @@ package sketchproject.managers
 					 */
 					if (influenceEvaluation(agent, listAgent))
 					{
-						agent.action.pushState(agent.influenceAction);
+						if(agent.action.getCurrentState() != agent.influenceAction){
+							agent.isInfluencing = true;
+							agent.action.pushState(agent.influenceAction);
+						}						
 					}
 
+					/**
+					 * check if agent needs to eat something
+					 */
 					if (consumptionTime(agent, listShop))
 					{
+						// if agent is working something or influencing pop last state
 						if (agent.action.getCurrentState() == agent.idleAction)
 						{
 							agent.action.popState();
@@ -163,6 +170,7 @@ package sketchproject.managers
 					if (agent.consumptionTime[agent.consumptionTime.length - agent.consumption].minute >= map.minute)
 					{
 						agent.isEating = true;
+						agent.consumption--;
 						return true;
 					}
 				}
@@ -870,7 +878,7 @@ package sketchproject.managers
 		 */
 		public function influenceEvaluation(agent:Agent, listAgent:Array):Boolean
 		{
-			if (agent.action.getCurrentState() != agent.idleAction && agent.action.getCurrentState() != agent.influenceAction)
+			if (agent.action.getCurrentState() != agent.idleAction && agent.action.getCurrentState() != agent.influenceAction && !agent.isInfluencing)
 			{
 				if (GameUtils.randomFor(100) == 10)
 				{

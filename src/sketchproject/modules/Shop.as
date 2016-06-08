@@ -17,7 +17,7 @@ package sketchproject.modules
 		public static const PRODUCT_DRINK_1:String = "drink1";
 		public static const PRODUCT_DRINK_2:String = "drink2";
 
-		public var productList:Array = new Array(PRODUCT_FOOD_1, PRODUCT_FOOD_2, PRODUCT_FOOD_3, PRODUCT_DRINK_1, PRODUCT_DRINK_2);
+		public static var productList:Array = new Array(PRODUCT_FOOD_1, PRODUCT_FOOD_2, PRODUCT_FOOD_3, PRODUCT_DRINK_1, PRODUCT_DRINK_2);
 
 		// shop
 		public var shopId:int;

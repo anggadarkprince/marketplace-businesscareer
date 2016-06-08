@@ -52,7 +52,7 @@ package sketchproject.modules.states
 
 			shopCoordinate = new Point();
 
-			var product:String = shop.productList[GameUtils.randomFor(shop.productList.length) - 1];
+			var product:String = Shop.productList[GameUtils.randomFor(Shop.productList.length) - 1];
 
 			if (agent.role == Agent.ROLE_FREEMAN)
 			{
@@ -83,10 +83,10 @@ package sketchproject.modules.states
 			}
 
 			agent.choice = shop.shopId;
-			agent.choiceReaction(agent.choice);
+			agent.choiceReaction(agent.choice);			
 
 			shop.transactionTotal += 1;
-			shop.grossProfit += motivationFunction.calculateProductPrice(shop, product);
+			shop.grossProfit += motivationFunction.calculateProductPrice(shop, product) * 1000;
 
 			shopCoordinate = shop.districtCoordinate;
 			shopName = shop.shopName;
@@ -96,6 +96,7 @@ package sketchproject.modules.states
 			agent.path = PathFinder.go(agent.coordinate.x, agent.coordinate.y, shopCoordinate.x, shopCoordinate.y, WorldManager.instance.map.levelData);
 			agent.path.unshift(shopCoordinate);
 			agent.isMoving = true;
+			agent.perceptReaction("need");
 
 			trace("        |-- [state:eating] choice shop id", shop.shopId, "name", shop.shopName);
 			trace("        |-- [state:eating] product", product, "price", motivationFunction.calculateProductPrice(shop, product));
@@ -125,11 +126,15 @@ package sketchproject.modules.states
 				var isometric:Point = IsoHelper.twoDToIso(cartesian);
 				isometric.x = isometric.x + 50;
 
+				agent.alpha = 0.3;
 				WorldManager.instance.map.spawnCoin(isometric);
+				
+				agent.perceptReaction("satisfaction");
 
 				trace("        |-- [state:eating] agent id", agent.agentId, "arrived in", shopName);
-
+				
 				agent.action.popState();
+				agent.action.logState();
 			}
 		}
 
@@ -141,6 +146,8 @@ package sketchproject.modules.states
 			trace("  |-- [state:eating] agent id", agent.agentId, ": onExit");
 
 			updated = false;
+			agent.isEating = false;
+			agent.alpha = 1;
 		}
 
 		/**
