@@ -70,7 +70,7 @@ package sketchproject.modules.states
 				}
 				else if (decisionMaking < 90)
 				{
-					// pesimistic agent
+					// pessimistic agent
 					trace("        |-- [state:eating] method pesimistic");
 					shop = decisionFunction.influenceSelection(WorldManager.instance.listShop, agent);
 				}

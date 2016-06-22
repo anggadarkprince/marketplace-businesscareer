@@ -162,7 +162,7 @@ package sketchproject.objects.world
 			particleContainer = new Sprite();
 			particleContainer.x = -levelBackground.width * 0.5;
 			addChild(particleContainer);
-
+			
 			var indexWeather:int = Data.weather.length - 1;
 			var weather:int = int(Data.weather[indexWeather][0]);
 			if (weather <= 3)

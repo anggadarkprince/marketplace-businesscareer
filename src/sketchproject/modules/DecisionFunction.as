@@ -9,6 +9,8 @@ package sketchproject.modules
 	 */
 	public class DecisionFunction
 	{
+		private var selectedShop:Shop;
+		
 		/**
 		 * Default controller of DecisionFunction
 		 */

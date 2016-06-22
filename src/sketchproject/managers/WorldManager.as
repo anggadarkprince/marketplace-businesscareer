@@ -309,7 +309,6 @@ package sketchproject.managers
 				 */
 				agent.isFree = true;
 				agent.freeTime = GameUtils.randomFor(6) + 5;
-				// holidayEvaluation(agent);
 
 				return false;
 			}
@@ -343,7 +342,6 @@ package sketchproject.managers
 				 */
 				agent.isFree = true;
 				agent.freeTime = GameUtils.randomFor(5) + 5;
-				// holidayEvaluation(agent);
 
 				return false;
 			}
@@ -380,7 +378,6 @@ package sketchproject.managers
 				 */
 				agent.isFree = true;
 				agent.freeTime = GameUtils.randomFor(4) + 5;
-				// holidayEvaluation(agent);
 
 				return false;
 			}
@@ -635,7 +632,7 @@ package sketchproject.managers
 				}
 				else
 				{
-					trace("                |-- [state:homeward] agent id", agent.agentId, "go to play by 70% probability");
+					trace("                |-- [state:homeward] agent id", agent.agentId, "go to home by 70% probability");
 					agent.action.pushState(agent.homewardAction);
 				}
 			}
