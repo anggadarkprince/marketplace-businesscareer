@@ -29,6 +29,9 @@ package sketchproject.managers
 		private var generateProbability:Number;
 		private var dx:Number;
 		private var dy:Number;
+		
+		public static var agentTraceId:int = 1;
+		public static var traceAll:Boolean = false;
 
 		/**
 		 * Default constructor of WorldManager.
@@ -46,7 +49,7 @@ package sketchproject.managers
 
 			agentGenerator = new AgentGenerator();
 
-			if (false)
+			if (isSimulation)
 			{
 				agentGenerator.generateAgent(listAgent, listShop, map);
 			}
@@ -115,11 +118,18 @@ package sketchproject.managers
 					 */
 					if (influenceEvaluation(agent, listAgent))
 					{
-						agent.action.pushState(agent.influenceAction);
+						if(agent.action.getCurrentState() != agent.influenceAction){
+							agent.isInfluencing = true;
+							agent.action.pushState(agent.influenceAction);
+						}						
 					}
 
+					/**
+					 * check if agent needs to eat something
+					 */
 					if (consumptionTime(agent, listShop))
 					{
+						// if agent is working something or influencing pop last state
 						if (agent.action.getCurrentState() == agent.idleAction)
 						{
 							agent.action.popState();
@@ -163,6 +173,7 @@ package sketchproject.managers
 					if (agent.consumptionTime[agent.consumptionTime.length - agent.consumption].minute >= map.minute)
 					{
 						agent.isEating = true;
+						agent.consumption--;
 						return true;
 					}
 				}
@@ -216,7 +227,12 @@ package sketchproject.managers
 				 * for each variable let other rule function procced then return as value to check
 				 */
 
-				trace("- main task evaluation");
+				if(!traceAll && agent.agentId == agentTraceId){					
+					trace("- main task evaluation");
+				}
+				else if(traceAll){
+					trace("- main task evaluation");
+				}
 
 				/** agent check the day for evaluating next action */
 				day = checkMainTaskDay(agent);
@@ -266,7 +282,13 @@ package sketchproject.managers
 		 */
 		public function checkMainTaskDay(agent:Agent):Boolean
 		{
-			trace("  |-- day evaluation");
+			if(!traceAll && agent.agentId == agentTraceId){					
+				trace("  |-- day evaluation");
+			}
+			else if(traceAll){
+				trace("  |-- day evaluation");
+			}
+			
 
 			/**
 			 * ----student---------------------------------------
@@ -277,7 +299,12 @@ package sketchproject.managers
 
 			if ((DayCounter.isFreeday() || DayCounter.isHoliday()) && agent.role == Agent.ROLE_STUDENT)
 			{
-				trace("    |--", Agent.ROLE_STUDENT);
+				if(!traceAll && agent.agentId == agentTraceId){	
+					trace("    |--", Agent.ROLE_STUDENT);
+				}
+				else if(traceAll){
+					trace("    |--", Agent.ROLE_STUDENT);
+				}
 
 				/**
 				 * the game give 3% probability of 100%
@@ -285,11 +312,21 @@ package sketchproject.managers
 				 */
 				if (GameUtils.probability(0.03))
 				{
-					trace("      |-- agent id", agent.agentId, "keep going on holiday or freeday because 3% accidental probability");
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("      |-- agent id", agent.agentId, "keep going on holiday or freeday because 3% accidental probability");
+					}
+					else if(traceAll){
+						trace("      |-- agent id", agent.agentId, "keep going on holiday or freeday because 3% accidental probability");
+					}
 					return true;
 				}
 
-				trace("      |-- agent id", agent.agentId, "doesn't go because today is freeday or holiday");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("      |-- agent id", agent.agentId, "doesn't go because today is freeday or holiday");
+				}
+				else if(traceAll){
+					trace("      |-- agent id", agent.agentId, "doesn't go because today is freeday or holiday");
+				}
 
 				/**
 				 * if the probability doesn't meet accidental so like normal condition
@@ -301,7 +338,6 @@ package sketchproject.managers
 				 */
 				agent.isFree = true;
 				agent.freeTime = GameUtils.randomFor(6) + 5;
-				// holidayEvaluation(agent);
 
 				return false;
 			}
@@ -313,7 +349,12 @@ package sketchproject.managers
 			 */
 			else if ((DayCounter.isFreeday() || DayCounter.isWeekend()) && agent.role == Agent.ROLE_WORKER)
 			{
-				trace("    |--", Agent.ROLE_WORKER);
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("    |--", Agent.ROLE_WORKER);
+				}
+				else if(traceAll){
+					trace("    |--", Agent.ROLE_WORKER);
+				}
 
 				/**
 				 * game gives 1% probability of 100% to take accidental action
@@ -321,11 +362,21 @@ package sketchproject.managers
 				 */
 				if (GameUtils.probability(0.01))
 				{
-					trace("      |-- agent id", agent.agentId, "keep going on holiday or freeday because 1% accidental probability");
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("      |-- agent id", agent.agentId, "keep going on holiday or freeday because 1% accidental probability");
+					}
+					else if(traceAll){
+						trace("      |-- agent id", agent.agentId, "keep going on holiday or freeday because 1% accidental probability");
+					}
 					return true;
 				}
 
-				trace("      |-- agent id", agent.agentId, "doesn't go because today is weekend or freeday");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("      |-- agent id", agent.agentId, "doesn't go because today is weekend or freeday");
+				}
+				else if(traceAll){
+					trace("      |-- agent id", agent.agentId, "doesn't go because today is weekend or freeday");
+				}
 
 				/**
 				 * if the probability doesn't meet accidental so like a normal condition
@@ -335,7 +386,6 @@ package sketchproject.managers
 				 */
 				agent.isFree = true;
 				agent.freeTime = GameUtils.randomFor(5) + 5;
-				// holidayEvaluation(agent);
 
 				return false;
 			}
@@ -349,7 +399,12 @@ package sketchproject.managers
 			 */
 			else if ((DayCounter.isFreeday() || DayCounter.isWeekend()) && agent.role == Agent.ROLE_TRADER)
 			{
-				trace("    |--", Agent.ROLE_TRADER);
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("    |--", Agent.ROLE_TRADER);
+				}
+				else if(traceAll){
+					trace("    |--", Agent.ROLE_TRADER);
+				}
 
 				/**
 				 * the game give 50% probability of 100%
@@ -358,11 +413,21 @@ package sketchproject.managers
 				 */
 				if (GameUtils.probability(0.5))
 				{
-					trace("      |-- agent id", agent.agentId, "keep going on holiday because 50% probability");
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("      |-- agent id", agent.agentId, "keep going on holiday because 50% probability");
+					}
+					else if(traceAll){
+						trace("      |-- agent id", agent.agentId, "keep going on holiday because 50% probability");
+					}
 					return true;
 				}
 
-				trace("      |-- agent id", agent.agentId, "doesn't go because today is weekend or freeday");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("      |-- agent id", agent.agentId, "doesn't go because today is weekend or freeday");
+				}
+				else if(traceAll){
+					trace("      |-- agent id", agent.agentId, "doesn't go because today is weekend or freeday");
+				}
 
 				/**
 				 * if the probability doesn't meet so like a normal condition
@@ -372,7 +437,6 @@ package sketchproject.managers
 				 */
 				agent.isFree = true;
 				agent.freeTime = GameUtils.randomFor(4) + 5;
-				// holidayEvaluation(agent);
 
 				return false;
 			}
@@ -382,7 +446,12 @@ package sketchproject.managers
 			 * then today is beautiful :) so return true to tell agent ready to get work
 			 */
 
-			trace("    |-- agent id", agent.agentId, "keep going because it's normal day");
+			if(!traceAll && agent.agentId == agentTraceId){
+				trace("    |-- agent id", agent.agentId, "keep going because it's normal day");
+			}
+			else if(traceAll){
+				trace("    |-- agent id", agent.agentId, "keep going because it's normal day");
+			}
 
 			return true;
 		}
@@ -397,7 +466,12 @@ package sketchproject.managers
 		 */
 		public function checkWeatherEffect(agent:Agent):Boolean
 		{
-			trace("  |-- weather evaluation");
+			if(!traceAll && agent.agentId == agentTraceId){
+				trace("  |-- weather evaluation");
+			}
+			else if(traceAll){
+				trace("  |-- weather evaluation");
+			}
 
 			/**
 			 * get weather probability weight from weather data
@@ -435,7 +509,12 @@ package sketchproject.managers
 
 			if (GameUtils.probability(generateProbability))
 			{
-				trace("    |-- weather passed, weather prob.", Data.weather[0][5] + "(" + Data.weather[0][2] + ")", "action will", generateProbability);
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("    |-- weather passed, weather prob.", Data.weather[0][5] + "(" + Data.weather[0][2] + ")", "action will", generateProbability);
+				}
+				else if(traceAll){
+					trace("    |-- weather passed, weather prob.", Data.weather[0][5] + "(" + Data.weather[0][2] + ")", "action will", generateProbability);
+				}
 
 				/**
 				 * but wait, it is not done yet, let's say you have spirit to through the day
@@ -444,7 +523,12 @@ package sketchproject.managers
 				 */
 				if (GameUtils.probability(0.01))
 				{
-					trace("      |-- agent id", agent.agentId, "doesn't go because weather accidental by 1%");
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("      |-- agent id", agent.agentId, "doesn't go because weather accidental by 1%");
+					}
+					else if(traceAll){
+						trace("      |-- agent id", agent.agentId, "doesn't go because weather accidental by 1%");
+					}
 					return false;
 				}
 
@@ -452,7 +536,12 @@ package sketchproject.managers
 				 * if weather accidental probability doesn't meet the condition then return true
 				 */
 
-				trace("      |-- agent id", agent.agentId, "keep going because weather determinant reachable");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("      |-- agent id", agent.agentId, "keep going because weather determinant reachable");
+				}
+				else if(traceAll){
+					trace("      |-- agent id", agent.agentId, "keep going because weather determinant reachable");
+				}
 
 				return true;
 			}
@@ -462,7 +551,12 @@ package sketchproject.managers
 			 */
 			else
 			{
-				trace("    |-- weather doesn't passed, weather prob.", Data.weather[0][2], "action will", generateProbability);
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("    |-- weather doesn't passed, weather prob.", Data.weather[0][2], "action will", generateProbability);
+				}
+				else if(traceAll){
+					trace("    |-- weather doesn't passed, weather prob.", Data.weather[0][2], "action will", generateProbability);
+				}
 
 				/**
 				 * if weather probability and actionWill doesn't meet the condition then code bellow will be executed
@@ -472,7 +566,12 @@ package sketchproject.managers
 				 */
 				if (GameUtils.probability(0.01))
 				{
-					trace("      |-- agent id", agent.agentId, "keep going because weather accidental by 1%");
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("      |-- agent id", agent.agentId, "keep going because weather accidental by 1%");
+					}
+					else if(traceAll){
+						trace("      |-- agent id", agent.agentId, "keep going because weather accidental by 1%");
+					}
 					return true;
 				}
 
@@ -480,7 +579,12 @@ package sketchproject.managers
 				 * if weather accidental probability doesn't meet then return false
 				 */
 
-				trace("      |-- agent id", agent.agentId, "doesn't go because weather determinant unreachable");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("      |-- agent id", agent.agentId, "doesn't go because weather determinant unreachable");
+				}
+				else if(traceAll){
+					trace("      |-- agent id", agent.agentId, "doesn't go because weather determinant unreachable");
+				}
 
 				return false;
 			}
@@ -500,7 +604,12 @@ package sketchproject.managers
 			//----student---------------------------------------
 			if (hour == 6 && minute == GameUtils.randomFor(60) && agent.role == Agent.ROLE_STUDENT && !agent.action.checkState(agent.studyingAction))
 			{
-				trace("        |-- agent id", agent.agentId, "start studying at school center");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("        |-- agent id", agent.agentId, "start studying at school center");
+				}
+				else if(traceAll){
+					trace("        |-- agent id", agent.agentId, "start studying at school center");
+				}
 				agent.action.checkState(agent.idleAction, true);
 				agent.action.pushState(agent.studyingAction);
 				return true;
@@ -508,7 +617,12 @@ package sketchproject.managers
 			//----worker----------------------------------------
 			else if (hour == 7 && minute == GameUtils.randomFor(60) && agent.role == Agent.ROLE_WORKER && !agent.action.checkState(agent.workingAction))
 			{
-				trace("        |-- agent id", agent.agentId, "start working at factory district");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("        |-- agent id", agent.agentId, "start working at factory district");
+				}
+				else if(traceAll){
+					trace("        |-- agent id", agent.agentId, "start working at factory district");
+				}
 				agent.action.checkState(agent.idleAction, true);
 				agent.action.pushState(agent.workingAction);
 				return true;
@@ -516,7 +630,12 @@ package sketchproject.managers
 			//----trader----------------------------------------
 			else if (hour == 8 && minute == GameUtils.randomFor(60) && agent.role == Agent.ROLE_TRADER && !agent.action.checkState(agent.tradingAction))
 			{
-				trace("        |-- agent id", agent.agentId, "start trading at business center district");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("        |-- agent id", agent.agentId, "start trading at business center district");
+				}
+				else if(traceAll){
+					trace("        |-- agent id", agent.agentId, "start trading at business center district");
+				}
 				agent.action.checkState(agent.idleAction, true);
 				agent.action.pushState(agent.tradingAction);
 				return true;
@@ -541,7 +660,12 @@ package sketchproject.managers
 				//----student---------------------------------------
 				if (hour == 13 && minute == GameUtils.randomFor(60) && agent.role == Agent.ROLE_STUDENT)
 				{
-					trace("          |-- agent id ", agent.agentId, "completing main task as", Agent.ROLE_STUDENT);
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("          |-- agent id ", agent.agentId, "completing main task as", Agent.ROLE_STUDENT);
+					}
+					else if(traceAll){
+						trace("          |-- agent id ", agent.agentId, "completing main task as", Agent.ROLE_STUDENT);
+					}
 					agent.action.checkState(agent.idleAction, true);
 					agent.action.checkState(agent.studyingAction, true);
 					postMainTaskEvaluation(agent);
@@ -550,7 +674,12 @@ package sketchproject.managers
 				//----worker---------------------------------------
 				else if (hour == 15 && minute == GameUtils.randomFor(60) && agent.role == Agent.ROLE_WORKER)
 				{
-					trace("          |-- agent id ", agent.agentId, "completing main task as", Agent.ROLE_WORKER);
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("          |-- agent id ", agent.agentId, "completing main task as", Agent.ROLE_WORKER);
+					}
+					else if(traceAll){
+						trace("          |-- agent id ", agent.agentId, "completing main task as", Agent.ROLE_WORKER);
+					}
 					agent.action.checkState(agent.idleAction, true);
 					agent.action.checkState(agent.workingAction, true);
 					postMainTaskEvaluation(agent);
@@ -559,7 +688,12 @@ package sketchproject.managers
 				//----trader---------------------------------------
 				else if (hour == 17 && minute == GameUtils.randomFor(60) && agent.role == Agent.ROLE_TRADER)
 				{
-					trace("          |-- agent id ", agent.agentId, "completing main task as", Agent.ROLE_TRADER);
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("          |-- agent id ", agent.agentId, "completing main task as", Agent.ROLE_TRADER);
+					}
+					else if(traceAll){
+						trace("          |-- agent id ", agent.agentId, "completing main task as", Agent.ROLE_TRADER);
+					}
 					agent.action.checkState(agent.idleAction, true);
 					agent.action.checkState(agent.tradingAction, true);
 					postMainTaskEvaluation(agent);
@@ -583,7 +717,12 @@ package sketchproject.managers
 		 */
 		public function postMainTaskEvaluation(agent:Agent):void
 		{
-			trace("          - post main task evaluation");
+			if(!traceAll && agent.agentId == agentTraceId){
+				trace("          - post main task evaluation");
+			}
+			else if(traceAll){
+				trace("          - post main task evaluation");
+			}
 			sick = healthEvaluation(agent);
 			frustrated = stressEvaluation(agent);
 
@@ -592,12 +731,22 @@ package sketchproject.managers
 				agent.isSick = true;
 				if (GameUtils.probability(0.5))
 				{
-					trace("                |-- [state:homeward] agent id", agent.agentId, "go to home because agent is unwell by 50% probability");
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("                |-- [state:homeward] agent id", agent.agentId, "go to home because agent is unwell by 50% probability");
+					}
+					else if(traceAll){
+						trace("                |-- [state:homeward] agent id", agent.agentId, "go to home because agent is unwell by 50% probability");
+					}
 					agent.action.pushState(agent.homewardAction);
 				}
 				else
 				{
-					trace("                |-- [state:visiting] agent id", agent.agentId, "go to hospital because agent is unwell by 50% probability");
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("                |-- [state:visiting] agent id", agent.agentId, "go to hospital because agent is unwell by 50% probability");
+					}
+					else if(traceAll){
+						trace("                |-- [state:visiting] agent id", agent.agentId, "go to hospital because agent is unwell by 50% probability");
+					}
 					agent.targetDistrict = "Hospital";
 					agent.action.pushState(agent.visitingAction);
 				}
@@ -608,12 +757,22 @@ package sketchproject.managers
 				agent.isStress = true;
 				if (GameUtils.probability(0.3))
 				{
-					trace("                |-- [state:homeward] agent id", agent.agentId, "go to home because agent is frustrate by 30% probability");
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("                |-- [state:homeward] agent id", agent.agentId, "go to home because agent is frustrate by 30% probability");
+					}
+					else if(traceAll){
+						trace("                |-- [state:homeward] agent id", agent.agentId, "go to home because agent is frustrate by 30% probability");
+					}
 					agent.action.pushState(agent.homewardAction);
 				}
 				else
 				{
-					trace("                |-- [state:playing] agent id", agent.agentId, "go to play because agent is frustrate by 70% probability");
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("                |-- [state:playing] agent id", agent.agentId, "go to play because agent is frustrate by 70% probability");
+					}
+					else if(traceAll){
+						trace("                |-- [state:playing] agent id", agent.agentId, "go to play because agent is frustrate by 70% probability");
+					}
 					agent.action.pushState(agent.playingAction);
 				}
 			}
@@ -622,12 +781,22 @@ package sketchproject.managers
 			{
 				if (GameUtils.probability(0.3))
 				{
-					trace("                |-- [state:playing] agent id", agent.agentId, "go to play by 30% probability");
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("                |-- [state:playing] agent id", agent.agentId, "go to play by 30% probability");
+					}
+					else if(traceAll){
+						trace("                |-- [state:playing] agent id", agent.agentId, "go to play by 30% probability");
+					}
 					agent.action.pushState(agent.playingAction);
 				}
 				else
 				{
-					trace("                |-- [state:homeward] agent id", agent.agentId, "go to play by 70% probability");
+					if(!traceAll && agent.agentId == agentTraceId){
+						trace("                |-- [state:homeward] agent id", agent.agentId, "go to home by 70% probability");
+					}
+					else if(traceAll){
+						trace("                |-- [state:homeward] agent id", agent.agentId, "go to home by 70% probability");
+					}
 					agent.action.pushState(agent.homewardAction);
 				}
 			}
@@ -641,13 +810,29 @@ package sketchproject.managers
 		 */
 		public function stressEvaluation(agent:Agent):Boolean
 		{
-			trace("            |-- stress evaluation");
+			if(!traceAll && agent.agentId == agentTraceId){
+				trace("            |-- stress evaluation");
+			}
+			else if(traceAll){
+				trace("            |-- stress evaluation");
+			}
+			
 			if (agent.stress >= 8)
 			{
-				trace("              |-- agent id", agent.agentId, "is stress, current stress is ", agent.stress, "over than 7 (threshold)");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("              |-- agent id", agent.agentId, "is stress, current stress is ", agent.stress, "over than 7 (threshold)");
+				}
+				else if(traceAll){
+					trace("              |-- agent id", agent.agentId, "is stress, current stress is ", agent.stress, "over than 7 (threshold)");
+				}
 				return true;
 			}
-			trace("              |-- agent id", agent.agentId, "is not stress, current stress is ", agent.stress, "below 8 (threshold)");
+			if(!traceAll && agent.agentId == agentTraceId){
+				trace("              |-- agent id", agent.agentId, "is not stress, current stress is ", agent.stress, "below 8 (threshold)");
+			}
+			else if(traceAll){
+				trace("              |-- agent id", agent.agentId, "is not stress, current stress is ", agent.stress, "below 8 (threshold)");
+			}
 			return false;
 		}
 
@@ -659,13 +844,28 @@ package sketchproject.managers
 		 */
 		public function healthEvaluation(agent:Agent):Boolean
 		{
-			trace("            |-- health evaluation");
+			if(!traceAll && agent.agentId == agentTraceId){
+				trace("            |-- health evaluation");
+			}
+			else if(traceAll){
+				trace("            |-- health evaluation");
+			}
 			if (agent.health <= 2)
 			{
-				trace("              |-- agent id", agent.agentId, "is sick, current HP is ", agent.health, "below 3 (threshold)");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("              |-- agent id", agent.agentId, "is sick, current HP is ", agent.health, "below 3 (threshold)");
+				}
+				else if(traceAll){
+					trace("              |-- agent id", agent.agentId, "is sick, current HP is ", agent.health, "below 3 (threshold)");
+				}
 				return true;
 			}
-			trace("              |-- agent id", agent.agentId, "is not sick, current HP is", agent.health, "over than 2 (threshold)");
+			if(!traceAll && agent.agentId == agentTraceId){
+				trace("              |-- agent id", agent.agentId, "is not sick, current HP is", agent.health, "over than 2 (threshold)");
+			}
+			else if(traceAll){
+				trace("              |-- agent id", agent.agentId, "is not sick, current HP is", agent.health, "over than 2 (threshold)");
+			}
 			return false;
 		}
 
@@ -678,8 +878,14 @@ package sketchproject.managers
 		{
 			if (hour == agent.freeTime && agent.isFree)
 			{
-				trace("  - day off evaluation");
-				trace("    |-- agent id", agent.agentId, "has freetime at", agent.freeTime);
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("  - day off evaluation");
+					trace("    |-- agent id", agent.agentId, "has freetime at", agent.freeTime);
+				}
+				else if(traceAll){
+					trace("  - day off evaluation");
+					trace("    |-- agent id", agent.agentId, "has freetime at", agent.freeTime);
+				}
 				holidayEvaluation(agent);
 				agent.isFree = false;
 			}
@@ -692,23 +898,43 @@ package sketchproject.managers
 		 */
 		public function holidayEvaluation(agent:Agent):void
 		{
-			trace("      - holiday evaluation");
+			if(!traceAll && agent.agentId == agentTraceId){
+				trace("      - holiday evaluation");
+			}
+			else if(traceAll){
+				trace("      - holiday evaluation");
+			}
 
 			var holidayPlan:int = GameUtils.randomFor(100);
 			agent.action.checkState(agent.idleAction, true);
 			if (holidayPlan > 60)
 			{
-				trace("        |-- agent id", agent.agentId, "plan to vacation by 60% probability");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("        |-- agent id", agent.agentId, "plan to vacation by 60% probability");
+				}
+				else if(traceAll){
+					trace("        |-- agent id", agent.agentId, "plan to vacation by 60% probability");
+				}
 				agent.action.pushState(agent.vacationAction);
 			}
 			else if (holidayPlan > 40)
 			{
-				trace("        |-- agent id", agent.agentId, "plan to vacation by 20% probability");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("        |-- agent id", agent.agentId, "plan to vacation by 20% probability");
+				}
+				else if(traceAll){
+					trace("        |-- agent id", agent.agentId, "plan to vacation by 20% probability");
+				}
 				agent.action.pushState(agent.playingAction);
 			}
 			else
 			{
-				trace("        |-- agent id", agent.agentId, "plan to stay at home by 20% probability");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("        |-- agent id", agent.agentId, "plan to stay at home by 20% probability");
+				}
+				else if(traceAll){
+					trace("        |-- agent id", agent.agentId, "plan to stay at home by 20% probability");
+				}
 				agent.action.pushState(agent.homewardAction);
 			}
 		}
@@ -735,7 +961,12 @@ package sketchproject.managers
 					}
 					if (!hasEvaluated)
 					{
-						trace("      - event evaluation", Data.event[i][1]);
+						if(!traceAll && agent.agentId == agentTraceId){
+							trace("      - event evaluation", Data.event[i][1]);
+						}
+						else if(traceAll){
+							trace("      - event evaluation", Data.event[i][1]);
+						}
 
 						var isAttendingEvent:Boolean = false;
 
@@ -746,26 +977,56 @@ package sketchproject.managers
 
 						if (GameUtils.randomFor(30) < generateProbability)
 						{
-							trace("        |-- event criteria match");
+							if(!traceAll && agent.agentId == agentTraceId){
+								trace("        |-- event criteria match");
+							}
+							else if(traceAll){
+								trace("        |-- event criteria match");
+							}
 							if (GameUtils.probability(0.01))
 							{
-								trace("          |-- agent id", agent.agentId, "agent doesn't attend to event because 1% accidental probability");
+								if(!traceAll && agent.agentId == agentTraceId){
+									trace("          |-- agent id", agent.agentId, "agent doesn't attend to event because 1% accidental probability");
+								}
+								else if(traceAll){
+									trace("          |-- agent id", agent.agentId, "agent doesn't attend to event because 1% accidental probability");
+								}
 								isAttendingEvent = false;
 							}
 
-							trace("          |-- agent id", agent.agentId, "agent attend to event");
+							if(!traceAll && agent.agentId == agentTraceId){
+								trace("          |-- agent id", agent.agentId, "agent attend to event");
+							}
+							else if(traceAll){
+								trace("          |-- agent id", agent.agentId, "agent attend to event");
+							}
 							isAttendingEvent = true;
 						}
 						else
 						{
-							trace("        |-- event criteria doesn't match");
+							if(!traceAll && agent.agentId == agentTraceId){
+								trace("        |-- event criteria doesn't match");
+							}
+							else if(traceAll){
+								trace("        |-- event criteria doesn't match");
+							}
 							if (GameUtils.probability(0.01))
 							{
-								trace("          |-- agent id", agent.agentId, "agent attend to event because 1% accidental probability");
+								if(!traceAll && agent.agentId == agentTraceId){
+									trace("          |-- agent id", agent.agentId, "agent attend to event because 1% accidental probability");
+								}
+								else if(traceAll){
+									trace("          |-- agent id", agent.agentId, "agent attend to event because 1% accidental probability");
+								}
 								isAttendingEvent = true;
 							}
 
-							trace("          |-- agent id", agent.agentId, "agent doesn't attend to event");
+							if(!traceAll && agent.agentId == agentTraceId){
+								trace("          |-- agent id", agent.agentId, "agent doesn't attend to event");
+							}
+							else if(traceAll){
+								trace("          |-- agent id", agent.agentId, "agent doesn't attend to event");
+							}
 							isAttendingEvent = false;
 						}
 
@@ -807,7 +1068,12 @@ package sketchproject.managers
 							{
 								if (Boolean(agent.attendingEventList[j].eventAttending))
 								{
-									trace("            |-- agent id", agent.agentId, "now attending to event", agent.attendingEventList[j].eventName);
+									if(!traceAll && agent.agentId == agentTraceId){
+										trace("            |-- agent id", agent.agentId, "now attending to event", agent.attendingEventList[j].eventName);
+									}
+									else if(traceAll){
+										trace("            |-- agent id", agent.agentId, "now attending to event", agent.attendingEventList[j].eventName);
+									}
 									agent.eventId = Data.event[i][0];
 									agent.targetDistrict = Data.event[i][7];
 									agent.isGoingEvent = true;
@@ -843,7 +1109,12 @@ package sketchproject.managers
 						{
 							if (map.hour >= agent.attendingEventList[j].eventFinish)
 							{
-								trace("          |-- agent id", agent.agentId, " agent leaves event", Data.event[i][1]);
+								if(!traceAll && agent.agentId == agentTraceId){
+									trace("          |-- agent id", agent.agentId, " agent leaves event", Data.event[i][1]);
+								}
+								else if(traceAll){
+									trace("          |-- agent id", agent.agentId, " agent leaves event", Data.event[i][1]);
+								}
 
 								if (agent.action.getCurrentState() == agent.idleAction)
 								{
@@ -870,7 +1141,7 @@ package sketchproject.managers
 		 */
 		public function influenceEvaluation(agent:Agent, listAgent:Array):Boolean
 		{
-			if (agent.action.getCurrentState() != agent.idleAction && agent.action.getCurrentState() != agent.influenceAction)
+			if (agent.action.getCurrentState() != agent.idleAction && agent.action.getCurrentState() != agent.influenceAction && !agent.isInfluencing)
 			{
 				if (GameUtils.randomFor(100) == 10)
 				{
@@ -883,20 +1154,37 @@ package sketchproject.managers
 
 							if (GameUtils.getDistance(dx, dy) < 30)
 							{
-								trace("    - influence evaluation");
-								trace("      |-- try to influencing people by 5% probability");
-								trace("        |-- agent id", agent.agentId, "is close enough to influencing agent id", Agent(listAgent[j]).agentId);
+								if(!traceAll && agent.agentId == agentTraceId){
+									trace("    - influence evaluation");
+									trace("      |-- try to influencing people by 5% probability");
+									trace("        |-- agent id", agent.agentId, "is close enough to influencing agent id", Agent(listAgent[j]).agentId);
+								}
+								else if(traceAll){
+									trace("    - influence evaluation");
+									trace("      |-- try to influencing people by 5% probability");
+									trace("        |-- agent id", agent.agentId, "is close enough to influencing agent id", Agent(listAgent[j]).agentId);
+								}
 								// influence probability
 								if (GameUtils.probability(agent.actionWill * 0.1))
 								{
-									trace("          |-- agent id", agent.agentId, "has motivation to giving influence");
+									if(!traceAll && agent.agentId == agentTraceId){
+										trace("          |-- agent id", agent.agentId, "has motivation to giving influence");
+									}
+									else if(traceAll){
+										trace("          |-- agent id", agent.agentId, "has motivation to giving influence");
+									}
 									giveInfluence(agent, listAgent[j]);
 
 									return true;
 								}
 								else
 								{
-									trace("      |-- agent won't influence people");
+									if(!traceAll && agent.agentId == agentTraceId){
+										trace("      |-- agent won't influence people");
+									}
+									else if(traceAll){
+										trace("      |-- agent won't influence people");
+									}
 								}
 							}
 						}
@@ -952,14 +1240,27 @@ package sketchproject.managers
 						target.shopInfluence.shopCompetitor2.disqualification = disqualification + 1;
 						break;
 				}
-				trace("              |-- agent id", target.agentId, " as target : shop influence");
-				trace("                |-- shop 1 (player) recommendation", target.shopInfluence.shopPlayer.recommendation, "disqualification", target.shopInfluence.shopPlayer.disqualification);
-				trace("                |-- shop 2 (competitor 1) recommendation", target.shopInfluence.shopCompetitor1.recommendation, "disqualification", target.shopInfluence.shopCompetitor1.disqualification);
-				trace("                |-- shop 3 (competitor 2) recommendation", target.shopInfluence.shopCompetitor2.recommendation, "disqualification", target.shopInfluence.shopCompetitor2.disqualification);
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("              |-- agent id", target.agentId, " as target : shop influence");
+					trace("                |-- shop 1 (player) recommendation", target.shopInfluence.shopPlayer.recommendation, "disqualification", target.shopInfluence.shopPlayer.disqualification);
+					trace("                |-- shop 2 (competitor 1) recommendation", target.shopInfluence.shopCompetitor1.recommendation, "disqualification", target.shopInfluence.shopCompetitor1.disqualification);
+					trace("                |-- shop 3 (competitor 2) recommendation", target.shopInfluence.shopCompetitor2.recommendation, "disqualification", target.shopInfluence.shopCompetitor2.disqualification);
+				}
+				else if(traceAll){
+					trace("              |-- agent id", target.agentId, " as target : shop influence");
+					trace("                |-- shop 1 (player) recommendation", target.shopInfluence.shopPlayer.recommendation, "disqualification", target.shopInfluence.shopPlayer.disqualification);
+					trace("                |-- shop 2 (competitor 1) recommendation", target.shopInfluence.shopCompetitor1.recommendation, "disqualification", target.shopInfluence.shopCompetitor1.disqualification);
+					trace("                |-- shop 3 (competitor 2) recommendation", target.shopInfluence.shopCompetitor2.recommendation, "disqualification", target.shopInfluence.shopCompetitor2.disqualification);
+				}
 			}
 			else
 			{
-				trace("              |-- agent id", target.agentId, " has nothing to recomended");
+				if(!traceAll && agent.agentId == agentTraceId){
+					trace("              |-- agent id", target.agentId, " has nothing to recomended");
+				}
+				else if(traceAll){
+					trace("              |-- agent id", target.agentId, " has nothing to recomended");
+				}
 			}
 		}
 	}

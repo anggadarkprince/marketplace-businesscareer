@@ -46,13 +46,19 @@ package sketchproject.modules.states
 		 */
 		public function initialize():void
 		{
-			trace("      |-- [state:eating] agent id", agent.agentId, ": onEnter");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("      |-- [state:eating] agent id", agent.agentId, ": onEnter");
+			}
+			else if(WorldManager.traceAll){
+				trace("      |-- [state:eating] agent id", agent.agentId, ": onEnter");
+			}
+			
 
 			updated = false;
 
 			shopCoordinate = new Point();
 
-			var product:String = shop.productList[GameUtils.randomFor(shop.productList.length) - 1];
+			var product:String = Shop.productList[GameUtils.randomFor(Shop.productList.length) - 1];
 
 			if (agent.role == Agent.ROLE_FREEMAN)
 			{
@@ -64,29 +70,44 @@ package sketchproject.modules.states
 				var decisionMaking:uint = GameUtils.randomFor(100);
 				if (decisionMaking < 80)
 				{
-					// optimistic agent					
-					trace("        |-- [state:eating] method optimistic");
+					// optimistic agent	
+					if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+						trace("        |-- [state:eating] method optimistic");
+					}
+					else if(WorldManager.traceAll){
+						trace("        |-- [state:eating] method optimistic");
+					}
 					shop = motivationFunction.motivation(WorldManager.instance.listShop, agent, product);
 				}
 				else if (decisionMaking < 90)
 				{
-					// pesimistic agent
-					trace("        |-- [state:eating] method pesimistic");
+					// pessimistic agent
+					if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+						trace("        |-- [state:eating] method pesimistic");
+					}
+					else if(WorldManager.traceAll){
+						trace("        |-- [state:eating] method pesimistic");
+					}
 					shop = decisionFunction.influenceSelection(WorldManager.instance.listShop, agent);
 				}
 				else
 				{
-					// neutral agent					
-					trace("        |-- [state:eating] method neutral");
+					// neutral agent
+					if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+						trace("        |-- [state:eating] method neutral");
+					}
+					else if(WorldManager.traceAll){
+						trace("        |-- [state:eating] method neutral");
+					}
 					shop = decisionFunction.accidentalSelection(WorldManager.instance.listShop, agent);
 				}
 			}
 
 			agent.choice = shop.shopId;
-			agent.choiceReaction(agent.choice);
+			agent.choiceReaction(agent.choice);			
 
 			shop.transactionTotal += 1;
-			shop.grossProfit += motivationFunction.calculateProductPrice(shop, product);
+			shop.grossProfit += motivationFunction.calculateProductPrice(shop, product) * 1000;
 
 			shopCoordinate = shop.districtCoordinate;
 			shopName = shop.shopName;
@@ -96,12 +117,22 @@ package sketchproject.modules.states
 			agent.path = PathFinder.go(agent.coordinate.x, agent.coordinate.y, shopCoordinate.x, shopCoordinate.y, WorldManager.instance.map.levelData);
 			agent.path.unshift(shopCoordinate);
 			agent.isMoving = true;
+			agent.perceptReaction("need");
 
-			trace("        |-- [state:eating] choice shop id", shop.shopId, "name", shop.shopName);
-			trace("        |-- [state:eating] product", product, "price", motivationFunction.calculateProductPrice(shop, product));
-			trace("        |-- [state:eating] transaction #", shop.transactionTotal, "profit", shop.grossProfit);
-			trace("        |-- [state:eating] destination", shopCoordinate);
-			trace("        |-- [state:eating] path", agent.path);
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("        |-- [state:eating] choice shop id", shop.shopId, "name", shop.shopName);
+				trace("        |-- [state:eating] product", product, "price", motivationFunction.calculateProductPrice(shop, product));
+				trace("        |-- [state:eating] transaction #", shop.transactionTotal, "profit", shop.grossProfit);
+				trace("        |-- [state:eating] destination", shopCoordinate);
+				trace("        |-- [state:eating] path", agent.path);
+			}
+			else if(WorldManager.traceAll){
+				trace("        |-- [state:eating] choice shop id", shop.shopId, "name", shop.shopName);
+				trace("        |-- [state:eating] product", product, "price", motivationFunction.calculateProductPrice(shop, product));
+				trace("        |-- [state:eating] transaction #", shop.transactionTotal, "profit", shop.grossProfit);
+				trace("        |-- [state:eating] destination", shopCoordinate);
+				trace("        |-- [state:eating] path", agent.path);
+			}
 		}
 
 		/**
@@ -111,7 +142,12 @@ package sketchproject.modules.states
 		{
 			if (!updated)
 			{
-				trace("      |-- [state:eating] agent id", agent.agentId, ": onUpdate");
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("      |-- [state:eating] agent id", agent.agentId, ": onUpdate");
+				}
+				else if(WorldManager.traceAll){
+					trace("      |-- [state:eating] agent id", agent.agentId, ": onUpdate");
+				}
 				updated = true;
 			}
 
@@ -125,10 +161,18 @@ package sketchproject.modules.states
 				var isometric:Point = IsoHelper.twoDToIso(cartesian);
 				isometric.x = isometric.x + 50;
 
+				agent.alpha = 0.3;
 				WorldManager.instance.map.spawnCoin(isometric);
+				
+				agent.perceptReaction("satisfaction");
 
-				trace("        |-- [state:eating] agent id", agent.agentId, "arrived in", shopName);
-
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("        |-- [state:eating] agent id", agent.agentId, "arrived in", shopName);
+				}
+				else if(WorldManager.traceAll){
+					trace("        |-- [state:eating] agent id", agent.agentId, "arrived in", shopName);
+				}
+				
 				agent.action.popState();
 			}
 		}
@@ -138,9 +182,16 @@ package sketchproject.modules.states
 		 */
 		public function destroy():void
 		{
-			trace("  |-- [state:eating] agent id", agent.agentId, ": onExit");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("  |-- [state:eating] agent id", agent.agentId, ": onExit");
+			}
+			else if(WorldManager.traceAll){
+				trace("  |-- [state:eating] agent id", agent.agentId, ": onExit");
+			}
 
 			updated = false;
+			agent.isEating = false;
+			agent.alpha = 1;
 		}
 
 		/**

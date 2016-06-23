@@ -211,6 +211,11 @@ package sketchproject.states
 			isSimulationStarted = true;
 		}
 
+		/**
+		 * Triggered when menu is selected.
+		 * 
+		 * @param touch
+		 */
 		private function onMenuTouched(touch:TouchEvent):void
 		{
 			if (touch.getTouch(buttonStop, TouchPhase.ENDED))
@@ -245,6 +250,11 @@ package sketchproject.states
 			//trace("shop open-----prepare the simulation");
 		}
 
+		/**
+		 * Move map arround.
+		 * 
+		 * @param e
+		 */
 		private function onWorldTouched(e:TouchEvent):void
 		{
 			touch = e.getTouch(stage);

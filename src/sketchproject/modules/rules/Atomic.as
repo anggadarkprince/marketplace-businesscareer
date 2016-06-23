@@ -1,8 +1,11 @@
 package sketchproject.modules.rules
 {
 	import flash.errors.IllegalOperationError;
+	
+	import sketchproject.interfaces.IRule;
+	import sketchproject.modules.Agent;
 
-	public class Atomic
+	public class Atomic implements IRule
 	{
 		private var _priority:uint;
 		
@@ -34,10 +37,9 @@ package sketchproject.modules.rules
 			_priority = value;
 		}
 		
-		public function rule():Boolean {
+		public function rule(agent:Agent, agentList:Array):Boolean {
 			throw new IllegalOperationError("Must override concrete class");
 			return true;
 		}
-
 	}
 }

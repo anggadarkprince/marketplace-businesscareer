@@ -38,7 +38,12 @@ package sketchproject.modules.states
 		 */
 		public function initialize():void
 		{
-			trace("          |-- [state:homeward] agent id", agent.agentId, ": onEnter");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("          |-- [state:homeward] agent id", agent.agentId, ": onEnter");
+			}
+			else if(WorldManager.traceAll){
+				trace("          |-- [state:homeward] agent id", agent.agentId, ": onEnter");
+			}
 
 			updated = false;
 
@@ -82,8 +87,14 @@ package sketchproject.modules.states
 
 			agent.isMoving = true;
 
-			trace("            |-- [state:homeward] destination", agent.district, homeCoordinate);
-			trace("            |-- [state:homeward] path", agent.path);
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("            |-- [state:homeward] destination", agent.district, homeCoordinate);
+				trace("            |-- [state:homeward] path", agent.path);
+			}
+			else if(WorldManager.traceAll){
+				trace("            |-- [state:homeward] destination", agent.district, homeCoordinate);
+				trace("            |-- [state:homeward] path", agent.path);
+			}
 		}
 
 		/**
@@ -93,7 +104,12 @@ package sketchproject.modules.states
 		{
 			if (!updated)
 			{
-				trace("          |-- [state:homeward] agent id", agent.agentId, ": onUpdate to", agent.district);
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("          |-- [state:homeward] agent id", agent.agentId, ": onUpdate to", agent.district);
+				}
+				else if(WorldManager.traceAll){
+					trace("          |-- [state:homeward] agent id", agent.agentId, ": onUpdate to", agent.district);
+				}
 				updated = true;
 			}
 
@@ -113,7 +129,12 @@ package sketchproject.modules.states
 		 */
 		public function destroy():void
 		{
-			trace("          |-- [state:homeward] agent id", agent.agentId, ": onExit from", agent.district);
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("          |-- [state:homeward] agent id", agent.agentId, ": onExit from", agent.district);
+			}
+			else if(WorldManager.traceAll){
+				trace("          |-- [state:homeward] agent id", agent.agentId, ": onExit from", agent.district);
+			}
 
 			agent.alpha = 1;
 			updated = false;

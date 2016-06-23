@@ -37,7 +37,12 @@ package sketchproject.modules.states
 		 */
 		public function initialize():void
 		{
-			trace("  |-- [state:wandering] agent id", agent.agentId, ": onEnter");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("  |-- [state:wandering] agent id", agent.agentId, ": onEnter");
+			}
+			else if(WorldManager.traceAll){
+				trace("  |-- [state:wandering] agent id", agent.agentId, ": onEnter");
+			}
 
 			updated = false;
 
@@ -56,8 +61,14 @@ package sketchproject.modules.states
 			agent.path = PathFinder.go(agent.coordinate.x, agent.coordinate.y, wanderingDestination.x, wanderingDestination.y, WorldManager.instance.map.levelData);
 			agent.path.unshift(wanderingDestination);
 
-			trace("    |-- [state:wandering] destination", wanderingDestination);
-			trace("    |-- [state:wandering] path", agent.path);
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("    |-- [state:wandering] destination", wanderingDestination);
+				trace("    |-- [state:wandering] path", agent.path);
+			}
+			else if(WorldManager.traceAll){
+				trace("    |-- [state:wandering] destination", wanderingDestination);
+				trace("    |-- [state:wandering] path", agent.path);
+			}
 
 			if (agent.path != null && Point(agent.path[agent.path.length - 1]).equals(wanderingDestination))
 			{
@@ -76,7 +87,12 @@ package sketchproject.modules.states
 		{
 			if (!updated)
 			{
-				trace("  |-- [state:wandering] agent id", agent.agentId, ": onUpdate");
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("  |-- [state:wandering] agent id", agent.agentId, ": onUpdate");
+				}
+				else if(WorldManager.traceAll){
+					trace("  |-- [state:wandering] agent id", agent.agentId, ": onUpdate");
+				}
 				updated = true;
 			}
 
@@ -86,7 +102,12 @@ package sketchproject.modules.states
 			}
 			else
 			{
-				trace("    |-- [state:wandering] agent id", agent.agentId, "arrived in destination");
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("    |-- [state:wandering] agent id", agent.agentId, "arrived in destination");
+				}
+				else if(WorldManager.traceAll){
+					trace("    |-- [state:wandering] agent id", agent.agentId, "arrived in destination");
+				}
 				agent.action.pushState(agent.idleAction);
 			}
 		}
@@ -96,7 +117,12 @@ package sketchproject.modules.states
 		 */
 		public function destroy():void
 		{
-			trace("  |-- [state:wandering] agent id", agent.agentId, ": onExit");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("  |-- [state:wandering] agent id", agent.agentId, ": onExit");
+			}
+			else if(WorldManager.traceAll){
+				trace("  |-- [state:wandering] agent id", agent.agentId, ": onExit");
+			}
 
 			updated = false;
 			agent.dX = 0;

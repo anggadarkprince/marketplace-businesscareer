@@ -9,6 +9,8 @@ package sketchproject.modules
 	 */
 	public class DecisionFunction
 	{
+		private var selectedShop:Shop;
+		
 		/**
 		 * Default controller of DecisionFunction
 		 */
@@ -79,6 +81,8 @@ package sketchproject.modules
 				{
 					selectedShop = selectRandomLucky(shopList);
 				}
+
+				agent.perceptReaction("satisfaction");
 			}
 			// 50% consumer basic
 			else if (probability <= 75)
@@ -88,26 +92,31 @@ package sketchproject.modules
 				if (probability <= 30)
 				{
 					selectedShop = selectNearestShop(shopList, agent);
+					agent.perceptReaction("satisfaction");
 				}
 				// 10% top seller
 				else if (probability <= 40)
 				{
 					selectedShop = selectMostPopularShop(shopList);
+					agent.perceptReaction("satisfaction");
 				}
 				// 25% lowest price
 				else if (probability <= 65)
 				{
 					selectedShop = selectCheapestShop(shopList);
+					agent.perceptReaction("price");
 				}
 				// 20% best quality
 				else if (probability <= 85)
 				{
 					selectedShop = selectFinestShop(shopList, agent);
+					agent.perceptReaction("quality");
 				}
 				// 15% best all features
 				else
 				{
 					selectedShop = selectBestShop(shopList, agent);
+					agent.perceptReaction("satisfaction");
 				}
 			}
 			// 25% shop feature
@@ -135,6 +144,8 @@ package sketchproject.modules
 					selectedShop = selectAdvancedShop(shopList);
 				}
 			}
+
+			agent.perceptReaction("service");
 
 			return selectedShop;
 		}

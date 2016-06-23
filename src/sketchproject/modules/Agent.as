@@ -1,7 +1,7 @@
 package sketchproject.modules
 {
 	import flash.geom.Point;
-
+	
 	import sketchproject.core.Assets;
 	import sketchproject.interfaces.IState;
 	import sketchproject.managers.WorldManager;
@@ -19,7 +19,7 @@ package sketchproject.modules
 	import sketchproject.modules.states.WorkingState;
 	import sketchproject.utilities.GameUtils;
 	import sketchproject.utilities.IsoHelper;
-
+	
 	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.MovieClip;
@@ -134,6 +134,7 @@ package sketchproject.modules
 		public var isGoingTaskByWeather:Boolean;
 		public var isGoingTaskByDeterminant:Boolean;
 		public var isFlocking:Boolean;
+		public var isInfluencing:Boolean;
 		public var isFree:Boolean;
 		public var isStress:Boolean;
 		public var isSick:Boolean;
@@ -159,6 +160,7 @@ package sketchproject.modules
 			npc = "char" + GameUtils.randomFor(15);
 			facing = "right";
 			isMoving = false;
+			isInfluencing = false;
 			mainRoleDone = false;
 			isGoingEvent = false;
 			isGoingTask = false;
@@ -278,7 +280,7 @@ package sketchproject.modules
 				case "influence":
 					perceptImage.texture = Assets.getAtlas(Assets.NPC, Assets.NPC_XML).getTexture("percept_influence");
 					break;
-				case "satisaction":
+				case "satisfaction":
 					perceptImage.texture = Assets.getAtlas(Assets.NPC, Assets.NPC_XML).getTexture("percept_satisfaction");
 					break;
 				case "price":
@@ -317,6 +319,9 @@ package sketchproject.modules
 					break;
 				case 3:
 					choiceImage.texture = Assets.getAtlas(Assets.NPC, Assets.NPC_XML).getTexture("side3");
+					break;
+				case 0:
+					choiceImage.visible = false;
 					break;
 			}
 		}
@@ -410,54 +415,56 @@ package sketchproject.modules
 					// trace("agent "+agentId+" current destination ", coordinate, destination, position);
 
 					// +x direction : if agent walk to the right
-					if (coordinate.x < destination.x)
-					{
-						dX = 1;
-						facing = "left";
-					}
-					// -x direction : if agent walk to the left
-					else if (coordinate.x > destination.x)
-					{
-						dX = -1;
-						facing = "right";
-					}
-					// x stay at current x location, move up or down only
-					else
-					{
-						dX = 0;
-					}
-
-					// +y direction : if agent move down
-					if (coordinate.y < destination.y)
-					{
-						dY = 1;
-						facing = "right";
-					}
-					// -y direction : if agent move up
-					else if (coordinate.y > destination.y)
-					{
-						dY = -1;
-						facing = "left";
-					}
-					// y stay at current y location, move left or right only
-					else
-					{
-						dY = 0;
-					}
-
-					// flip agent facing
-					flipFacing();
-
-					// make sure dX is 0 if agent walk to top or bottom
-					if (coordinate.x == destination.x)
-					{
-						dX = 0;
-					}
-					// make sure dY is 0 if agent walk to  left or right
-					else if (coordinate.y == destination.y)
-					{
-						dY = 0;
-					}
+					if(destination != null){
+						if (coordinate.x < destination.x)
+						{
+							dX = 1;
+							facing = "left";
+						}
+							// -x direction : if agent walk to the left
+						else if (coordinate.x > destination.x)
+						{
+							dX = -1;
+							facing = "right";
+						}
+							// x stay at current x location, move up or down only
+						else
+						{
+							dX = 0;
+						}
+						
+						// +y direction : if agent move down
+						if (coordinate.y < destination.y)
+						{
+							dY = 1;
+							facing = "right";
+						}
+							// -y direction : if agent move up
+						else if (coordinate.y > destination.y)
+						{
+							dY = -1;
+							facing = "left";
+						}
+							// y stay at current y location, move left or right only
+						else
+						{
+							dY = 0;
+						}
+						
+						// flip agent facing
+						flipFacing();
+						
+						// make sure dX is 0 if agent walk to top or bottom
+						if (coordinate.x == destination.x)
+						{
+							dX = 0;
+						}
+							// make sure dY is 0 if agent walk to  left or right
+						else if (coordinate.y == destination.y)
+						{
+							dY = 0;
+						}
+					}					
 				}
 			}
 		}

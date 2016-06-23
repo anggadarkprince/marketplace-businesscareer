@@ -38,7 +38,12 @@ package sketchproject.modules.states
 		 */
 		public function initialize():void
 		{
-			trace("          |-- [state:trading] agent id", agent.agentId, ": onEnter");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("          |-- [state:trading] agent id", agent.agentId, ": onEnter");
+			}
+			else if(WorldManager.traceAll){
+				trace("          |-- [state:trading] agent id", agent.agentId, ": onEnter");
+			}
 			
 			GameUtils.swapTextureFrame(agent.baseCharacter, Assets.getAtlas(Assets.NPC,Assets.NPC_XML).getTextures(agent.npc+"_walk"));
 			agent.baseCharacter.loop = true;
@@ -57,8 +62,14 @@ package sketchproject.modules.states
 			agent.path = PathFinder.go(agent.coordinate.x, agent.coordinate.y, bcdCoordinate.x, bcdCoordinate.y, WorldManager.instance.map.levelData);
 			agent.path.unshift(bcdCoordinate);
 			
-			trace("            |-- [state:trading] destination", bcdCoordinate);
-			trace("            |-- [state:trading] path", agent.path);
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("            |-- [state:trading] destination", bcdCoordinate);
+				trace("            |-- [state:trading] path", agent.path);
+			}
+			else if(WorldManager.traceAll){
+				trace("            |-- [state:trading] destination", bcdCoordinate);
+				trace("            |-- [state:trading] path", agent.path);
+			}
 			
 			agent.isMoving = true;
 		}
@@ -70,7 +81,12 @@ package sketchproject.modules.states
 		{
 			if (!updated)
 			{
-				trace("          |-- [state:working] agent id", agent.agentId, ": onUpdate");
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("          |-- [state:working] agent id", agent.agentId, ": onUpdate");
+				}
+				else if(WorldManager.traceAll){
+					trace("          |-- [state:working] agent id", agent.agentId, ": onUpdate");
+				}
 				updated = true;
 			}
 			
@@ -80,7 +96,12 @@ package sketchproject.modules.states
 			}
 			else
 			{
-				trace("            |-- [state:working] agent id", agent.agentId, "arrived in business center district");
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("            |-- [state:working] agent id", agent.agentId, "arrived in business center district");
+				}
+				else if(WorldManager.traceAll){
+					trace("            |-- [state:working] agent id", agent.agentId, "arrived in business center district");
+				}
 				agent.alpha = 0.3;
 				agent.action.pushState(agent.idleAction);
 			}
@@ -91,7 +112,12 @@ package sketchproject.modules.states
 		 */
 		public function destroy():void
 		{
-			trace("          |-- [state:trading] agent id", agent.agentId, ": onExit");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("          |-- [state:trading] agent id", agent.agentId, ": onExit");
+			}
+			else if(WorldManager.traceAll){
+				trace("          |-- [state:trading] agent id", agent.agentId, ": onExit");
+			}
 			
 			agent.mainRoleDone = true;
 			agent.alpha = 1;
