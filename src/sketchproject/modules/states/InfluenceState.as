@@ -2,6 +2,7 @@ package sketchproject.modules.states
 {
 	import sketchproject.core.Assets;
 	import sketchproject.interfaces.IState;
+	import sketchproject.managers.WorldManager;
 	import sketchproject.modules.Agent;
 	import sketchproject.utilities.GameUtils;
 	
@@ -34,7 +35,12 @@ package sketchproject.modules.states
 		 */
 		public function initialize():void
 		{
-			trace("    |-- [state:influencing] agent id", agent.agentId, ": onEnter");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("    |-- [state:influencing] agent id", agent.agentId, ": onEnter");
+			}
+			else if(WorldManager.traceAll){
+				trace("    |-- [state:influencing] agent id", agent.agentId, ": onEnter");
+			}
 			
 			updated = false;
 			
@@ -58,7 +64,12 @@ package sketchproject.modules.states
 		{
 			if (!updated)
 			{
-				trace("    |-- [state:influencing] agent id", agent.agentId, ": onUpdate");
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("    |-- [state:influencing] agent id", agent.agentId, ": onUpdate");
+				}
+				else if(WorldManager.traceAll){
+					trace("    |-- [state:influencing] agent id", agent.agentId, ": onUpdate");
+				}
 				updated = true;
 			}
 		}
@@ -68,7 +79,12 @@ package sketchproject.modules.states
 		 */
 		public function destroy():void
 		{
-			trace("    |-- [state:influencing] agent id", agent.agentId, ": onExit");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("    |-- [state:influencing] agent id", agent.agentId, ": onExit");
+			}
+			else if(WorldManager.traceAll){
+				trace("    |-- [state:influencing] agent id", agent.agentId, ": onExit");
+			}
 			
 			updated = false;
 			agent.perceptReaction("none");

@@ -61,15 +61,20 @@ package sketchproject.modules
 		{
 			if (getCurrentState() != state)
 			{
+				trace("before push state");
+				logState();
 				if (getCurrentState() != null && getCurrentState().toString() == "sketchproject.modules.states.EatingState")
 				{
+					trace("prioritisation");
 					stackState.splice(stackState.length - 1, 0, state);
 				}
 				else
 				{
+					trace("LIFS");
 					stackState.push(state);
 					state.initialize();
 				}
+				trace("after push state");
 			}
 		}
 

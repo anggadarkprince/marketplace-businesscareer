@@ -50,7 +50,12 @@ package sketchproject.modules.states
 		 */
 		public function initialize():void
 		{
-			trace("      |-- [state:idle] agent id", agent.agentId, ": onEnter");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("      |-- [state:idle] agent id", agent.agentId, ": onEnter");
+			}
+			else if(WorldManager.traceAll){
+				trace("      |-- [state:idle] agent id", agent.agentId, ": onEnter");
+			}
 
 			updated = false;
 
@@ -79,7 +84,12 @@ package sketchproject.modules.states
 					{
 						isDelayWandering = true;
 						delayWanderingMax = 100 + GameUtils.randomFor(400);
-						trace("        |-- [state:wandering] agent id", agent.agentId, "idle for", delayWanderingMax, "frames");
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("        |-- [state:wandering] agent id", agent.agentId, "idle for", delayWanderingMax, "frames");
+						}
+						else if(WorldManager.traceAll){
+							trace("        |-- [state:wandering] agent id", agent.agentId, "idle for", delayWanderingMax, "frames");
+						}
 						break;
 					}
 				}
@@ -100,11 +110,21 @@ package sketchproject.modules.states
 			{
 				if (isDelayWandering)
 				{
-					trace("      |-- [state:idle] agent id", agent.agentId, ": onUpdate");
+					if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+						trace("      |-- [state:idle] agent id", agent.agentId, ": onUpdate");
+					}
+					else if(WorldManager.traceAll){
+						trace("      |-- [state:idle] agent id", agent.agentId, ": onUpdate");
+					}
 				}
 				else
 				{
-					trace("            |-- [state:idle] agent id", agent.agentId, ": onUpdate");
+					if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+						trace("            |-- [state:idle] agent id", agent.agentId, ": onUpdate");
+					}
+					else if(WorldManager.traceAll){
+						trace("            |-- [state:idle] agent id", agent.agentId, ": onUpdate");
+					}
 				}
 
 				updated = true;
@@ -161,12 +181,22 @@ package sketchproject.modules.states
 					if (agent.stress < 10 && GameUtils.probability((10 - agent.actionWill) / 10))
 					{
 						agent.stress += GameUtils.randomFor(4, false);
-						trace("              |-- [state:idle] agent id", agent.agentId, "stress", agent.stress);
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("              |-- [state:idle] agent id", agent.agentId, "stress", agent.stress);
+						}
+						else if(WorldManager.traceAll){
+							trace("              |-- [state:idle] agent id", agent.agentId, "stress", agent.stress);
+						}
 					}
 					if (agent.health > 0 && GameUtils.probability(GameUtils.randomFor(0.1)))
 					{
 						agent.health -= GameUtils.randomFor(2, false);
-						trace("              |-- [state:idle] agent id", agent.agentId, "health", agent.health);
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("              |-- [state:idle] agent id", agent.agentId, "health", agent.health);
+						}
+						else if(WorldManager.traceAll){
+							trace("              |-- [state:idle] agent id", agent.agentId, "health", agent.health);
+						}
 					}
 				}
 				// if idle while trading
@@ -175,12 +205,22 @@ package sketchproject.modules.states
 					if (agent.stress < 10 && GameUtils.probability((10 - agent.actionWill) / 10))
 					{
 						agent.stress += GameUtils.randomFor(4, false);
-						trace("              |-- [state:idle] agent id", agent.agentId, "stress", agent.stress);
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("              |-- [state:idle] agent id", agent.agentId, "stress", agent.stress);
+						}
+						else if(WorldManager.traceAll){
+							trace("              |-- [state:idle] agent id", agent.agentId, "stress", agent.stress);
+						}
 					}
 					if (agent.health > 0 && GameUtils.probability(GameUtils.randomFor(0.5)))
 					{
 						agent.health -= GameUtils.randomFor(2, false);
-						trace("              |-- [state:idle] agent id", agent.agentId, "health", agent.health);
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("              |-- [state:idle] agent id", agent.agentId, "health", agent.health);
+						}
+						else if(WorldManager.traceAll){
+							trace("              |-- [state:idle] agent id", agent.agentId, "health", agent.health);
+						}
 					}
 				}
 				// if idle while working
@@ -189,12 +229,22 @@ package sketchproject.modules.states
 					if (agent.stress < 10 && GameUtils.probability((10 - agent.actionWill) / 10))
 					{
 						agent.stress += GameUtils.randomFor(5, false);
-						trace("              |-- [state:idle] agent id", agent.agentId, "stress", agent.stress);
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("              |-- [state:idle] agent id", agent.agentId, "stress", agent.stress);
+						}
+						else if(WorldManager.traceAll){
+							trace("              |-- [state:idle] agent id", agent.agentId, "stress", agent.stress);
+						}
 					}
 					if (agent.health > 0 && GameUtils.probability(GameUtils.randomFor(0.3)))
 					{
 						agent.health -= GameUtils.randomFor(3, false);
-						trace("              |-- [state:idle] agent id", agent.agentId, "health", agent.health);
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("              |-- [state:idle] agent id", agent.agentId, "health", agent.health);
+						}
+						else if(WorldManager.traceAll){
+							trace("              |-- [state:idle] agent id", agent.agentId, "health", agent.health);
+						}
 					}
 				}
 
@@ -213,24 +263,44 @@ package sketchproject.modules.states
 					if (agent.health > 10)
 					{
 						agent.health = 10;
-						trace("                |-- [state:idle] agent id", agent.agentId, "health reaches maximum", agent.health);
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("                |-- [state:idle] agent id", agent.agentId, "health reaches maximum", agent.health);
+						}
+						else if(WorldManager.traceAll){
+							trace("                |-- [state:idle] agent id", agent.agentId, "health reaches maximum", agent.health);
+						}
 					}
 					else if (agent.health < 0)
 					{
 						agent.health = 0;
-						trace("                |-- [state:idle] agent id", agent.agentId, "health reaches minimum", agent.health);
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("                |-- [state:idle] agent id", agent.agentId, "health reaches minimum", agent.health);
+						}
+						else if(WorldManager.traceAll){
+							trace("                |-- [state:idle] agent id", agent.agentId, "health reaches minimum", agent.health);
+						}
 					}
 
 					// limiting stress
 					if (agent.stress < 0)
 					{
 						agent.stress = 0;
-						trace("                |-- [state:idle] agent id", agent.agentId, "stress reaches minimum", agent.health);
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("                |-- [state:idle] agent id", agent.agentId, "stress reaches minimum", agent.health);
+						}
+						else if(WorldManager.traceAll){
+							trace("                |-- [state:idle] agent id", agent.agentId, "stress reaches minimum", agent.health);
+						}
 					}
 					else if (agent.stress > 10)
 					{
 						agent.stress = 10;
-						trace("                |-- [state:idle] agent id", agent.agentId, "stress reaches maximum", agent.health);
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("                |-- [state:idle] agent id", agent.agentId, "stress reaches maximum", agent.health);
+						}
+						else if(WorldManager.traceAll){
+							trace("                |-- [state:idle] agent id", agent.agentId, "stress reaches maximum", agent.health);
+						}
 					}
 
 					// health evaluation
@@ -246,7 +316,12 @@ package sketchproject.modules.states
 								agent.action.checkState(agent.visitingAction, true);
 							}
 							agent.targetDistrict = "";
-							trace("                |-- [state:idle] agent id", agent.agentId, "is not sick anymore");
+							if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+								trace("                |-- [state:idle] agent id", agent.agentId, "is not sick anymore");
+							}
+							else if(WorldManager.traceAll){
+								trace("                |-- [state:idle] agent id", agent.agentId, "is not sick anymore");
+							}
 						}
 					}
 
@@ -263,7 +338,12 @@ package sketchproject.modules.states
 								agent.action.checkState(agent.visitingAction, true);
 							}
 							agent.targetDistrict = "";
-							trace("                |-- [state:idle] agent id", agent.agentId, "is not stress anymore");
+							if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+								trace("                |-- [state:idle] agent id", agent.agentId, "is not stress anymore");
+							}
+							else if(WorldManager.traceAll){
+								trace("                |-- [state:idle] agent id", agent.agentId, "is not stress anymore");
+							}
 						}
 					}
 				}
@@ -274,7 +354,12 @@ package sketchproject.modules.states
 					agent.stress -= GameUtils.randomFor(8, false);
 					if (agent.stress < GameUtils.randomFor(2))
 					{
-						trace("                |-- [state:idle] agent id", agent.agentId, "is not stress anymore");
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("                |-- [state:idle] agent id", agent.agentId, "is not stress anymore");
+						}
+						else if(WorldManager.traceAll){
+							trace("                |-- [state:idle] agent id", agent.agentId, "is not stress anymore");
+						}
 						agent.isStress = false;
 						agent.action.checkState(agent.idleAction, true);
 						agent.action.checkState(agent.playingAction, true);
@@ -284,7 +369,12 @@ package sketchproject.modules.states
 					// check if agent now is playing and they play at will and meet a couple hour until boring
 					if (currentHour == idleTaken && !agent.isStress)
 					{
-						trace("            |-- [state:idle] agent id", agent.agentId, "stop playing because boring");
+						if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+							trace("            |-- [state:idle] agent id", agent.agentId, "stop playing because boring");
+						}
+						else if(WorldManager.traceAll){
+							trace("            |-- [state:idle] agent id", agent.agentId, "stop playing because boring");
+						}
 						agent.action.checkState(agent.idleAction, true);
 						agent.action.checkState(agent.playingAction, true);
 						agent.action.checkState(agent.vacationAction, true);
@@ -302,7 +392,12 @@ package sketchproject.modules.states
 		{
 			if (isDelayWandering)
 			{
-				trace("          |-- [state:idle] agent id", agent.agentId, ": onExit");
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("          |-- [state:idle] agent id", agent.agentId, ": onExit");
+				}
+				else if(WorldManager.traceAll){
+					trace("          |-- [state:idle] agent id", agent.agentId, ": onExit");
+				}
 			}
 
 			agent.alpha = 1;

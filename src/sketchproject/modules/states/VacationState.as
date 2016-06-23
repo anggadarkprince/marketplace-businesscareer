@@ -38,7 +38,12 @@ package sketchproject.modules.states
 		 */
 		public function initialize():void
 		{
-			trace("          |-- [state:vacation] agent id", agent.agentId, ": onEnter");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("          |-- [state:vacation] agent id", agent.agentId, ": onEnter");
+			}
+			else if(WorldManager.traceAll){
+				trace("          |-- [state:vacation] agent id", agent.agentId, ": onEnter");
+			}
 
 			updated = false;
 
@@ -96,8 +101,14 @@ package sketchproject.modules.states
 			agent.stress = GameUtils.randomFor(4);
 			agent.emotion = GameUtils.randomFor(3) + 7;
 
-			trace("            |-- [state:vacation] destination", agent.targetDistrict, vacationCoordinate);
-			trace("            |-- [state:vacation] path", agent.path);
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("            |-- [state:vacation] destination", agent.targetDistrict, vacationCoordinate);
+				trace("            |-- [state:vacation] path", agent.path);
+			}
+			else if(WorldManager.traceAll){
+				trace("            |-- [state:vacation] destination", agent.targetDistrict, vacationCoordinate);
+				trace("            |-- [state:vacation] path", agent.path);
+			}
 		}
 
 		/**
@@ -107,7 +118,12 @@ package sketchproject.modules.states
 		{
 			if (!updated)
 			{
-				trace("          |-- [state:vacation] agent id", agent.agentId, ": onUpdate to", agent.targetDistrict);
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("          |-- [state:vacation] agent id", agent.agentId, ": onUpdate to", agent.targetDistrict);
+				}
+				else if(WorldManager.traceAll){
+					trace("          |-- [state:vacation] agent id", agent.agentId, ": onUpdate to", agent.targetDistrict);
+				}
 				updated = true;
 			}
 
@@ -117,7 +133,12 @@ package sketchproject.modules.states
 			}
 			else
 			{
-				trace("            |-- [state:vacation] agent id", agent.agentId, "arrived in", agent.targetDistrict);
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("            |-- [state:vacation] agent id", agent.agentId, "arrived in", agent.targetDistrict);
+				}
+				else if(WorldManager.traceAll){
+					trace("            |-- [state:vacation] agent id", agent.agentId, "arrived in", agent.targetDistrict);
+				}
 				agent.alpha = 0.3;
 				agent.action.pushState(agent.idleAction);
 			}
@@ -128,7 +149,12 @@ package sketchproject.modules.states
 		 */
 		public function destroy():void
 		{
-			trace("          |-- [state:vacation] agent id", agent.agentId, ": onExit from", agent.targetDistrict);
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("          |-- [state:vacation] agent id", agent.agentId, ": onExit from", agent.targetDistrict);
+			}
+			else if(WorldManager.traceAll){
+				trace("          |-- [state:vacation] agent id", agent.agentId, ": onExit from", agent.targetDistrict);
+			}
 
 			agent.alpha = 1;
 			agent.targetDistrict = "";

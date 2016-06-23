@@ -38,7 +38,12 @@ package sketchproject.modules.states
 		 */
 		public function initialize():void
 		{
-			trace("          |-- [state:working] agent id", agent.agentId, ": onEnter");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("          |-- [state:working] agent id", agent.agentId, ": onEnter");
+			}
+			else if(WorldManager.traceAll){
+				trace("          |-- [state:working] agent id", agent.agentId, ": onEnter");
+			}
 			
 			updated = false;
 			
@@ -59,8 +64,14 @@ package sketchproject.modules.states
 			agent.path = PathFinder.go(agent.coordinate.x, agent.coordinate.y, factoryCoordinate.x, factoryCoordinate.y, WorldManager.instance.map.levelData);
 			agent.path.unshift(factoryCoordinate);
 			
-			trace("            |-- [state:working] destination", factoryCoordinate);
-			trace("            |-- [state:working] path", agent.path);
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("            |-- [state:working] destination", factoryCoordinate);
+				trace("            |-- [state:working] path", agent.path);
+			}
+			else if(WorldManager.traceAll){
+				trace("            |-- [state:working] destination", factoryCoordinate);
+				trace("            |-- [state:working] path", agent.path);
+			}
 			
 			agent.isMoving = true;
 		}
@@ -72,7 +83,12 @@ package sketchproject.modules.states
 		{
 			if (!updated)
 			{
-				trace("          |-- [state:working] agent id", agent.agentId, ": onUpdate");
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("          |-- [state:working] agent id", agent.agentId, ": onUpdate");
+				}
+				else if(WorldManager.traceAll){
+					trace("          |-- [state:working] agent id", agent.agentId, ": onUpdate");
+				}
 				updated = true;
 			}
 			
@@ -82,7 +98,12 @@ package sketchproject.modules.states
 			}
 			else
 			{
-				trace("            |-- [state:working] agent id", agent.agentId, "arrived in school district");
+				if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+					trace("            |-- [state:working] agent id", agent.agentId, "arrived in school district");
+				}
+				else if(WorldManager.traceAll){
+					trace("            |-- [state:working] agent id", agent.agentId, "arrived in school district");
+				}
 				agent.alpha = 0.3;
 				agent.action.pushState(agent.idleAction);
 			}
@@ -93,7 +114,12 @@ package sketchproject.modules.states
 		 */
 		public function destroy():void
 		{
-			trace("          |-- [state:working] agent id", agent.agentId, ": onExit");
+			if(!WorldManager.traceAll && agent.agentId == WorldManager.agentTraceId){
+				trace("          |-- [state:working] agent id", agent.agentId, ": onExit");
+			}
+			else if(WorldManager.traceAll){
+				trace("          |-- [state:working] agent id", agent.agentId, ": onExit");
+			}
 			
 			agent.mainRoleDone = true;
 			agent.alpha = 1;
